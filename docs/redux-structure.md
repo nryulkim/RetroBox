@@ -71,13 +71,18 @@ the **components** that update as a result.
 
 * `fetchSingleVideo`
   0. invoked from `VideoDetail` `didMount`/`willReceiveProps`
-  0. `GET /api/videos/:id` is called
+  0. `GET /api/video/:id` is called
   0. `receiveSingleVideo` is set as the success callback
 
 * `destroyVideo`
   0. invoked from delete video button `onClick`
-  0. `DELETE /api/videos/:id` is called
+  0. `DELETE /api/video/:id` is called
   0. `removeVideo` is set as the success callback
+
+* `addViewToVideo`
+  0. invoked from `VideoPlayer` `componentWillUnmount`
+  0. `PATCH /api/videos/:id` is called
+  0. nothing is set as the success callback
 
 ### Video API Response Actions
 
