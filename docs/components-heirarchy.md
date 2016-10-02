@@ -43,10 +43,10 @@
 ## Routes
 | Path | Component |
 |------|-----------|
-| "/sign-up" | "SessionFormContainer" |
-| "/sign-in" | "SessionFormContainer" |
-| "/" | "HomeContainer" |
-| "/results" | "SearchContainer" |
-| "/upload" | "VideoUploadContainer" |
-| "/watch/:videoId" | "VideoShowContainer" |
-| "/user/:userId" | "UserHomeContainer" |
+| `/sign-up` | `SessionFormContainer` |
+| `/sign-in` | `SessionFormContainer` |
+| `/` | `HomeContainer` |
+| `/results` | `SearchContainer` |
+| `/upload` | `VideoUploadContainer` |
+| `/watch/:videoId` | `VideoShowContainer` |
+| `/user/:userId` | `UserHomeContainer` |
