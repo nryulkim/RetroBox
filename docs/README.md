@@ -1,12 +1,12 @@
-# VintageTube
+# RetroBox
 
-Heroku Link: [VintageTube]
+Heroku Link: [RetroBox]
 
-[VintageTube]: Put Link Here
+[RetroBox]: Put Link Here
 
 ## Minimum Viable Product
 
-VintageTube is a web application inspired by Youtube built using Ruby on Rails and React/Redux. By the end of Week 9, this app will, at the minimum, satisfy the following criteria.
+RetroBox is a web application inspired by Youtube built using Ruby on Rails and React/Redux. By the end of Week 9, this app will, at the minimum, satisfy the following criteria.
 
 ### Major Features
 - [ ] Hosting on Heroku
