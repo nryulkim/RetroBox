@@ -6,7 +6,7 @@ export default function Header(props){
     <div className="head group">
       <div className="logo">
         <div id="header_burger" />
-        <a href="/"><img src="/images/logo.png"/></a>
+        <a href="/"><img src={ window.retroBoxAssets.logo }/></a>
       </div>
       <div className="header_masthead">
         <form className="search">
