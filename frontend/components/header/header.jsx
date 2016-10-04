@@ -1,22 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default function Header(props){
   return(
-    <div id="head" className="group">
-      <div id="logo">
+    <div className="head group">
+      <div className="logo">
         <div id="header_burger" />
-        <a href="/"><img src="/images/logo.png" id="header_logo"/></a>
+        <a href="/"><img src="/images/logo.png"/></a>
       </div>
-      <form id="header_masthead">
-        <div id="search">
-          <input type="text" id="search_bar"/>
-          <button type="submit" id="search_button"></button>
+      <div className="header_masthead">
+        <form className="search">
+          <input type="text"/>
+          <button type="submit"></button>
+        </form>
+        <div className="header_buttons">
+          <Link to="/login">Sign In</Link>
+          <Link to="/sign-up">Sign Up</Link>
         </div>
-        <div id="header_buttons">
-          <a href="/login">Sign In</a>
-          <a href="/sign-up">Sign Up</a>
-        </div>
-      </form>
+      </div>
     </div>
   );
 }

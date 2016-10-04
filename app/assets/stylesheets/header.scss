@@ -1,4 +1,4 @@
-#head{
+.head{
   border-bottom: 1px solid #eee;
   display: flex;
   flex-direction: row;
@@ -7,11 +7,11 @@
   padding: 5px 20px;
 }
 
-#logo{
+.logo{
   display: flex;
 }
 
-#header_logo{
+.logo img {
   height: 30px;
   margin: 5px;
 }
@@ -19,10 +19,11 @@
 #header_burger{
   width: 16px;
   height: 16px;
-  margin: 12px 20px;
+  margin: 10px 15px;
   background: url('/images/hamburger.png');
   background-repeat: no-repeat;
   background-size: 16px 16px;
+  padding: 5px;
   cursor: pointer;
 }
 
@@ -32,22 +33,22 @@
   background-size: 16px 16px;
 }
 
-#header_masthead{
-  width: 80%;
+.header_masthead{
+  width: 50%;
   padding: 6px;
   margin: 0 0 0 30px;
 }
 
-#search{
+.search{
   float: left;
   width: 80%;
 }
 
-#header_buttons{
+.header_buttons{
   float: right;
 }
 
-#header_buttons a{
+.header_buttons > a{
   float: left;
   padding: 7px 10px;
   border: 1px solid #ccc;
@@ -57,14 +58,14 @@
   font-size: 12px;
 }
 
-#search_bar{
+.search input{
   width: 70%;
   height: 18px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-#search_button{
+.search button{
   position: absolute;
   background-image: url('/images/src.png');
   background-position: center;
@@ -79,10 +80,10 @@
   border-bottom-right-radius: 3px;
 }
 
-#search_button:hover{
+.search button:hover{
   background-color: #F0F0F0;
 }
 
-#header_buttons :hover{
+.header_buttons a:hover{
   background-color: #F0F0F0;
 }
