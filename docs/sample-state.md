@@ -1,15 +1,17 @@
 ```js
 {
-  currentUser: {
-    id: 1,
-    username: "test"
-  },
-  forms: {
-    signUp: {errors: []},
-    logIn: {errors: []},
-    uploadVideo: {errors: []},
-    addComment: {errors: []}
-  },
+  session{
+    currentUser: {
+      id: 1,
+      username: "test"
+    },
+    forms: {
+      signUp: {errors: []},
+      logIn: {errors: []},
+      uploadVideo: {errors: []},
+      addComment: {errors: []}
+    }
+  }
   currentVideo: {
     title: "Sample Video",
     description: "something something",
