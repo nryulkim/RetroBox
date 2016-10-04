@@ -8,15 +8,15 @@ export default function Header(props){
         <div id="header_burger" />
         <a href="/"><img src={ window.retroBoxAssets.logo }/></a>
       </div>
-      <div className="header_masthead">
+      <div className="header_buttons">
+        <Link to="/login">Sign In</Link>
+        <Link to="/sign-up">Sign Up</Link>
+      </div>
+      <div className="search_holder">
         <form className="search">
           <input type="text"/>
           <button type="submit"></button>
         </form>
-        <div className="header_buttons">
-          <Link to="/login">Sign In</Link>
-          <Link to="/sign-up">Sign Up</Link>
-        </div>
       </div>
     </div>
   );
