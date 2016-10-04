@@ -5,9 +5,9 @@ export default class SessionForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      username: "",
-      email: "",
-      password: ""
+      username: null,
+      email: null,
+      password: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -54,12 +54,11 @@ export default class SessionForm extends React.Component {
     let usernameInput = "";
     if(formType === "Sign Up"){
       usernameInput = (
-        <label className="group">Username
-          <input
-            type="text"
-            value={this.state.username}
-            onChange={this.update('username')}/>
-        </label>
+        <input
+          type="text"
+          value={this.state.username}
+          onChange={this.update('username')}
+          placeholder="Enter your username"/>
       );
     }
 
@@ -70,24 +69,25 @@ export default class SessionForm extends React.Component {
 
     return(
       <div className="sessionForm group">
+        <img src={window.retroBoxAssets.logo}/>
+        <h3>Take a trip down memory lane...</h3>
         <ul className= "group">
           {errorText}
         </ul>
         <form onSubmit={this.handleSubmit} >
           {usernameInput}
-          <label className="group">Email
-            <input type="text"
-                value={this.state.email}
-                onChange={this.update('email')}/>
-          </label>
-          <label className="group">Password
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.update('password')}/>
-          </label>
-          <button type="submit">{formType}</button>
+          <input type="text"
+              value={this.state.email}
+              onChange={this.update('email')}
+              placeholder="Enter your email"/>
 
+          <input
+            type="password"
+            value={this.state.password}
+            onChange={this.update('password')}
+            placeholder="Password"/>
+
+          <button type="submit">{formType}</button>
         </form>
       </div>
     );
