@@ -19,9 +19,6 @@ RetroBox is a web application inspired by Youtube built using Ruby on Rails and 
   * Users should be able to Like a Video/Comment
 - [ ] Video Searching
   * Users should be able to look up videos via the title
-- [ ] Scrolling
-  * Lists of videos scroll sideways
-  * Loads more videos at the bottom of the page once. After leaves a "Load More" button
 - [ ] Production README
 - [ ] Adequate styling
 - [ ] Smooth, bug-free navigation
@@ -29,6 +26,9 @@ RetroBox is a web application inspired by Youtube built using Ruby on Rails and 
 
 
 ### Bonus Features
+- [ ] Scrolling
+  * Lists of videos scroll sideways
+  * Loads more videos at the bottom of the page once. After leaves a "Load More" button
 - [ ] Feeds (User specific and global sets of videos)
   * User Specific
     - [ ] Subscription (newest first)
@@ -80,7 +80,6 @@ RetroBox is a web application inspired by Youtube built using Ruby on Rails and 
 - [ ] Review
 
 ### Phase 2: Video Model, API, and Components (3 Days)
-
 **Objective:** Video can be created and updated through the API and by Users
 
 - [ ] Video Model
@@ -127,7 +126,19 @@ RetroBox is a web application inspired by Youtube built using Ruby on Rails and 
     - Shows the difference between Likes and Dislikes
 - Users should be able to see all videos/comments that they have liked.
 
-### Phase 5: Pagination / Infinite Scrolling (1 Day)
+### Phase 5: Video Searching (2 Days)
+**Objective:** Video can be searched by title via the search bar.
+
+- [ ] JBuilder views to format videos appropriately
+- [ ] Video search result page
+  - Video
+    - Title
+    - Username
+    - Description
+    - View Count
+    - Date posted
+
+### Bonus Phase: Pagination / Infinite Scrolling
 **Objective:** Add semi-infinite scrolling to the main index page.
 
 - [ ] Paginate Videos Index API to send 42 Video Links at first.

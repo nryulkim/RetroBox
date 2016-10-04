@@ -27,18 +27,17 @@
 - `DELETE /api/video/:id`
 
 ### Comments
-- `GET /api/video/:videoId/comments`
+- `GET /api/video/:video_id/comments`
   - index of all comments for a video
-- `POST /api/video/:videoId/comments`
-- `PATCH /api/video/:videoId/comment/:id`
-- `DELETE /api/video/:videoId/comment/:id`
+- `POST /api/video/:video_id/comments`
+- `PATCH /api/comment/:id`
+- `DELETE /api/comment/:id`
 
 ### Likes
-- `POST /api/video/:videoId/likes`
+- `POST /api/video/:video_id/likes`
   - Add a like or dislike to a video
   - User cannot like or dislike a video more than once
-- `POST /api/comment/:commendId/likes`
+- `POST /api/comment/:comment_id/likes`
   - Add a like or dislike to a comment
   - User cannot like or dislike a comment more than once
-- `DELETE /api/video/:videoId/like/:id`
-- `DELETE /api/comment/:commentId/like/:id`
+- `DELETE /api//like/:id`

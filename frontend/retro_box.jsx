@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as SessionActions from './actions/session_actions';
 import configureStore from './store/store.js';
+import Root from './components/root.jsx';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,5 +16,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.store = store;
 
     const root = document.getElementById('root');
-    ReactDOM.render(<h1>Welcome to RetroBox</h1>, root);
+    ReactDOM.render(<Root store={store}/>, root);
 });

@@ -1,0 +1,88 @@
+#head{
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+
+#logo{
+  display: flex;
+}
+
+#header_logo{
+  height: 30px;
+  margin: 5px;
+}
+
+#header_burger{
+  width: 16px;
+  height: 16px;
+  margin: 12px 20px;
+  background: url('/images/hamburger.png');
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  cursor: pointer;
+}
+
+#header_burger:hover{
+  background: url('/images/hamburger-selected.png');
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+#header_masthead{
+  width: 80%;
+  padding: 6px;
+  margin: 0 0 0 30px;
+}
+
+#search{
+  float: left;
+  width: 80%;
+}
+
+#header_buttons{
+  float: right;
+}
+
+#header_buttons a{
+  float: left;
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  border-radius: 3px;
+  background-color: #F8F8F8;
+  font-size: 12px;
+}
+
+#search_bar{
+  width: 70%;
+  height: 18px;
+  padding: 4px;
+  border: 1px solid #ccc;
+}
+
+#search_button{
+  position: absolute;
+  background-image: url('/images/src.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #F8F8F8;
+  background-size: 25px;
+  width: 70px;
+  height: 28px;
+  border: 1px solid #ccc;
+  border-left: 0;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+#search_button:hover{
+  background-color: #F0F0F0;
+}
+
+#header_buttons :hover{
+  background-color: #F0F0F0;
+}
