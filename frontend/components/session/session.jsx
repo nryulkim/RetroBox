@@ -12,14 +12,15 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.logDemo = this.logDemo.bind(this);
   }
 
   handleSubmit(e){
-    e.preventDefault();
+    if(e){e.preventDefault();}
     const { process } = this.props;
     const form = this;
     const router = this.props.router;
-    
+
     const clrForm = () => {
       form.setState({ email: "", username: "", password: "" });
       router.replace("#");
@@ -46,9 +47,83 @@ class SessionForm extends React.Component {
     return text;
   }
 
+  logDemo(e){
+    e.preventDefault();
+    const sess = this;
+    const time = 100;
+    setTimeout(()=>{
+      sess.setState({email: "t"});
+      setTimeout(()=>{
+        sess.setState({email: "te"});
+        setTimeout(()=>{
+          sess.setState({email: "tes"});
+          setTimeout(()=>{
+            sess.setState({email: "test"});
+            setTimeout(()=>{
+              sess.setState({email: "test@"});
+              setTimeout(()=>{
+                sess.setState({email: "test@t"});
+                setTimeout(()=>{
+                  sess.setState({email: "test@te"});
+                  setTimeout(()=>{
+                    sess.setState({email: "test@tes"});
+                    setTimeout(()=>{
+                      sess.setState({email: "test@test"});
+                      setTimeout(()=>{
+                        sess.setState({email: "test@test."});
+                        setTimeout(()=>{
+                          sess.setState({email: "test@test.c"});
+                          setTimeout(()=>{
+                            sess.setState({email: "test@test.co"});
+                            setTimeout(()=>{
+                              sess.setState({email: "test@test.com"});
+                              setTimeout(()=>{
+                                sess.setState({password: "p"});
+                                setTimeout(()=>{
+                                  sess.setState({password: "pa"});
+                                  setTimeout(()=>{
+                                    sess.setState({password: "pas"});
+                                    setTimeout(()=>{
+                                      sess.setState({password: "pass"});
+                                      setTimeout(()=>{
+                                        sess.setState({password: "passw"});
+                                        setTimeout(()=>{
+                                          sess.setState({password: "passwo"});
+                                          setTimeout(()=>{
+                                            sess.setState({password: "passwor"});
+                                            setTimeout(()=>{
+                                              sess.setState({password: "password"});
+                                              setTimeout(()=>{
+                                                sess.handleSubmit();
+                                              },time);
+                                            },time);
+                                          },time);
+                                        },time);
+                                      },time);
+                                    },time);
+                                  },time);
+                                },time);
+                              },time);
+                            },time);
+                          },time);
+                        },time);
+                      },time);
+                    },time);
+                  },time);
+                },time);
+              },time);
+            },time);
+          },time);
+        },time);
+      },time);
+    },time);
+  }
   render(){
     const { errors, formType } = this.props;
-    let usernameInput = "";
+    let usernameInput = <div>
+      <button id="demo" onClick={this.logDemo}>Demo Account</button>
+      <div className="separator">or</div>
+    </div>;
     if(formType === "Sign Up"){
       usernameInput = (
         <input

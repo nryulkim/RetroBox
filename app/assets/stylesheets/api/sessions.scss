@@ -68,5 +68,39 @@
     button:hover{
       background-image: -webkit-linear-gradient(top, #4d90fe, #357ae8);
     }
+
+    #demo{
+      margin: 10px auto 30px;
+    }
+
+    .separator{
+      text-align: center;
+      position: relative;
+      margin: 40px 0;
+    }
+
+    .separator:before{
+      right: 0;
+      border-top: 1px solid #ccc;
+      content: "";
+      height: 1px;
+      left: auto;
+      position: absolute;
+      top: 50%;
+      width: 45%;
+      z-index: 0;
+    }
+
+    .separator:after{
+      right: auto;
+      border-top: 1px solid #ccc;
+      content: "";
+      height: 1px;
+      left: 0;
+      position: absolute;
+      top: 50%;
+      width: 45%;
+      z-index: 0;
+    }
   }
 }

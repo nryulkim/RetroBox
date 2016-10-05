@@ -52,13 +52,14 @@ export default class Header extends React.Component{
   render(){
     let button1;
     let button2;
+    const { currentUser } = this.props;
     [button1, button2] = this.getButtons();
 
     return(
       <div className="head group">
         <div className="logo">
           <div id="header_burger" />
-          <a href="#"><img src={ window.retroBoxAssets.logo }/></a>
+          <a href="/"><img src={ window.retroBoxAssets.logo }/></a>
         </div>
         <div className="header_buttons">
           {button1}
