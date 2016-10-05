@@ -1,22 +1,17 @@
 import React from 'react';
-import { Link, hashHistory } from 'react-router';
+import { Link, hashHistory, withRouter } from 'react-router';
 
-export default class SessionForm extends React.Component {
+class SessionForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      username: null,
-      email: null,
-      password: null
+      username: "",
+      email: "",
+      password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
-  }
-
-  componentDidUpdate(){
-    if(this.props.loggedIn){
-      // hashHistory.push("/");
-    }
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   handleSubmit(e){
@@ -25,7 +20,7 @@ export default class SessionForm extends React.Component {
     const form = this;
 
     const clrForm = () => {
-      form.setState({ username: "", password: "" });
+      form.setState({ email: "", username: "", password: "" });
     };
 
     process(this.state, clrForm);
@@ -62,17 +57,13 @@ export default class SessionForm extends React.Component {
       );
     }
 
-    let errorText = "";
-    if(errors.length > 0){
-      errorText = errors.map((error, idx) => (<li key={idx}>{error}</li>));
-    }
 
     return(
       <div className="sessionForm group">
         <img src={window.retroBoxAssets.logo}/>
         <h3>Take a trip down memory lane...</h3>
-        <ul className= "group">
-          {errorText}
+        <ul className= "errors group">
+          {this.renderErrors()}
         </ul>
         <form onSubmit={this.handleSubmit} >
           {usernameInput}
@@ -93,3 +84,5 @@ export default class SessionForm extends React.Component {
     );
   }
 }
+
+export default withRouter(SessionForm);

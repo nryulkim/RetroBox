@@ -1,32 +1,46 @@
-import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, LOGOUT } from '../actions/session_actions';
+import { CLEAR_ERRORS, RECEIVE_CURRENT_USER, RECEIVE_ERRORS, LOGOUT } from '../actions/session_actions';
 import merge from "lodash/merge";
+
+
+const defaultForms = {
+  signUp: {errors: []},
+  logIn: {errors: []},
+  uploadVideo: {errors: []},
+  addComment: {errors: []}
+};
 
 const defaultState = {
   currentUser: null,
-  forms: {
-    signUp: {errors: []},
-    logIn: {errors: []},
-    uploadVideo: {errors: []},
-    addComment: {errors: []}
-  }
+  forms: defaultForms
 };
 
 
+
+
 export default (state = defaultState, action) => {
+  let newState = merge({}, state);
+
   switch(action.type){
+    case CLEAR_ERRORS:
+      newState.forms = defaultForms;
+      return newState;
+
     case RECEIVE_CURRENT_USER:
-      return(merge({}, state, { currentUser: action.user, forms: {} }));
+      newState.currentUser = action.user;
+      newState.forms = defaultForms;
+      return newState;
 
     case RECEIVE_ERRORS:
-      return(merge({}, state, {
-        currentUser: null,
-        forms: {
-          [action.formType]: { errors: action.errors }
-        }
-      }));
+      newState.currentUser = null;
+      newState.forms = merge({}, defaultForms, {
+        [action.formType]: { errors: action.errors }
+      });
+      return newState;
 
     case LOGOUT:
-      return(merge({}, state, defaultState));
+      newState.currentUser = {};
+      newState.forms = defaultForms;
+      return newState;
 
     default:
       return state;

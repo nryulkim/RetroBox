@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login, signup } from '../../actions/session_actions';
+import { login, signup, clearErrors } from '../../actions/session_actions';
 import SessionForm from './session';
 
 const mapStateToProps = ({ session }, ownProps) => {
@@ -10,7 +10,7 @@ const mapStateToProps = ({ session }, ownProps) => {
 
   return({
     loggedIn: !!session.currentUser,
-    errors: session.forms[formType]
+    errors: session.forms[formType].errors
   });
 };
 

@@ -9,10 +9,12 @@ class User < ApplicationRecord
 
   def self.find_by_creds(email, password)
     @user = User.find_by(email: email)
-    if @user.is_password?(password)
-      return @user
-    else
-      return nil
+    if @user
+      if @user.is_password?(password)
+        return @user
+      else
+        return nil
+      end
     end
   end
 
