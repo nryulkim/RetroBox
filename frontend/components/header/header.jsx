@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import UserDrop from './user_dropdown';
 
-export default class Header extends React.Component{
+class Header extends React.Component{
   constructor(props){
     super(props);
 
@@ -18,6 +18,7 @@ export default class Header extends React.Component{
   signout(){
     this.props.logout();
     this.toggleDrop();
+    this.props.router.replace("#");
   }
 
   toggleDrop(){
@@ -75,3 +76,5 @@ export default class Header extends React.Component{
     );
   }
 }
+
+export default withRouter(Header);

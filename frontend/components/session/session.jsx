@@ -118,6 +118,7 @@ class SessionForm extends React.Component {
       },time);
     },time);
   }
+  
   render(){
     const { errors, formType } = this.props;
     let usernameInput = <div>

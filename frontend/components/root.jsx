@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { clearErrors } from '../actions/session_actions';
 import App from './app';
-import Session from './session/session-container.js';
-
+import Session from './session/session_container.js';
+import VideoUpload from './videos/video_upload_container.js'
 const _redirectIfLoggedIn = (nextState, replace) => {
   if(store.getState().session.currentUser){
     replace("/");
@@ -27,6 +27,7 @@ const Root = ({store}) => (
       <Route path="/" component={App}>
         <Router path="sign-up" component={Session} onLeave={_clearErrors} onEnter={_redirectIfLoggedIn}/>
         <Router path="login" component={Session} onLeave={_clearErrors} onEnter={_redirectIfLoggedIn}/>
+        <Router path="upload" component={VideoUpload} onEnter={_redirectIfNotLoggedIn}/>
       </Route>
     </Router>
   </Provider>
