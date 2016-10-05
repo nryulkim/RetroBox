@@ -8,6 +8,8 @@ class VideoForm extends React.Component {
       title: "",
       video_url: "",
       description: "",
+      videoFile: null,
+      videoUrl: null,
       thumbFile: null,
       thumbUrl: window.retroBoxAssets.defaultThumb,
       user_id: this.props.currentUser.id,
@@ -23,7 +25,7 @@ class VideoForm extends React.Component {
 
   componentDidMount(){
     document.getElementById("first-button").setAttribute("disabled", true);
-    this.setDragAndDrop();
+    this.setDragAndDrop("#thumbForm", this.getThumb);
   }
 
   update(input){
@@ -32,21 +34,21 @@ class VideoForm extends React.Component {
     };
   }
 
-  setDragAndDrop(){
-    const $thumbForm = $('#thumbForm');
+  setDragAndDrop(id, callback){
+    const $form = $(id);
     const form = this;
-    $thumbForm.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+    $form.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
       e.preventDefault();
       e.stopPropagation();
     })
     .on('dragover dragenter', function() {
-      $thumbForm.addClass('is-dragover');
+      $form.addClass('is-dragover');
     })
     .on('dragleave dragend drop', function() {
-      $thumbForm.removeClass('is-dragover');
+      $form.removeClass('is-dragover');
     })
     .on('drop', function(e) {
-      form.getThumb(e.originalEvent.dataTransfer.files[0]);
+      callback(e.originalEvent.dataTransfer.files[0]);
     });
   }
 
@@ -119,51 +121,55 @@ class VideoForm extends React.Component {
     const { form, title, description, video_url, thumbUrl } = this.state;
     return(
       <div className="videoFormContainer group">
-        <div className="thumbnail-container">
-          <img className="thumbnail" src={thumbUrl}/>
+        <div className="before-video">
         </div>
-        <div className="videoForm group">
-          <ul className= "errors group">
-            {this.renderErrors()}
-          </ul>
-          <form onSubmit={this.handleSubmit} >
-            <div className="group">
-              <button type="submit">{formType}</button>
-            </div>
-
-            <nav className="formNavBar group">
-              <div>
-                <button onClick={this.changeForm("basicForm")} id="first-button">Basic Info</button>
-                <button onClick={this.changeForm("thumbForm")}>Thumbnails</button>
+        <div className="after-video">
+          <div className="thumbnail-container">
+            <img className="thumbnail" src={thumbUrl}/>
+          </div>
+          <div className="videoForm group">
+            <ul className= "errors group">
+              {this.renderErrors()}
+            </ul>
+            <form onSubmit={this.handleSubmit} >
+              <div className="group">
+                <button type="submit">{formType}</button>
               </div>
-            </nav>
-            <div id="basicForm">
-              <input type="text"
-                value={title}
-                onChange={this.update('title')}
-                placeholder="Title"/>
 
-              <textarea
-                value={description}
-                onChange={this.update('description')}
-                placeholder="Description"/>
+              <nav className="formNavBar group">
+                <div>
+                  <button onClick={this.changeForm("basicForm")} id="first-button">Basic Info</button>
+                  <button onClick={this.changeForm("thumbForm")}>Thumbnails</button>
+                </div>
+              </nav>
+              <div id="basicForm">
+                <input type="text"
+                  value={title}
+                  onChange={this.update('title')}
+                  placeholder="Title"/>
 
-              <input
-                type="text"
-                value={video_url}
-                onChange={this.update('video_url')}
-                placeholder="Video URL"/>
-            </div>
+                <textarea
+                  value={description}
+                  onChange={this.update('description')}
+                  placeholder="Description"/>
 
-            <div id="thumbForm">
-              <div className="drop_input">
-                <input type="file" className="drop_file" id="thumb" onChange={this.updateFile}></input>
-                <label htmlFor="thumb">
-                  <strong>Choose a file</strong> or drag it here.
-                </label>
+                <input
+                  type="text"
+                  value={video_url}
+                  onChange={this.update('video_url')}
+                  placeholder="Video URL"/>
               </div>
+
+              <div id="thumbForm">
+                <div className="drop_input">
+                  <input type="file" className="drop_file" id="thumb" onChange={this.updateFile}></input>
+                  <label htmlFor="thumb">
+                    <strong>Choose a file</strong> or drag it here.
+                    </label>
+                  </div>
+                </div>
+              </form>
             </div>
-          </form>
         </div>
       </div>
     );
