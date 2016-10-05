@@ -18,9 +18,11 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const { process } = this.props;
     const form = this;
-
+    const router = this.props.router;
+    
     const clrForm = () => {
       form.setState({ email: "", username: "", password: "" });
+      router.replace("#");
     };
 
     process(this.state, clrForm);

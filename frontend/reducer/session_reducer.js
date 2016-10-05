@@ -14,9 +14,6 @@ const defaultState = {
   forms: defaultForms
 };
 
-
-
-
 export default (state = defaultState, action) => {
   let newState = merge({}, state);
 
@@ -38,9 +35,7 @@ export default (state = defaultState, action) => {
       return newState;
 
     case LOGOUT:
-      newState.currentUser = {};
-      newState.forms = defaultForms;
-      return newState;
+      return defaultState;
 
     default:
       return state;
