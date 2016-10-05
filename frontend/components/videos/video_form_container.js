@@ -8,7 +8,7 @@ const mapStateToProps = ({ session, videos }, ownProps) => {
   let formType = "Update";
   if(ownProps.route.path === "upload"){
     errorType = "uploadVideo";
-    formType = "Upload";
+    formType = "Publish";
   }
 
   return({
