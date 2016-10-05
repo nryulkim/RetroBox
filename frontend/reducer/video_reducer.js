@@ -1,7 +1,7 @@
 import {
-  RECEIVE_VIDEOS, RECEIVE_VIDEO, RECEIVE_ERRORS, REMOVE_VIDEO
+  RECEIVE_VIDEOS, RECEIVE_VIDEO,  REMOVE_VIDEO
 } from '../actions/video_actions';
-import { CLEAR_ERRORS } from '../actions/util_actions';
+import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/util_actions';
 
 import merge from "lodash/merge";
 

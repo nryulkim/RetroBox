@@ -1,8 +1,9 @@
 import * as SessionAPI from '../util/session_api_util';
 import {
   LOGIN, LOGOUT, SIGNUP,
-  receiveCurrentUser, receiveErrors
+  receiveCurrentUser
 } from '../actions/session_actions';
+import { receiveErrors } from '../actions/util_actions'
 
 export default ({ getState, dispatch }) => next => action => {
   const success = user => {

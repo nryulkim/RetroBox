@@ -1,5 +1,11 @@
 class Api::VideosController < ApplicationController
   def create
+    if video_params[:thumbnail] === "null"
+      @errors = ["Thumbnail is required"]
+      render json: @errors, status: 422
+      return
+    end
+
     @video = Video.new(video_params)
     if @video.save
       render :create

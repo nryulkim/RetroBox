@@ -14,7 +14,7 @@ export const newVideo = (video, success, error) => {
     dataType: "json",
     contentType: false,
     processData: false,
-    data: { video },
+    data: video,
     success,
     error
   });
@@ -36,7 +36,7 @@ export const editVideo = (video, success, error) => {
     dataType: "json",
     contentType: false,
     processData: false,
-    data: { video },
+    data: video,
     success,
     error
   });
