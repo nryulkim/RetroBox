@@ -26,10 +26,10 @@ export const fetchVideo = (id, success, error) => {
   });
 };
 
-export const editVideo = (id, video, success, error) => {
+export const editVideo = (video, success, error) => {
   $.ajax({
     method: "PATCH",
-    url: `/api/videos/${id}`,
+    url: `/api/videos/${video.id}`,
     data: { video },
     success,
     error

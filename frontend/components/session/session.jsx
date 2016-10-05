@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, hashHistory, withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router';
 
 class SessionForm extends React.Component {
   constructor(props){
@@ -21,12 +21,11 @@ class SessionForm extends React.Component {
     const form = this;
     const router = this.props.router;
 
-    const clrForm = () => {
-      form.setState({ email: "", username: "", password: "" });
-      router.replace("#");
+    const redirect = () => {
+      router.push("/");
     };
 
-    process(this.state, clrForm);
+    process(this.state, redirect);
   }
 
 
@@ -118,9 +117,9 @@ class SessionForm extends React.Component {
       },time);
     },time);
   }
-  
+
   render(){
-    const { errors, formType } = this.props;
+    const { formType } = this.props;
     let usernameInput = <div>
       <button id="demo" onClick={this.logDemo}>Demo Account</button>
       <div className="separator">or</div>

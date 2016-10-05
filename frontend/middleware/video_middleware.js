@@ -6,6 +6,7 @@ import {
 
 export default ({ getState, dispatch }) => next => action => {
   let success = video => {
+    action.cb();
     dispatch(receiveVideo(video));
   };
   let errors = xhr => {
@@ -32,7 +33,7 @@ export default ({ getState, dispatch }) => next => action => {
       errors = xhr => {
         dispatch(receiveErrors(xhr.responseJSON, "updateVideo"))
       };
-      VideoApi.editVideo(action.id, action.video, success, errors);
+      VideoApi.editVideo(action.video, success, errors);
       return next(action);
 
     case(DELETE_VIDEO):

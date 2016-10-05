@@ -6,7 +6,7 @@ import {
 
 export default ({ getState, dispatch }) => next => action => {
   const success = user => {
-    action.clrForm();
+    action.cb();
     dispatch(receiveCurrentUser(user))
   };
   let errors;

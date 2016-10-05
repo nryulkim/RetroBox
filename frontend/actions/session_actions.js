@@ -3,21 +3,15 @@ export const LOGOUT = "LOGOUT";
 export const SIGNUP = "SIGNUP";
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
-export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
-export function login(user, clrForm){
+export function login(user, cb){
   return({
     type: LOGIN,
     user,
-    clrForm
+    cb
   });
 }
 
-export function clearErrors(){
-  return({
-    type: CLEAR_ERRORS
-  });
-}
 
 export function logout(){
   return({
@@ -25,11 +19,11 @@ export function logout(){
   });
 }
 
-export function signup(user, clrForm){
+export function signup(user, cb){
   return({
     type: SIGNUP,
     user,
-    clrForm
+    cb
   });
 }
 

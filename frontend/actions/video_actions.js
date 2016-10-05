@@ -20,11 +20,11 @@ export function oneVideo(id){
   });
 }
 
-export function updateVideo(id, video){
+export function updateVideo(video, cb){
   return({
     type: UPDATE_VIDEO,
-    id,
-    video
+    video,
+    cb
   });
 }
 
@@ -35,10 +35,11 @@ export function deleteVideo(id){
   });
 }
 
-export function newVideo(video){
+export function newVideo(video, cb){
   return({
     type: NEW_VIDEO,
-    video
+    video,
+    cb
   });
 }
 
