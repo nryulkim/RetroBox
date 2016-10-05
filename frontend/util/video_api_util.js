@@ -11,6 +11,9 @@ export const newVideo = (video, success, error) => {
   $.ajax({
     method: "POST",
     url: "/api/videos",
+    dataType: "json",
+    contentType: false,
+    processData: false,
     data: { video },
     success,
     error
@@ -30,6 +33,9 @@ export const editVideo = (video, success, error) => {
   $.ajax({
     method: "PATCH",
     url: `/api/videos/${video.id}`,
+    dataType: "json",
+    contentType: false,
+    processData: false,
     data: { video },
     success,
     error

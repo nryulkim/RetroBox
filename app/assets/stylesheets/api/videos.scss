@@ -16,11 +16,12 @@
     content: "";
     float: left;
     margin-right: 20px;
-    h1{
-      float: left;
-    }
     img{
       float: left;
+      width: 200px;
+      height: 110px;
+      box-shadow: 0 0 2px #aaa;
+      object-fit: cover;
     }
   }
   .videoForm{
@@ -85,6 +86,33 @@
 
       #thumbForm{
         display: none;
+        margin: 15px auto;
+        width: 500px;
+        padding: 5px;
+        background-color: #eee;
+        text-align: center;
+        strong{
+          font-size: 20px;
+          font-weight: 600;
+        }
+        label{
+          display: block;
+          border: 3px dashed #aaa;
+          font-size: 16px;
+          color: #aaa;
+          margin: 0 auto;
+          text-align: center;
+          padding: 80px 0;
+        }
+        input{
+          display: none;
+        }
+      }
+      #thumbForm.is-dragover{
+        background-color: #ddd;
+        label{
+          border: 3px dashed #90a0b1;
+        }
       }
     }
   }

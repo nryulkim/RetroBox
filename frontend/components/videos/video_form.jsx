@@ -8,16 +8,22 @@ class VideoForm extends React.Component {
       title: "",
       video_url: "",
       description: "",
+      thumbFile: null,
+      thumbUrl: window.retroBoxAssets.defaultThumb,
       user_id: this.props.currentUser.id,
     };
     this.renderErrors = this.renderErrors.bind(this);
     this.changeForm = this.changeForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.setDragAndDrop = this.setDragAndDrop.bind(this);
+    this.updateFile = this.updateFile.bind(this);
+    this.getThumb = this.getThumb.bind(this);
   }
 
   componentDidMount(){
     document.getElementById("first-button").setAttribute("disabled", true);
+    this.setDragAndDrop();
   }
 
   update(input){
@@ -26,17 +32,58 @@ class VideoForm extends React.Component {
     };
   }
 
+  setDragAndDrop(){
+    const $thumbForm = $('#thumbForm');
+    const form = this;
+    $thumbForm.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    })
+    .on('dragover dragenter', function() {
+      $thumbForm.addClass('is-dragover');
+    })
+    .on('dragleave dragend drop', function() {
+      $thumbForm.removeClass('is-dragover');
+    })
+    .on('drop', function(e) {
+      form.getThumb(e.originalEvent.dataTransfer.files[0]);
+    });
+  }
+
+  updateFile(e){
+    const file = e.currentTarget.files[0];
+    this.getThumb(file);
+  }
+
+  getThumb(file){
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ thumbFile: file, thumbUrl: fileReader.result });
+    };
+
+    if(file){
+      fileReader.readAsDataURL(file);
+    }
+  }
+
   handleSubmit(e){
     e.preventDefault();
     const { process } = this.props;
-    const form = this;
+    const { title, description, video_url, user_id, thumbFile } = this.state;
     const router = this.props.router;
 
     const redirect = () => {
       router.push("/");
     };
 
-    process(this.state, redirect);
+    const formData = new FormData();
+    formData.append("video[title]", title);
+    formData.append("video[description]", description);
+    formData.append("video[video_url]", video_url);
+    formData.append("video[user_id]", user_id);
+    formData.append("video[thumbnail]", thumbFile);
+
+    process(formData, redirect);
   }
 
   changeForm(type){
@@ -56,7 +103,6 @@ class VideoForm extends React.Component {
     };
   }
 
-
   renderErrors(){
     const { errors } = this.props;
 
@@ -70,12 +116,11 @@ class VideoForm extends React.Component {
 
   render(){
     const { formType } = this.props;
-    const { form, title, description, video_url } = this.state;
+    const { form, title, description, video_url, thumbUrl } = this.state;
     return(
       <div className="videoFormContainer group">
         <div className="thumbnail-container">
-          <h1>ENABLE THUMBNAIL</h1>
-          <img className="thumbnail"></img>
+          <img className="thumbnail" src={thumbUrl}/>
         </div>
         <div className="videoForm group">
           <ul className= "errors group">
@@ -111,7 +156,12 @@ class VideoForm extends React.Component {
             </div>
 
             <div id="thumbForm">
-              <h1>Hello!! I am the thumb form.</h1>
+              <div className="drop_input">
+                <input type="file" className="drop_file" id="thumb" onChange={this.updateFile}></input>
+                <label htmlFor="thumb">
+                  <strong>Choose a file</strong> or drag it here.
+                </label>
+              </div>
             </div>
           </form>
         </div>

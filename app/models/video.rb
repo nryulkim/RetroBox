@@ -16,6 +16,10 @@ class Video < ApplicationRecord
   validates :title, :user, :video_url, :views, :description, presence: true
   before_validation :ensure_views
 
+  has_attached_file :thumbnail, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\z/
+
+
   belongs_to :user
 
   private
