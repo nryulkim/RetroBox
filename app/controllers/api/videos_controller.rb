@@ -7,6 +7,7 @@ class Api::VideosController < ApplicationController
     end
 
     @video = Video.new(video_params)
+    console.log(video_params)
     if @video.save
       render :create
     else
