@@ -3,6 +3,7 @@ import {
   ONE_VIDEO, ALL_VIDEOS, NEW_VIDEO, UPDATE_VIDEO, DELETE_VIDEO,
   receiveVideos, receiveVideo, removeVideo
 } from '../actions/video_actions';
+import { receiveErrors } from '../actions/util_actions.js'
 
 export default ({ getState, dispatch }) => next => action => {
   let success = video => {
@@ -26,6 +27,9 @@ export default ({ getState, dispatch }) => next => action => {
       return next(action);
 
     case(NEW_VIDEO):
+      errors = xhr => {
+        dispatch(receiveErrors(xhr.responseJSON, "uploadVideo"))
+      };
       VideoApi.newVideo(action.video, success, errors);
       return next(action);
 

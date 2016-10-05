@@ -1,5 +1,5 @@
-import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, LOGOUT } from '../actions/session_actions';
-import { CLEAR_ERRORS } from '../actions/util_actions';
+import { RECEIVE_CURRENT_USER,  LOGOUT } from '../actions/session_actions';
+import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/util_actions';
 import merge from "lodash/merge";
 
 
