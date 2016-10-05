@@ -5,7 +5,6 @@ import merge from "lodash/merge";
 const defaultForms = {
   signUp: {errors: []},
   logIn: {errors: []},
-  uploadVideo: {errors: []},
   addComment: {errors: []}
 };
 

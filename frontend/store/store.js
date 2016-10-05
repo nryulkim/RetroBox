@@ -9,8 +9,14 @@ const _default = {
     forms: {
       signUp: {errors: []},
       logIn: {errors: []},
-      uploadVideo: {errors: []},
       addComment: {errors: []}
+    }
+  },
+  videos:{
+    currentVideo: null,
+    forms:{
+      uploadVideo: {errors: []},
+      updateVideo: {errors: []}
     }
   }
 }

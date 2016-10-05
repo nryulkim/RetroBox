@@ -8,32 +8,36 @@
     forms: {
       signUp: {errors: []},
       logIn: {errors: []},
-      uploadVideo: {errors: []},
       addComment: {errors: []}
     }
   }
-  currentVideo: {
-    title: "Sample Video",
-    description: "something something",
-    videoLocation: "video_url",
-    username: "test",
-    views: 123456,
-    created_date: Sep 24, 2044,
-    likes: {
-      likes: count,
-      dislikes: count
-    comments: {
-      1: {
-        username: "test2",
-        body: "something something something",
-        likes: {
-          likes: count,
-          dislikes: count
+  videos: {
+    forms:{
+      uploadVideo: {errors: []},
+      updateVideo: {errors: []},
+    }
+    currentVideo: {
+      title: "Sample Video",
+      description: "something something",
+      video_url: "video_url",
+      username: "test",
+      views: 123456,
+      created_date: Sep 24, 2044,
+      likes: {
+        likes: count,
+        dislikes: count
+        comments: {
+          1: {
+            username: "test2",
+            body: "something something something",
+            likes: {
+              likes: count,
+              dislikes: count
+            }
+          }
         }
       }
     }
-  }
-  videos: {
     1: {
       title: "Sample Video1",
       description: "something something2"
