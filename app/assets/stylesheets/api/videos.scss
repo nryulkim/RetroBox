@@ -11,6 +11,7 @@
   box-shadow: 0 0 1px #ddd;
 
   .thumbnail-container{
+    display: none;
     width: 200px;
     height: 100%;
     content: "";
@@ -28,6 +29,12 @@
     float: right;
     width: 700px;
     form{
+      #dropVideo{
+        transform: translateX(-120px);
+      }
+      #after-video{
+        display: none;
+      }
       button[type="submit"]{
         float: right;
         background-color: #167AC6;
@@ -84,8 +91,10 @@
         }
       }
 
-      #thumbForm{
+      #dropThumb{
         display: none;
+      }
+      .dropForm{
         margin: 15px auto;
         width: 500px;
         padding: 5px;
@@ -108,7 +117,7 @@
           display: none;
         }
       }
-      #thumbForm.is-dragover{
+      .dropForm.is-dragover{
         background-color: #ddd;
         label{
           border: 3px dashed #90a0b1;
