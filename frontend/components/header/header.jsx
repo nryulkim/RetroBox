@@ -1,34 +1,76 @@
 import React from 'react';
 import { Link } from 'react-router';
+import UserDrop from './user_dropdown';
 
-export default function Header({ currentUser }){
-  let button1 = <Link to="/login">Sign In</Link>;
-  let button2 = <Link to="/sign-up">Sign Up</Link>;
+export default class Header extends React.Component{
+  constructor(props){
+    super(props);
 
-  if(currentUser){
-    button1 = <Link to="/upload">Upload</Link>;
-    button2 = <Link to="/user" id="user-circle">{
-        currentUser.username.slice(0,1).toUpperCase()
-      }</Link>;
+    this.state = {
+      showUserDrop: false
+    };
+
+    this.toggleDrop = this.toggleDrop.bind(this);
+    this.getButtons = this.getButtons.bind(this);
+    this.signout = this.signout.bind(this);
   }
 
+  signout(){
+    this.props.logout();
+    this.toggleDrop();
+  }
 
-  return(
-    <div className="head group">
-      <div className="logo">
-        <div id="header_burger" />
-        <a href="/"><img src={ window.retroBoxAssets.logo }/></a>
+  toggleDrop(){
+    this.setState({ showUserDrop: !this.state.showUserDrop });
+  }
+
+  getButtons(){
+    const { currentUser, logout } = this.props;
+    const { showUserDrop } = this.state;
+
+    let buttons = [
+      <Link className="button" to="/login">Sign In</Link>,
+      <Link className="button" to="/sign-up">Sign Up</Link>
+    ];
+
+    if(currentUser){
+      buttons = [
+        <Link className="button" to="/upload">Upload</Link>,
+        <div className="user_dropdown" onClick={this.toggleDrop}>
+          <button id="user_circle">
+            {currentUser.username.slice(0,1).toUpperCase()}
+          </button>
+          { showUserDrop ? <UserDrop
+            currentUser={currentUser}
+            logout={this.signout}/> : null }
+        </div>
+      ];
+    }
+    return buttons;
+  }
+
+  render(){
+    let button1;
+    let button2;
+    [button1, button2] = this.getButtons();
+
+    return(
+      <div className="head group">
+        <div className="logo">
+          <div id="header_burger" />
+          <a href="/"><img src={ window.retroBoxAssets.logo }/></a>
+        </div>
+        <div className="header_buttons">
+          {button1}
+          {button2}
+        </div>
+        <div className="search_holder">
+          <form className="search">
+            <input type="text"/>
+            <button type="submit"></button>
+          </form>
+        </div>
       </div>
-      <div className="header_buttons">
-        {button1}
-        {button2}
-      </div>
-      <div className="search_holder">
-        <form className="search">
-          <input type="text"/>
-          <button type="submit"></button>
-        </form>
-      </div>
-    </div>
-  );
+    );
+  }
 }

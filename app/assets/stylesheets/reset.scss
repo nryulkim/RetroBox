@@ -46,7 +46,7 @@ table {
 	border-spacing: 0;
 }
 
-.group {
+.group:after {
 	content: "";
 	display: block;
 	clear: both;
