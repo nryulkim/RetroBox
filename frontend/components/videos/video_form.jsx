@@ -76,6 +76,7 @@ class VideoForm extends React.Component {
       document.getElementById("after-video").style.display = "block";
       document.getElementsByClassName("thumbnail-container")[0].style.display = "block";
       document.getElementById("dropVideo").style.display = "none";
+      document.getElementById("dropVideo").style.position = "absolute";
     }
   }
 
@@ -148,9 +149,7 @@ class VideoForm extends React.Component {
           <img className="thumbnail" src={thumbUrl}/>
         </div>
         <div className="videoForm group">
-          <ul className= "errors group">
-            {this.renderErrors()}
-          </ul>
+
           <form onSubmit={this.handleSubmit} >
             <div className="before-video dropForm" id="dropVideo">
               <div className="drop_input">
@@ -164,7 +163,9 @@ class VideoForm extends React.Component {
               <div className="group">
                 <button type="submit">{formType}</button>
               </div>
-
+              <ul className= "errors group">
+                {this.renderErrors()}
+              </ul>
               <nav className="formNavBar group">
                 <div>
                   <button onClick={this.changeForm("basicForm")} id="first-button">Basic Info</button>
