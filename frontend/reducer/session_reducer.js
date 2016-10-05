@@ -28,7 +28,6 @@ export default (state = defaultState, action) => {
       return newState;
 
     case RECEIVE_ERRORS:
-      newState.currentUser = null;
       newState.forms = merge({}, defaultForms, {
         [action.formType]: { errors: action.errors }
       });

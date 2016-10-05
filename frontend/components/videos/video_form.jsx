@@ -108,7 +108,6 @@ class VideoForm extends React.Component {
     formData.append("video[video_url]", video_url);
     formData.append("video[user_id]", user_id);
     formData.append("video[thumbnail]", thumbFile);
-
     process(formData, redirect);
   }
 
