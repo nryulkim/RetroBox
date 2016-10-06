@@ -6,38 +6,31 @@ class BurgerDrop extends React.Component{
   constructor(props){
     super(props);
     this.getLinks = this.getLinks.bind(this);
-    this.changeColor = this.changeColor.bind(this);
-    this.turnGrey = this.turnGrey.bind(this);
-    this.turnBack = this.turnBack.bind(this);
-  }
-
-  changeColor(e){
-    const $li = $(e.currentTarget);
-    $li.addClass("selected");
-    $li.siblings().removeClass("selected");
-  }
-  turnGrey(e){
-    e.currentTarget.classList.add("hovered");
-  }
-  turnBack(e){
-    e.currentTarget.classList.remove("hovered");
   }
 
   getLinks(){
     const paths = {
       "Home": '/',
+      "Upload": '/upload'
     };
 
     const links = [];
-
     for (let i = 0; i < Object.keys(paths).length; i++) {
       const name = Object.keys(paths)[i];
       const path = paths[name];
-      links.push(
-        <li onClick={this.changeColor} onMouseOver={this.turnGrey} onMouseLeave={this.turnBack} key={path}>
-          <Link to={path}>{name}</Link>
-        </li>
-      );
+      if(path === this.props.path){
+        links.push(
+          <li className="selected" key={path}>
+            <Link to={path}>{name}</Link>
+          </li>
+        );
+      }else{
+        links.push(
+          <li key={path}>
+            <Link to={path}>{name}</Link>
+          </li>
+        );
+      }
     }
 
     return(

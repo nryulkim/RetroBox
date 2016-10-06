@@ -26,14 +26,12 @@ sidebar{
           text-align: center;
         }
       }
-      .hovered{
+      li:hover{
         background-color: #ddd;
       }
-      .selected{
+
+      li.selected{
         background-color: #18CC1E;
-      }
-      .current-location{
-        background-color: #d00;
       }
     }
   }

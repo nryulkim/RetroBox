@@ -15,9 +15,9 @@ export default class App extends React.Component{
   }
 
   render(){
-    const { children, route } = this.props;
+    const { children, location } = this.props;
     const { showSide } = this.state;
-    const sidebar = showSide ? <BurgerDrop path={route.path}/> : null;
+    const sidebar = showSide ? <BurgerDrop path={location.pathname}/> : null;
 
     return(
       <main>
