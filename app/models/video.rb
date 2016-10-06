@@ -20,8 +20,8 @@ class Video < ApplicationRecord
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\z/
 
   has_attached_file :video,
-      # styles: lambda { |a| a.instance.is_image? ? {:small => "x200>", :medium => "x300>", :large => "x400>"}  : {:thumb => { :geometry => "100x100#", :format => 'jpg', :time => 10}, :medium => { :geometry => "300x300#", :format => 'jpg', :time => 10}}},
-      processors: lambda { |a| a.is_video? ? [ :ffmpeg ] : [ :thumbnail ] }
+      styles: {:thumb => { :geometry => "100x100#", :format => 'jpg', :time => 10}},
+      processors: [ :ffmpeg ]
 
   belongs_to :user
 

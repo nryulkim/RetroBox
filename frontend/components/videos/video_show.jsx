@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactPlayer from 'react-player';
 
 class VideoShow extends React.Component{
   constructor(props){
@@ -15,7 +16,7 @@ class VideoShow extends React.Component{
       <div className="video-show-container group">
         <main>
           <div className="video-player">
-            <h1>Video Player</h1>
+            <ReactPlayer url={video.video_url} controls="true" width="600" height="300"/>
           </div>
           <div className="video-title text-container container">
             <h1>{video.title}</h1>
