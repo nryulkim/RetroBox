@@ -1,20 +1,23 @@
-import { connect } from 'react-redux';
-import { allVideos } from '../../actions/video_actions';
-import Index from './index';
+import React from 'react';
+import VideoItem from '../videos/video_item.jsx';
 
-const mapStateToProps = ({ session, videos }, ownProps) => {
-  return({
-    video: videos.currentVideo,
-    currentUser: session.currentUser
-  });
-};
+class Index extends React.Component{
+  constructor(props){
+    super(props);
+  }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return({
-    getVideo: (id) => dispatch(oneVideo(id))
-  });
-};
+  render(){
 
-export default connect(
-  mapStateToProps, mapDispatchToProps
-)(Index);
+    return(
+      <div className="index-container">
+        <div className="feeds">
+          <div className="videos">
+            <VideoItem />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Index;

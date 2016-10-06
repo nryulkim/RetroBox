@@ -16,7 +16,7 @@ class VideoShow extends React.Component{
       <div className="video-show-container group">
         <main>
           <div className="video-player">
-            <ReactPlayer url={video.video_url} controls="true" width="600" height="300"/>
+            <ReactPlayer url={video.video_url} controls="true" width="640" height="360"/>
           </div>
           <div className="video-title text-container container">
             <h1>{video.title}</h1>
@@ -38,7 +38,7 @@ class VideoShow extends React.Component{
         </main>
 
 
-        <sidebar className="video-side-bar container">
+        <div className="video-side-bar container">
           <h4>Suggested Videos</h4>
           <div className="sampleVids group">
             <div className="video"></div>
@@ -82,7 +82,7 @@ class VideoShow extends React.Component{
             <h4>Username</h4>
             <h4>1000 views</h4>
           </div>
-        </sidebar>
+        </div>
       </div>
     );
   }
