@@ -1,18 +1,38 @@
 import React from 'react';
 import Header from './header/header-container';
+import BurgerDrop from './sidebar/burger_dropdown';
+export default class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      showSide: false
+    };
+    this.toggleBurger = this.toggleBurger.bind(this);
+  }
 
-const App = ({ children }) => {
-  return (
-    <div>
-      <header className="header group">
-        <Header />
-      </header>
-      <div className="content">
-        {children}
-      </div>
-    </div>
-  );
-};
-export default App;
+  toggleBurger(){
+    this.setState({showSide: !this.state.showSide});
+  }
 
-// {children}
+  render(){
+    const { children, route } = this.props;
+    const { showSide } = this.state;
+    const sidebar = showSide ? <BurgerDrop path={route.path}/> : null;
+
+    return(
+      <main>
+        <header className="header">
+          <Header toggleBurger={this.toggleBurger}/>
+        </header>
+        <div className="content group">
+          <sidebar>
+            {sidebar}
+          </sidebar>
+          <div className="main-content">
+            {children}
+          </div>
+        </div>
+      </main>
+    );
+  }
+}

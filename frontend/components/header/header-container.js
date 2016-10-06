@@ -2,9 +2,12 @@ import { connect } from 'react-redux';
 import Header from './header';
 import { logout } from '../../actions/session_actions.js';
 
-const mapStateToProps = ({ session }) => {
+const mapStateToProps = (state, props) => {
+  const { session } = state;
+  const { toggleBurger } = props;
   return({
-    currentUser: session.currentUser
+    currentUser: session.currentUser,
+    toggleBurger
   });
 };
 

@@ -7,7 +7,7 @@ class Header extends React.Component{
     super(props);
 
     this.state = {
-      showUserDrop: false
+      showUserDrop: false,
     };
 
     this.toggleDrop = this.toggleDrop.bind(this);
@@ -53,13 +53,13 @@ class Header extends React.Component{
   render(){
     let button1;
     let button2;
-    const { currentUser } = this.props;
+    const { currentUser, toggleBurger } = this.props;
     [button1, button2] = this.getButtons();
 
     return(
       <div className="head group">
         <div className="logo">
-          <div id="header_burger" />
+          <div id="header_burger" onClick={toggleBurger}/>
           <a href="/"><img src={ window.retroBoxAssets.logo }/></a>
         </div>
         <div className="header_buttons">
