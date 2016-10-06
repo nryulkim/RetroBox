@@ -24,7 +24,7 @@ class Video < ApplicationRecord
         :medium => { :geometry => "640x360", :format => 'flv' },
         :thumb => { :geometry => "100x100#", :format => 'jpg', :time => 10}
       },
-      processors: [:ffmpeg]
+      processors: [:transcoder]
 
   belongs_to :user
 
