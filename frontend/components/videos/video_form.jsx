@@ -181,12 +181,6 @@ class VideoForm extends React.Component {
                   value={description}
                   onChange={this.update('description')}
                   placeholder="Description"/>
-
-                <input
-                  type="text"
-                  value={video_url}
-                  onChange={this.update('video_url')}
-                  placeholder="Video URL"/>
               </div>
 
               <div id="dropThumb" className="dropForm">

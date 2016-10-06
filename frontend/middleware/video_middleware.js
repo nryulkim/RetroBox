@@ -7,7 +7,7 @@ import { receiveErrors } from '../actions/util_actions.js'
 
 export default ({ getState, dispatch }) => next => action => {
   let success = video => {
-    action.cb();
+    if(action.cb){ action.cb(); }
     dispatch(receiveVideo(video));
   };
   let errors = xhr => {

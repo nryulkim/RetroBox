@@ -1,5 +1,6 @@
-json.extract! video, :id, :title, :description, :video_url, :views
+json.extract! video, :id, :title, :description, :views
 
-json.username video.user.username
+json.user video.user
 json.created_date video.created_at.to_date
-json.thumbnail_url asset_path(video.thumnail.url)
+json.thumbnail_url asset_path(video.thumbnail.url)
+json.video_url asset_path(video.video.url)

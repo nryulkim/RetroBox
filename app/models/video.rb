@@ -13,12 +13,15 @@
 #
 
 class Video < ApplicationRecord
-  validates :title, :user, :video_url, :views, :description, presence: true
+  validates :title, :user, :thumbnail, :video, :views, :description, presence: true
   before_validation :ensure_views
 
-  has_attached_file :thumbnail, default_url: "/images/:style/missing.png"
+  has_attached_file :thumbnail, default_url: "default-thumbnail.jpg"
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\z/
 
+  has_attached_file :video,
+      # styles: lambda { |a| a.instance.is_image? ? {:small => "x200>", :medium => "x300>", :large => "x400>"}  : {:thumb => { :geometry => "100x100#", :format => 'jpg', :time => 10}, :medium => { :geometry => "300x300#", :format => 'jpg', :time => 10}}},
+      processors: lambda { |a| a.is_video? ? [ :ffmpeg ] : [ :thumbnail ] }
 
   belongs_to :user
 

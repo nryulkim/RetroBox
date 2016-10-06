@@ -1,13 +1,12 @@
 class Api::VideosController < ApplicationController
   def create
-    if video_params[:thumbnail] === "null"
-      @errors = ["Thumbnail is required"]
-      render json: @errors, status: 422
-      return
-    end
+    # if video_params[:thumbnail] === "null"
+    #   @errors = ["Thumbnail is required"]
+    #   render json: @errors, status: 422
+    #   return
+    # end
 
     @video = Video.new(video_params)
-    console.log(video_params)
     if @video.save
       render :create
     else
@@ -52,6 +51,12 @@ class Api::VideosController < ApplicationController
 
   private
   def video_params
-    params.require(:video).permit(:title, :description, :video_url, :user_id, :thumbnail)
+    params.require(:video).permit(
+      :title,
+      :description,
+      :user_id,
+      :thumbnail,
+      :video
+    )
   end
 end

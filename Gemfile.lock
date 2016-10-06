@@ -114,6 +114,9 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+    paperclip-ffmpeg (1.2.0)
+      paperclip (>= 2.5.2)
+      rails
     pg (0.19.0)
     pkg-config (1.1.7)
     pry (0.10.4)
@@ -211,6 +214,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   paperclip (~> 5.0.0.beta1)
+  paperclip-ffmpeg
   pg (~> 0.18)
   pry-rails
   puma (~> 3.0)
