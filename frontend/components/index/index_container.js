@@ -3,7 +3,7 @@ import Index from './index';
 
 const mapStateToProps = ({ videos }, ownProps) => {
   return({
-    videos: videos
+    videos: videos.list_videos
   });
 };
 

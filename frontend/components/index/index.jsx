@@ -7,12 +7,17 @@ class Index extends React.Component{
   }
 
   render(){
+    if(typeof this.props.videos === "undefined") { return(null); }
+    const videos = this.props.videos.map((video)=>{
+      return <VideoItem key={video.id} video={video}/>;
+    });
+
 
     return(
-      <div className="index-container">
+      <div className="index-container group">
         <div className="feeds">
           <div className="videos">
-            <VideoItem />
+            {videos}
           </div>
         </div>
       </div>

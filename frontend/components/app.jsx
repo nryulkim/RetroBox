@@ -11,6 +11,12 @@ export default class App extends React.Component{
   }
 
   toggleBurger(){
+    const $side = $("#burger-sidebar-container");
+    if(this.state.showSide){
+      $side.hide();
+    }else{
+      $side.show();
+    }
     this.setState({showSide: !this.state.showSide});
   }
 
@@ -25,7 +31,7 @@ export default class App extends React.Component{
           <Header toggleBurger={this.toggleBurger}/>
         </header>
         <div className="content group">
-          <sidebar>
+          <sidebar id="burger-sidebar-container">
             {sidebar}
           </sidebar>
           <div className="main-content">

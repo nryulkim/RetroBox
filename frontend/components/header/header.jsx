@@ -60,7 +60,7 @@ class Header extends React.Component{
       <div className="head group">
         <div className="logo">
           <div id="header_burger" onClick={toggleBurger}/>
-          <a href="/"><img src={ window.retroBoxAssets.logo }/></a>
+          <a href="#"><img src={ window.retroBoxAssets.logo }/></a>
         </div>
         <div className="header_buttons">
           {button1}
