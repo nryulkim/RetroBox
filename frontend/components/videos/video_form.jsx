@@ -95,7 +95,7 @@ class VideoForm extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     const { process } = this.props;
-    const { title, description, video_url, user_id, thumbFile } = this.state;
+    const { title, description, user_id, thumbFile, videoFile } = this.state;
     const router = this.props.router;
 
     const redirect = () => {
@@ -105,8 +105,8 @@ class VideoForm extends React.Component {
     const formData = new FormData();
     formData.append("video[title]", title);
     formData.append("video[description]", description);
-    formData.append("video[video_url]", video_url);
     formData.append("video[user_id]", user_id);
+    formData.append("video[video]", videoFile);
     formData.append("video[thumbnail]", thumbFile);
     process(formData, redirect);
   }

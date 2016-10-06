@@ -68,7 +68,7 @@ class Header extends React.Component{
         </div>
         <div className="search_holder">
           <form className="search">
-            <input type="text"/>
+            <input type="text" placeholder="Search"/>
             <button type="submit"></button>
           </form>
         </div>
