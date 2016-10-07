@@ -32,12 +32,24 @@
     float: right;
     width: 700px;
     form{
+      position: relative;
       #dropVideo{
         transform: translateX(-120px);
       }
       #after-video{
         display: none;
       }
+
+      .loading-animation{
+        display: none;
+        img{
+          float: left;
+          position: absolute;
+          top: -65px;
+          left: -80px;
+        }
+      }
+
       button[type="submit"]{
         float: right;
         background-color: #167AC6;
@@ -49,6 +61,9 @@
         font-size: 11px;
         color: #fff;
         margin:  0 0 0 10px;
+      }
+      button.disabled{
+        background-color: #ccc;
       }
       nav{
         display:block;

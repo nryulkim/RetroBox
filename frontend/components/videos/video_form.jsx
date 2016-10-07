@@ -97,10 +97,11 @@ class VideoForm extends React.Component {
     const { process } = this.props;
     const { title, description, user_id, thumbFile, videoFile } = this.state;
     const router = this.props.router;
-
     const redirect = () => {
       router.push("/");
     };
+    $(".loading-animation").show();
+    $("#submit-button").prop("disabled",true).toggleClass("disabled");
 
     const formData = new FormData();
     formData.append("video[title]", title);
@@ -134,6 +135,8 @@ class VideoForm extends React.Component {
     let text = "";
     if(errors.length > 0){
       text = errors.map((error, idx) => (<li key={idx}>{error}</li>));
+      $(".loading-animation").hide();
+      $("#submit-button").prop("disabled",false).toggleClass("disabled");
     }
 
     return text;
@@ -159,8 +162,11 @@ class VideoForm extends React.Component {
               </div>
             </div>
             <div id="after-video">
+              <div className="loading-animation">
+                <img src={window.retroBoxAssets.loader}></img>
+              </div>
               <div className="group">
-                <button type="submit">{formType}</button>
+                <button type="submit" id="submit-button">{formType}</button>
               </div>
               <ul className= "errors group">
                 {this.renderErrors()}

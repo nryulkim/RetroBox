@@ -11,7 +11,6 @@ class VideoShow extends React.Component{
     if(!video){ return null; }
 
     let date = new Date(video.created_date);
-    debugger
     return(
       <div className="video-show-container group">
         <main>
