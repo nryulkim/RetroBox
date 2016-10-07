@@ -7,12 +7,47 @@ class SessionForm extends React.Component {
     this.state = {
       username: "",
       email: "",
-      password: ""
+      password: "",
+      iconFile: null,
+      iconUrl: window.retroBoxAssets.defaultIcon
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
     this.logDemo = this.logDemo.bind(this);
+  }
+
+  getThumb(file){
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ iconFile: file, iconUrl: fileReader.result });
+    };
+
+    if(file){
+      fileReader.readAsDataURL(file);
+    }
+  }
+
+  componentDidMount(){
+    this.setDragAndDrop("#dropIcon", this.getThumb);
+  }
+
+  setDragAndDrop(id, callback){
+    const $form = $(id);
+    const form = this;
+    $form.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    })
+    .on('dragover dragenter', function() {
+      $form.addClass('is-dragover');
+    })
+    .on('dragleave dragend drop', function() {
+      $form.removeClass('is-dragover');
+    })
+    .on('drop', function(e) {
+      callback(e.originalEvent.dataTransfer.files[0]);
+    });
   }
 
   handleSubmit(e){
@@ -124,6 +159,8 @@ class SessionForm extends React.Component {
       <button id="demo" onClick={this.logDemo}>Demo Account</button>
       <div className="separator">or</div>
     </div>;
+
+    let iconInput = null;
     if(formType === "Sign Up"){
       usernameInput = (
         <input
@@ -131,6 +168,18 @@ class SessionForm extends React.Component {
           value={this.state.username}
           onChange={this.update('username')}
           placeholder="Enter your username"/>
+      );
+
+      iconInput = (
+        <div className="icon-input-container">
+          <div className="dropIcon">
+            <input type="file" className="drop_file" id="icon" onChange={this.updateVideo}></input>
+            <label htmlFor="icon">
+              <img className="icon" src={this.state.iconUrl}/>
+              <strong>Choose an icon</strong> or drag it here.
+            </label>
+          </div>
+        </div>
       );
     }
 
@@ -143,6 +192,7 @@ class SessionForm extends React.Component {
           {this.renderErrors()}
         </ul>
         <form onSubmit={this.handleSubmit} >
+          {iconInput}
           {usernameInput}
           <input type="text"
               value={this.state.email}

@@ -33,6 +33,21 @@
     margin: 0 auto;
     padding: 40px 20px;
 
+    .icon-input-container{
+      .dropIcon{
+        text-align: center;
+        margin-bottom: 20px;
+        .icon{
+          width: 100px;
+          height: 100px;
+          margin: 0 auto;
+        }
+        input{
+          display: none;
+        }
+      }
+    }
+
     input{
       display: block;
       width: 300px;

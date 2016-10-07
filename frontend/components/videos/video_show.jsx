@@ -11,17 +11,19 @@ class VideoShow extends React.Component{
     if(!video){ return null; }
 
     let date = new Date(video.created_date);
-
+    debugger
     return(
       <div className="video-show-container group">
         <main>
           <div className="video-player">
-            <ReactPlayer url={video.video_url} controls={true} width={640} height={360} playing="true"/>
+            <ReactPlayer url={video.video_url} controls={true} width={640} height={360} playing/>
           </div>
           <div className="video-title text-container container">
             <h1>{video.title}</h1>
             <div className="title-middle group">
-              <div className="user-icon"></div>
+              <div className="user-icon">
+                  <img src={video.user.icon_url}></img>
+              </div>
               <h3>{video.user.username}</h3>
               <div className="view-counter">
                 <h2>{video.views} views</h2>
