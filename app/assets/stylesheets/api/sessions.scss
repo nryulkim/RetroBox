@@ -22,8 +22,7 @@
     margin: 10px 0 20px 0;
   }
 
-
-  form{
+  .session-form{
     background-color: #F7F7F7;
     border-radius: 5px;
     border-left: 1px solid #E5E5E5;
@@ -32,50 +31,6 @@
     width: 400px;
     margin: 0 auto;
     padding: 40px 20px;
-
-    .icon-input-container{
-      .dropIcon{
-        text-align: center;
-        margin-bottom: 20px;
-        .icon{
-          width: 100px;
-          height: 100px;
-          margin: 0 auto;
-        }
-        input{
-          display: none;
-        }
-      }
-    }
-
-    input{
-      display: block;
-      width: 300px;
-      margin: 10px auto 20px;
-      padding: 10px 10px;
-      font-size: 18px;
-      border-radius: 1px;
-      border: 1px solid #D9D9D9;
-    }
-    input:hover{
-      border: 1px solid #B9B9B9;
-    }
-
-    button{
-      display: block;
-      margin: 0 auto;
-      width: 320px;
-      height: 33px;
-      border: 1px solid #3079ED;
-      border-radius: 3px;
-      background-color: #4A8CF6;
-      font-size: 14px;
-      color: #fff;
-      font-weight: bold;
-    }
-    button:hover{
-      background-image: -webkit-linear-gradient(top, #4d90fe, #357ae8);
-    }
 
     #demo{
       margin: 10px auto 30px;
@@ -109,6 +64,57 @@
       top: 50%;
       width: 45%;
       z-index: 0;
+    }
+
+    button{
+      display: block;
+      margin: 0 auto;
+      width: 320px;
+      height: 33px;
+      border: 1px solid #3079ED;
+      border-radius: 3px;
+      background-color: #4A8CF6;
+      font-size: 14px;
+      color: #fff;
+      font-weight: bold;
+    }
+    button:hover{
+      background-image: -webkit-linear-gradient(top, #4d90fe, #357ae8);
+    }
+
+    form{
+
+      .icon-input-container{
+        .dropIcon{
+          text-align: center;
+          margin-bottom: 20px;
+          .icon{
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+          }
+          input{
+            display: none;
+          }
+        }
+      }
+
+      input{
+        display: block;
+        width: 300px;
+        margin: 10px auto 20px;
+        padding: 10px 10px;
+        font-size: 18px;
+        border-radius: 1px;
+        border: 1px solid #D9D9D9;
+      }
+      input:hover{
+        border: 1px solid #B9B9B9;
+      }
+
+
+
+
     }
   }
 }

@@ -30,7 +30,7 @@ class SessionForm extends React.Component {
   }
 
   componentDidMount(){
-    this.setDragAndDrop("#dropIcon", this.getThumb);
+    setDragAndDrop("#dropIcon", this.getThumb);
   }
 
 
@@ -56,7 +56,6 @@ class SessionForm extends React.Component {
 
   renderErrors(){
     const { errors } = this.props;
-
     let text = "";
     if(errors.length > 0){
       text = errors.map((error, idx) => (<li key={idx}>{error}</li>));
@@ -139,7 +138,8 @@ class SessionForm extends React.Component {
 
   render(){
     const { formType } = this.props;
-    let usernameInput = <div>
+    let usernameInput = null;
+    let demoButton = <div>
       <button id="demo" onClick={this.logDemo}>Demo Account</button>
       <div className="separator">or</div>
     </div>;
@@ -153,6 +153,8 @@ class SessionForm extends React.Component {
           onChange={this.update('username')}
           placeholder="Enter your username"/>
       );
+
+      demoButton = null;
 
       iconInput = (
         <div className="icon-input-container">
@@ -175,22 +177,25 @@ class SessionForm extends React.Component {
         <ul className= "errors group">
           {this.renderErrors()}
         </ul>
-        <form onSubmit={this.handleSubmit} >
-          {iconInput}
-          {usernameInput}
-          <input type="text"
+        <div className="session-form">
+          {demoButton}
+          <form onSubmit={this.handleSubmit}>
+            {iconInput}
+            {usernameInput}
+            <input type="text"
               value={this.state.email}
               onChange={this.update('email')}
               placeholder="Enter your email"/>
 
-          <input
-            type="password"
-            value={this.state.password}
-            onChange={this.update('password')}
-            placeholder="Password"/>
+            <input
+              type="password"
+              value={this.state.password}
+              onChange={this.update('password')}
+              placeholder="Password"/>
 
-          <button type="submit">{formType}</button>
-        </form>
+            <button type="submit">{formType}</button>
+          </form>
+        </div>
       </div>
     );
   }

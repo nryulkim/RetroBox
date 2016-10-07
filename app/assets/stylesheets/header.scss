@@ -147,12 +147,16 @@ header{
             background-color: #0288D1;
             border-radius: 50%;
             font-size: 24px;
-            padding: 20px 27px;
+            padding: 5px 6px 2px;
             border: 0;
             color: #fff;
             font-weight: lighter;
             margin: 2px;
             cursor: pointer;
+            img{
+              margin: 5px;
+              width: 60px;
+            }
           }
 
           .user-info{

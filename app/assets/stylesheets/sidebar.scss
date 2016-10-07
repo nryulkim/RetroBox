@@ -6,10 +6,11 @@ sidebar{
   display: none;
   position: fixed;
   width: 230px;
-  top: 50px;
+  top: 51px;
   height: 100%;
-  z-index: 100;
+  z-index: 50;
   #burger-drop{
+    box-shadow: 5px 0 20px rgba(100, 100, 100, 0.30);
     box-sizing: border-box;
     background-color: #fff;
     width: 100%;
