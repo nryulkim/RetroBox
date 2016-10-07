@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
+import { setDragAndDrop } from '../../util/util_functions';
 
 class VideoForm extends React.Component {
   constructor(props){
@@ -18,7 +19,6 @@ class VideoForm extends React.Component {
     this.changeForm = this.changeForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
-    this.setDragAndDrop = this.setDragAndDrop.bind(this);
     this.updateThumb = this.updateThumb.bind(this);
     this.getThumb = this.getThumb.bind(this);
     this.updateVideo = this.updateVideo.bind(this);
@@ -27,32 +27,14 @@ class VideoForm extends React.Component {
 
   componentDidMount(){
     document.getElementById("first-button").setAttribute("disabled", true);
-    this.setDragAndDrop("#dropThumb", this.getThumb);
-    this.setDragAndDrop("#dropVideo", this.getVideo);
+    setDragAndDrop("#dropThumb", this.getThumb);
+    setDragAndDrop("#dropVideo", this.getVideo);
   }
 
   update(input){
     return (e) => {
       this.setState({ [input]: e.currentTarget.value });
     };
-  }
-
-  setDragAndDrop(id, callback){
-    const $form = $(id);
-    const form = this;
-    $form.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-    })
-    .on('dragover dragenter', function() {
-      $form.addClass('is-dragover');
-    })
-    .on('dragleave dragend drop', function() {
-      $form.removeClass('is-dragover');
-    })
-    .on('drop', function(e) {
-      callback(e.originalEvent.dataTransfer.files[0]);
-    });
   }
 
   updateVideo(e){

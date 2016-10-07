@@ -1,9 +1,29 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
+import VideoItem from './video_item';
+import { shuffleArray } from '../../util/util_functions.js';
 
 class VideoShow extends React.Component{
   constructor(props){
     super(props);
+    this.getVideos = this.getVideos.bind(this);
+  }
+
+  getVideos(){
+    const { videos } = this.props;
+    if(typeof videos === "undefined"){return null;}
+    const randVids = shuffleArray(videos).slice(0, 6);
+
+    return randVids.map((vid) => {
+      return(
+        <div className="sampleVids group" key={vid.id}>
+          <VideoItem video={vid}/>
+          <div>
+
+          </div>
+        </div>
+      );
+    });
   }
 
   render(){
@@ -41,48 +61,7 @@ class VideoShow extends React.Component{
 
         <div className="video-side-bar container">
           <h4>Suggested Videos</h4>
-          <div className="sampleVids group">
-            <div className="video"></div>
-            <h2>Title</h2>
-            <h4>Username</h4>
-            <h4>1000 views</h4>
-          </div>
-          <div className="sampleVids group">
-            <div className="video"></div>
-            <h2>Title</h2>
-            <h4>Username</h4>
-            <h4>1000 views</h4>
-          </div>
-          <div className="sampleVids group">
-            <div className="video"></div>
-            <h2>Title</h2>
-            <h4>Username</h4>
-            <h4>1000 views</h4>
-          </div>
-          <div className="sampleVids group">
-            <div className="video"></div>
-            <h2>Title</h2>
-            <h4>Username</h4>
-            <h4>1000 views</h4>
-          </div>
-          <div className="sampleVids group">
-            <div className="video"></div>
-            <h2>Title</h2>
-            <h4>Username</h4>
-            <h4>1000 views</h4>
-          </div>
-          <div className="sampleVids group">
-            <div className="video"></div>
-            <h2>Title</h2>
-            <h4>Username</h4>
-            <h4>1000 views</h4>
-          </div>
-          <div className="sampleVids group">
-            <div className="video"></div>
-            <h2>Title</h2>
-            <h4>Username</h4>
-            <h4>1000 views</h4>
-          </div>
+          {this.getVideos()}
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
+import { setDragAndDrop } from '../../util/util_functions';
 
 class SessionForm extends React.Component {
   constructor(props){
@@ -32,23 +33,6 @@ class SessionForm extends React.Component {
     this.setDragAndDrop("#dropIcon", this.getThumb);
   }
 
-  setDragAndDrop(id, callback){
-    const $form = $(id);
-    const form = this;
-    $form.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-    })
-    .on('dragover dragenter', function() {
-      $form.addClass('is-dragover');
-    })
-    .on('dragleave dragend drop', function() {
-      $form.removeClass('is-dragover');
-    })
-    .on('drop', function(e) {
-      callback(e.originalEvent.dataTransfer.files[0]);
-    });
-  }
 
   handleSubmit(e){
     if(e){e.preventDefault();}

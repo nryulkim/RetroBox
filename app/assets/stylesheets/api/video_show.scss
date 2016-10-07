@@ -1,5 +1,5 @@
 .video-show-container{
-  width: 980px;
+  width: 1040px;
   margin: 10px auto;
 
   .container{
@@ -83,32 +83,38 @@
 
   .video-side-bar{
     float: right;
-    width: 300px;
+    width: 360px;
     >h4{
       font-weight: 500;
       font-size: 14px;
     }
     .sampleVids{
-      width: 240px;
+      width: 340px;
       margin: 10px;
       height: 110px;
-      .video{
-        background: #000;
-        width: 165px;
-        height: 100px;
-        float: left;
-        margin: 0 5px 0 0;
-        box-shadow: 1px 1px 4px #aaa;
+
+      .video-item{
+        display: flex;
+        a{
+          img{
+            width: 165px;
+            height: 100px;
+            margin: 0 5px 0 0;
+            box-shadow: 1px 1px 4px #aaa;
+          }
+        }
+        .link{
+          height: 40px;
+          margin-left: 5px;
+          h3{
+            width: 145px;
+            color: black;
+            margin-bottom: 5px;
+            -webkit-line-clamp: 3;
+          }
+        }
       }
-      h2{
-        font-size: 16px;
-        font-weight: bold;
-      }
-      h4{
-        color: #7E7676;
-        font-size: 12px;
-        font-weight: lighter;
-      }
+      
     }
   }
 }

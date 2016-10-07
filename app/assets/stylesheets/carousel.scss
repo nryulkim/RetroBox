@@ -1,7 +1,7 @@
 .carousel-container{
   background-color: #fff;
   box-shadow: 0 0 3px #ccc;
-  margin: 3px 0;
+  margin: 4px 0;
 
   .carousel {
     position: relative;
@@ -14,6 +14,7 @@
       z-index: 10;
 
       button {
+        cursor: pointer;
         position: absolute;
         transform: translateY(-50%);
         height: 50px;
@@ -46,13 +47,13 @@
     ul {
       position: relative;
       overflow: hidden;
-      height: 200px;
+      height: 220px;
       h1{
         display: block;
         text-align: left;
         font-size: 14px;
         font-weight: bold;
-        margin: 10px 0 0 20px;
+        margin: 15px 0 0 20px;
       }
       li {
         position: absolute;

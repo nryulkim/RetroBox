@@ -12,7 +12,11 @@ class VideoItem extends React.Component{
     return(
       <div className="video-item">
         <Link to={path}><img src={video.thumbnail_url}/></Link>
-        <h3 className="giveMeEllipsis"><Link to={path}>{video.title}</Link></h3>
+        <div className="link">
+          <h3 className="giveMeEllipsis"><Link to={path}>{video.title}</Link></h3>
+          <h4>{video.username}</h4>
+          <h4>{video.views}</h4>
+        </div>
       </div>
     );
   }

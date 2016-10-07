@@ -11,6 +11,7 @@
 .video-item{
   float: left;
   padding: 10px;
+  text-align: left;
   img{
     float: left;
     width: 200px;
@@ -25,6 +26,11 @@
     a:hover{
       text-decoration: underline;
     }
+  }
+  h4{
+    color: #7E7676;
+    font-size: 12px;
+    font-weight: lighter;
   }
   .giveMeEllipsis {
      overflow: hidden;

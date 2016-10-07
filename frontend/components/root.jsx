@@ -25,6 +25,9 @@ const _clearErrors = () => {
 }
 const _setCurrentVideo = (nextState) => {
   store.dispatch(oneVideo(nextState.params.id));
+  if(typeof store.getState().videos.list_videos === "undefined"){
+    _getVideos();
+  }
 }
 const _getVideos = () => {
   store.dispatch(allVideos());
