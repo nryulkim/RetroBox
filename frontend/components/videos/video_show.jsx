@@ -11,12 +11,12 @@ class VideoShow extends React.Component{
     if(!video){ return null; }
 
     let date = new Date(video.created_date);
-
+    
     return(
       <div className="video-show-container group">
         <main>
           <div className="video-player">
-            <ReactPlayer url={video.video_url} controls="true" width="640" height="360"/>
+            <ReactPlayer url={video.video_url} controls={true} width={640} height={360}/>
           </div>
           <div className="video-title text-container container">
             <h1>{video.title}</h1>

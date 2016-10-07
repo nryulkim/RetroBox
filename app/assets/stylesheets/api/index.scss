@@ -1,30 +1,38 @@
 .index-container{
   margin: 0 auto;
   width: 900px;
-  background-color: #fff;
-  box-shadow: 0 0 3px #ccc;
   padding: 10px;
   .feeds{
     width: 800px;
     margin: 0 auto;
-    .video-item{
-      float: left;
-      padding: 10px;
-      img{
-        float: left;
-        width: 200px;
-        height: 110px;
-        box-shadow: 0 0 2px #aaa;
-        object-fit: cover;
-        margin-bottom: 10px;
-      }
-      h3{
-        color: #1682D0;
-        a:hover{
-          text-decoration: underline;
-        }
-      }
+  }
+}
 
+.video-item{
+  float: left;
+  padding: 10px;
+  img{
+    float: left;
+    width: 200px;
+    height: 110px;
+    box-shadow: 0 0 2px #aaa;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  h3{
+    width: 200px;
+    color: #1682D0;
+    a:hover{
+      text-decoration: underline;
     }
+  }
+  .giveMeEllipsis {
+     overflow: hidden;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+     -webkit-box-orient: vertical;
+     -webkit-line-clamp: 2; /* number of lines to show */
+     line-height: 1;        /* fallback */
+     max-height: 2;       /* fallback */
   }
 }
