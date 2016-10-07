@@ -8,42 +8,40 @@ class BurgerDrop extends React.Component{
     this.getLinks = this.getLinks.bind(this);
   }
 
+  componentDidUpdate(){
+    $(`#burger-drop a[href="#${this.props.path}"]`).parent().addClass("selected").siblings().removeClass("selected");
+  }
+
   getLinks(){
+
     const paths = {
-      "Home": '/',
-      "Upload": '/upload'
+      Upload: '/upload'
     };
 
     const links = [];
     for (let i = 0; i < Object.keys(paths).length; i++) {
       const name = Object.keys(paths)[i];
       const path = paths[name];
-      if(path === this.props.path){
-        links.push(
-          <li className="selected" key={path}>
-            <Link to={path}>{name}</Link>
-          </li>
-        );
-      }else{
-        links.push(
-          <li key={path}>
-            <Link to={path}>{name}</Link>
-          </li>
-        );
-      }
+      links.push(
+        <li key={path}>
+          <Link to={path}>{name}</Link>
+        </li>
+      );
     }
 
-    return(
-      <ul>
-        {links}
-      </ul>
-    );
+    return links;
   }
 
   render(){
     return (
       <div id="burger-drop" className="group">
-        {this.getLinks()}
+        <ul>
+          <li className="selected">
+            <Link to="/"><i className="fa fa-home" aria-hidden="true"></i>  Home</Link>
+          </li>
+
+          {this.getLinks()}
+        </ul>
       </div>
     );
   }
