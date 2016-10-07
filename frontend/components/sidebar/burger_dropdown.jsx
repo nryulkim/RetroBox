@@ -9,11 +9,15 @@ class BurgerDrop extends React.Component{
   }
 
   componentDidUpdate(){
-    $(`#burger-drop a[href="#${this.props.path}"]`).parent().addClass("selected").siblings().removeClass("selected");
+    const $selected = $(`#burger-drop a[href="#${this.props.path}"]`);
+    if($selected.length){
+      $selected.parent().addClass("selected").siblings().removeClass("selected");
+    }else{
+      $('#burger-drop li').removeClass("selected");
+    }
   }
 
   getLinks(){
-
     const paths = {
       Upload: '/upload'
     };
