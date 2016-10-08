@@ -13,7 +13,6 @@ class App extends React.Component{
       <Carousel
         slidesToShow={numToSlide}
         slidesToScroll={numToSlide}
-        wrapAround={true}
         dragging={true}
         height={"200px"}
         decorators={[{

@@ -16,7 +16,10 @@ class Index extends React.Component{
   handleResize(){
     const { count } = this.state;
     const width = $("html").width();
-    if(width > 950 && count !== 4){
+    if (width > 1200 && count !== 5){
+      $('.index-container').width("1120px");
+      this.setState({ count: 5 });
+    }else if(width < 1201 && width > 950 && count !== 4){
       $('.index-container').width("900px");
       this.setState({ count: 4 });
     }else if(width < 951 && width > 700 && count !== 3){
