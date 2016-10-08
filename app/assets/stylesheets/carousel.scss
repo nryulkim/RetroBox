@@ -5,7 +5,9 @@
   box-shadow: 0 0 3px #aaa;
   padding: 10px;
   .carousel{
-    height: 200px;
+    .link{
+      height: 180px;
+    }
     button{
       background-color: transparent;
       height: 40px;

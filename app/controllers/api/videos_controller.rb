@@ -23,6 +23,8 @@ class Api::VideosController < ApplicationController
   def show
     @video = Video.find(params[:id])
     if @video
+      @video.views = @video.views + 1;
+      @video.save
       render :show
     else
       render nil, status: 404
