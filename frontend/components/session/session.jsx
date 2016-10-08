@@ -26,7 +26,6 @@ class SessionForm extends React.Component {
   }
 
   getIcon(file){
-    debugger
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({ iconFile: file, iconUrl: fileReader.result });

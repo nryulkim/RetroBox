@@ -1,5 +1,3 @@
-require 'byebug'
-
 iconPath = "#{Rails.root}/app/assets/images/user_icons/";
 vidPath = "#{Rails.root}/app/assets/seed/videos/";
 all_icons = Dir.entries(iconPath).select{|file| file[/.*\.png/]}
