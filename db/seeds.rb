@@ -1,7 +1,8 @@
+require 'byebug'
 
 iconPath = "#{Rails.root}/app/assets/images/user_icons/";
 vidPath = "#{Rails.root}/app/assets/seed/videos/";
-all_icons = Dir.entries(iconPath)
+all_icons = Dir.entries(iconPath).select{|file| file[/.*\.png/]}
 
 User.destroy_all
 all_users = [];
