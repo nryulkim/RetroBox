@@ -16,7 +16,7 @@ class VideoItem extends React.Component{
         <div className="link">
           <h3 className="giveMeEllipsis"><Link to={path}>{video.title}</Link></h3>
           <h4>{video.username}</h4>
-          <h5>{video.views} Views · {timeSince(video.created_at)} ago</h5>
+          <h5>{video.views.toLocaleString('en-US')} Views · {timeSince(video.created_at)} ago</h5>
         </div>
       </div>
     );
