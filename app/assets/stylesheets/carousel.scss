@@ -1,78 +1,34 @@
 .carousel-container{
+  height: 200px;
   background-color: #fff;
-  box-shadow: 0 0 3px #ccc;
-  margin: 4px 0;
-
-  .carousel {
-    position: relative;
-    margin: auto;
-    width: 100%;
-    text-align: center;
-    .button-container{
-      position: absolute;
-      height: 100%;
-      z-index: 10;
-
-      button {
-        cursor: pointer;
-        position: absolute;
-        transform: translateY(-50%);
-        height: 50px;
-        top: 50%;
-        color: #ccc;
-        font-size: 12px;
-        border: 0;
-        background-color: transparent;
-      }
+  margin: 5px auto;
+  box-shadow: 0 0 3px #aaa;
+  padding: 10px;
+  .carousel{
+    height: 200px;
+    button{
+      background-color: transparent;
+      height: 40px;
+      border: 0;
+      font-size: 16px;
+      color: #aaa;
     }
-    .button-container:hover{
-      button{
-        box-shadow: 0 0 2px #ccc;
-        background: #fff;
-        font-size: 18px;
-        font-weight: bold;
-        width: 40px;
-        color: #aaa;
-      }
+    .slider-decorator-0 button{
+      transform: translateX(-15px);
     }
-    .button-container:nth-child(1) {
-      left: 0;
-      button:hover {
-        left: -21px;
-      }
+    .slider-decorator-1 button{
+      transform: translateX(15px);
     }
-    .button-container:nth-child(2) {
-      right: 19px;
+    button:hover{
+      box-shadow: 0 0 3px #aaa;
+      width: 40px;
+      background-color: #fff;
     }
-    ul {
-      position: relative;
-      overflow: hidden;
-      height: 220px;
-      h1{
-        display: block;
-        text-align: left;
-        font-size: 14px;
-        font-weight: bold;
-        margin: 15px 0 0 20px;
-      }
-      li {
-        position: absolute;
-        margin: 5px 10px;
-        left: -100%;
-        width: 100%;
-        transition: left 300ms linear;
-        z-index: 1;
-      }
-      li.is-previous {
-        z-index: 2;
-      }
-      li.is-active {
-        left: 0;
-        z-index: 3;
-      }
-      li.is-active ~ li {
-        left: 100%;
-      }
+    .slider-decorator-0 button:hover{
+      transform: translateX(-33px);
+    }
+    .slider-decorator-1 button:hover{
+      transform: translateX(33px);
     }
   }
 }

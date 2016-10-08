@@ -34,6 +34,7 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "lodash.merge": "^4.6.0",
+    "nuka-carousel": "^2.0.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-player": "^0.11.0",

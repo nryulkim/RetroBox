@@ -1,5 +1,6 @@
 import React from 'react';
 import VideoItem from '../videos/video_item';
+import Carousel from './carousel';
 
 class ViewBar extends React.Component{
   constructor(props){
@@ -14,40 +15,19 @@ class ViewBar extends React.Component{
   getVideoItems(){
     if(typeof this.props.videos === "undefined") { return(null); }
     const videos = Array.from(this.props.videos);
-
-    const vidArr = [];
-    while (videos.length > 0){
-      vidArr.push(videos.splice(0, 4));
-    }
-
-    const ans = vidArr.map((vids, idx) => {
-      const vidItems = vids.map((vid, idx)=>{
-        return <VideoItem key={vid.id} video={vid}/>;
-      });
-      const className = idx === 0 ? "is-active" : "";
-      return(
-        <li className={className} key={idx}>{vidItems}</li>
-      );
+    return videos.map((vid, idx)=>{
+      return <VideoItem key={vid.id} video={vid}/>;
     });
-    return ans;
   }
 
   render(){
+    const { count } = this.props;
     return(
       <div className="carousel-container">
-        <figure className="carousel">
-          <div className="button-container">
-            <button data-dir="-1">{"<"}</button>
-          </div>
-          <div className="button-container">
-            <button data-dir="1">{">"}</button>
-          </div>
-
-          <ul>
-            <h1>{this.props.title}</h1>
-            {this.getVideoItems()}
-          </ul>
-        </figure>
+        <div className="carousel">
+          <h3>{this.props.title}</h3>
+          <Carousel numToSlide={count} videos={this.getVideoItems()}/>
+        </div>
       </div>
     );
   }
