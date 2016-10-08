@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 import UserDrop from './user_dropdown';
-import SearchBar from './searchbar/searchbar';
+import SearchBar from './searchbar/searchbar_container';
 
 class Header extends React.Component{
   constructor(props){
@@ -74,9 +74,5 @@ class Header extends React.Component{
     );
   }
 }
-// <form className="search">
-//   <input type="text" placeholder="Search"/>
-//   <button type="submit"></button>
-// </form>
 
 export default withRouter(Header);

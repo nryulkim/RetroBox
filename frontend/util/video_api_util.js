@@ -2,6 +2,17 @@ export const fetchAllVideos = (success, error) => {
   $.ajax({
     method: "GET",
     url: "/api/videos",
+    data: {title: "%"},
+    success,
+    error
+  });
+};
+
+export const fetchSomeVideos = (filter, success, error) => {
+  $.ajax({
+    method: "GET",
+    url: "/api/videos",
+    data: filter,
     success,
     error
   });

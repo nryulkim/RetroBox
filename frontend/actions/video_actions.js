@@ -1,4 +1,5 @@
 export const ALL_VIDEOS = "ALL_VIDEOS";
+export const SOME_VIDEOS = "SOME_VIDEOS";
 export const ONE_VIDEO = "ONE_VIDEO";
 export const UPDATE_VIDEO = "UPDATE_VIDEO";
 export const DELETE_VIDEO = "DELETE_VIDEO";
@@ -10,6 +11,14 @@ export const REMOVE_VIDEO = "REMOVE_VIDEO";
 export function allVideos(){
   return({
     type: ALL_VIDEOS
+  });
+}
+
+export function someVideos(filter, redirect){
+  return({
+    type: SOME_VIDEOS,
+    filter,
+    redirect
   });
 }
 

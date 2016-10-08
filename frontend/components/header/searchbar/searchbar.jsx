@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import Autosuggest from 'react-autosuggest';
 
 class SearchBar extends React.Component {
@@ -25,6 +26,7 @@ class SearchBar extends React.Component {
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.shouldRenderSuggestions = this.shouldRenderSuggestions.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   escapeRegexCharacters(str) {
@@ -32,7 +34,6 @@ class SearchBar extends React.Component {
   }
 
   getSuggestions(value) {
-    const { videos } = this.props;
     const { titles } = this.state;
 
     const escapedValue = this.escapeRegexCharacters(value.trim());
@@ -49,6 +50,16 @@ class SearchBar extends React.Component {
     return (
       <span>{suggestion}</span>
     );
+  }
+
+  handleSubmit(e){
+    const { value } = this.state;
+    const filter = {title: "%"+value+"%"};
+    const router = this.props.router;
+    const redirect = () => {
+      router.push("/search");
+    };
+    this.props.someVideos(filter, redirect);
   }
 
   getSuggestionValue(suggestion){
@@ -81,7 +92,7 @@ class SearchBar extends React.Component {
     };
 
     return (
-      <form className="search group" onSubmit={(e)=>{console.log(this.value);}}>
+      <form className="search group" onSubmit={this.handleSubmit}>
         <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -89,6 +100,7 @@ class SearchBar extends React.Component {
           getSuggestionValue={this.getSuggestionValue}
           shouldRenderSuggestions={this.shouldRenderSuggestions}
           renderSuggestion={this.renderSuggestion}
+          onSuggestionSelected={this.handleSubmit}
           inputProps={inputProps} />
         <button type="submit"></button>
       </form>
@@ -96,4 +108,4 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);
