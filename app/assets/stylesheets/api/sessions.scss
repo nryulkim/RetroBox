@@ -85,7 +85,10 @@
     form{
 
       .icon-input-container{
-        .dropIcon{
+        label{
+          cursor: pointer;
+        }
+        #dropIcon{
           text-align: center;
           margin-bottom: 20px;
           .icon{

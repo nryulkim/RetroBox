@@ -25,6 +25,7 @@ class Video < ApplicationRecord
         # :thumb => { :geometry => "100x100#", :format => 'jpg', :time => 10},
       # },
       processors: [:transcoder]
+  validates_attachment_content_type :video, :content_type => /\Avideo\/.*\Z/
 
   belongs_to :user
 

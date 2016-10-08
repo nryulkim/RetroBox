@@ -7,11 +7,7 @@ class ViewBar extends React.Component{
     super(props);
     this.getVideoItems = this.getVideoItems.bind(this);
   }
-
-  componentDidUpdate(){
-    $(".carousel").carousel();
-  }
-
+  
   getVideoItems(){
     if(typeof this.props.videos === "undefined") { return(null); }
     const videos = Array.from(this.props.videos);

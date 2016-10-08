@@ -16,9 +16,17 @@ class SessionForm extends React.Component {
     this.update = this.update.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
     this.logDemo = this.logDemo.bind(this);
+    this.getIcon = this.getIcon.bind(this);
+    this.updateIcon = this.updateIcon.bind(this);
   }
 
-  getThumb(file){
+  updateIcon(e){
+    const file = e.currentTarget.files[0];
+    this.getIcon(file);
+  }
+
+  getIcon(file){
+    debugger
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({ iconFile: file, iconUrl: fileReader.result });
@@ -30,7 +38,7 @@ class SessionForm extends React.Component {
   }
 
   componentDidMount(){
-    setDragAndDrop("#dropIcon", this.getThumb);
+    setDragAndDrop("#dropIcon", this.getIcon);
   }
 
 
@@ -158,8 +166,8 @@ class SessionForm extends React.Component {
 
       iconInput = (
         <div className="icon-input-container">
-          <div className="dropIcon">
-            <input type="file" className="drop_file" id="icon" onChange={this.updateVideo}></input>
+          <div id="dropIcon">
+            <input type="file" className="drop_file" id="icon" onChange={this.updateIcon}></input>
             <label htmlFor="icon">
               <img className="icon" src={this.state.iconUrl}/>
               <strong>Choose an icon</strong> or drag it here.
