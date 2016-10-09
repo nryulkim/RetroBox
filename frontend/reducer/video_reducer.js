@@ -2,7 +2,7 @@ import {
   RECEIVE_VIDEOS, RECEIVE_VIDEO,  REMOVE_VIDEO
 } from '../actions/video_actions';
 import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/util_actions';
-
+import { RECEIVE_COMMENT } from '../actions/comment_actions';
 import merge from "lodash/merge";
 
 
@@ -16,7 +16,7 @@ const defaultState = {
   forms: defaultForms
 };
 
-export default (state = defaultState, action) => {
+const VideoReducer = (state = defaultState, action) => {
   let newState = merge({}, state);
 
   switch(action.type){
@@ -41,7 +41,10 @@ export default (state = defaultState, action) => {
       if(newState[action.video.id]){
         delete newState[action.video.id];
       }
+      return newState;
 
+    case RECEIVE_COMMENT:
+      newState.currentVideo.comments.unshift(action.comment);
       return newState;
 
     case RECEIVE_ERRORS:
@@ -55,3 +58,5 @@ export default (state = defaultState, action) => {
       return state;
   }
 };
+
+export default VideoReducer;

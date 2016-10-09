@@ -1,0 +1,132 @@
+// Place all the styles related to the api/comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.comment-container{
+  .user-icon{
+    float: left;
+    width: 47px;
+    height: 47px;
+    margin: 10px;
+    img{
+      width: 47px;
+      height: 47px;
+      object-fit: cover;
+    }
+  }
+  .comment-form-container{
+    h3{
+      text-transform: uppercase;
+      color: #555;
+      text-size: 12px;
+    }
+
+    .new-comment-form{
+      display: flex;
+      position: relative;
+      .comment-shadow{
+        position: absolute;
+        content: "";
+        background-color: transparent;
+        width: 12px;
+        height: 1px;
+        left: 65px;
+        top: 10px;
+        z-index: 1;
+        box-shadow: 0 0px 3px #aaa;
+      }
+      .comment-arrow {
+        z-index: 2;
+        width: 15px;
+        height: 15px;
+        left: 63px;
+        top: 10px;
+        position: absolute;
+        overflow: hidden;
+      }
+      .comment-arrow:after{
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        -webkit-transform: rotate(45deg);
+        top: -11px;
+        right: -11px;
+        box-shadow: 0 0 3px #aaa;
+      }
+      textarea{
+        border: 0;
+        overflow: visible;
+        resize: none;
+        cursor: pointer;
+        border-radius: 3px;
+        border-top-left-radius: 0px;
+        box-shadow: 0 0 3px #aaa;
+        padding: 8px;
+        font-size: 12px;
+        color: #555;
+        margin: 10px;
+        width: 100%;
+      }
+      textarea:focus{
+        outline: none;
+        cursor: auto;
+        border: 1px solid #16C67A;
+        + .comment-arrow{
+          border-top: 1px solid #16C67A;
+        }
+        + .comment-arrow:after{
+          border: 1px solid #16C67A;
+        }
+      }
+    }
+  }
+  .button-container{
+    display: none;
+    margin-bottom: 10px;
+    button{
+      float: right;
+      margin-right: 10px;
+      border: 0;
+      background-color: #F8F8F8;
+      border: 1px solid #D3D3D3;
+      padding: 5px;
+      border-radius: 3px;
+
+      .show{
+        display: block;
+      }
+    }
+    button:first-of-type{
+      color: #fff;
+      background-color: #16C67A;
+    }
+    button:disabled{
+      background-color: #aaa;
+    }
+  }
+  .all-comments{
+    border-top: 1px solid #D3D3D3;
+    .comment-item{
+      .comment-header{
+        padding: 10px 0 5px 10px;
+        h3{
+          float: left;
+          display: inline-block;
+          color: #16C67A;
+          margin-right: 10px;
+        }
+        h3:hover{
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        h4{
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 10px;
+          color: #aaa;
+        }
+      }
+    }
+  }
+}

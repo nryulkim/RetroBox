@@ -22,6 +22,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :icon, content_type: /\Aimage\/.*\z/
 
   has_many :videos
+  has_many :comments
 
   before_validation :ensure_token
 

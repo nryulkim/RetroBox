@@ -6,7 +6,7 @@
   box-shadow:  0 0 2px #bbb;
   padding: 10px 30px;
   .search-header{
-    padding: 5px 30px;
+    padding: 5px 0;
     h4{
       text-align: right;
       color: #555;
@@ -31,10 +31,10 @@
       overflow: hidden;
       margin-right: 10px;
       img{
-        display: inline-block;
-        vertical-align: middle;
         margin: auto;
         width: 200px;
+        height: 110px;
+        object-fit: cover;
       }
     }
     .link{

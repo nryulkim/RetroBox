@@ -26,14 +26,14 @@
       likes: {
         likes: count,
         dislikes: count
-        comments: {
-          1: {
-            username: "test2",
-            body: "something something something",
-            likes: {
-              likes: count,
-              dislikes: count
-            }
+      }
+      comments: {
+        1: {
+          username: "test2",
+          body: "something something something",
+          likes: {
+            likes: count,
+            dislikes: count
           }
         }
       }

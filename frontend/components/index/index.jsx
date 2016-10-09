@@ -7,7 +7,7 @@ class Index extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      count: 0
+      count: 2
     };
 
     this.handleResize = this.handleResize.bind(this);

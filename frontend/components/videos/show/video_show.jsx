@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import VideoItem from '../video_item';
+import Comments from './comments/comments-container';
 import { shuffleArray } from '../../../util/util_functions.js';
 
 class VideoShow extends React.Component{
@@ -26,7 +27,6 @@ class VideoShow extends React.Component{
   render(){
     const { video, currentUser } = this.props;
     if(!video){ return null; }
-
     let date = new Date(video.created_date);
     return(
       <div className="video-show-container group">
@@ -42,7 +42,7 @@ class VideoShow extends React.Component{
               </div>
               <h3>{video.user.username}</h3>
               <div className="view-counter">
-                <h2>{video.views} views</h2>
+                <h2>{video.views.toLocaleString('en-US')} views</h2>
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@ class VideoShow extends React.Component{
             <p>{video.description}</p>
           </div>
           <div className="video-comments text-container container">
-            <h1>Video Comments</h1>
+            <Comments/>
           </div>
         </main>
 

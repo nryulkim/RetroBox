@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store.js';
 import Root from './components/root.jsx';
-import * as VideoActions from './actions/video_actions';
+import * as CommentActions from './actions/comment_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
     let initialState = {};
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       initialState = {session:{currentUser: window.currentUser}};
     }
     const store = configureStore(initialState);
-    window.VideoActions = VideoActions;
+    window.CommentActions = CommentActions;
     window.store = store;
 
     const root = document.getElementById('root');
