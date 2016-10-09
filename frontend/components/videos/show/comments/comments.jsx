@@ -89,6 +89,12 @@ class Comments extends React.Component{
     if(comments){
       numComments = comments.length.toLocaleString('en-US');
     }
+
+    let userIcon = window.retroBoxAssets.defaultIcon;
+    if(currentUser){
+      userIcon = currentUser.icon_url;
+    }
+
     return(
       <div className="comment-container">
         <div className="comment-form-container group">
@@ -97,7 +103,7 @@ class Comments extends React.Component{
             onClick={this.checkLoggedIn}
             onSubmit={this.handleSubmit}>
             <div className="user-icon">
-              <img src={currentUser.icon_url}></img>
+              <img src={userIcon}></img>
             </div>
             <textarea
               className="comment-body-input"
