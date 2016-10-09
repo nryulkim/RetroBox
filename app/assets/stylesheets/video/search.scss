@@ -2,9 +2,24 @@
   display: block;
   margin: 0 auto;
   background-color: #fff;
-  width: 660px;
+  width: 640px;
   box-shadow:  0 0 2px #bbb;
-  padding: 5px 30px;
+  padding: 10px 30px;
+  .search-header{
+    padding: 5px 30px;
+    h4{
+      text-align: right;
+      color: #555;
+      font-size: 12px;
+    }
+  }
+  hr{
+    width: 700px;
+    height: 1px;
+    border: 0;
+    transform: translateX(-30px);
+    border-top: 1px solid #F1F1F1;
+  }
   .video-result-container{
     display: block;
     margin: 10px 0 15px;

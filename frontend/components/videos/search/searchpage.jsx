@@ -11,8 +11,7 @@ export default class SearchPage extends React.Component{
 
   getVideos(){
     const { videos } = this.props;
-    if(typeof videos === "undefined"){ return null; }
-
+    if(typeof videos === "undefined"){return null;}
     return videos.map((video, idx) => {
       let path = `/video/${video.id}`;
       return(
@@ -34,8 +33,23 @@ export default class SearchPage extends React.Component{
   }
 
   render(){
+    const { videos } = this.props;
+    let resultCount = <h4>No results found.</h4>;
+    if(videos){
+      const count = videos.length;
+      if(count > 1){
+        resultCount = <h4>About {count} results.</h4>;
+      }else{
+        resultCount = <h4>There is one result.</h4>;
+      }
+    }
+
     return(
       <div className="search-container group">
+        <div className="search-header">
+          {resultCount}
+        </div>
+        <hr/>
         { this.getVideos() }
       </div>
     );
