@@ -1,0 +1,50 @@
+.search-container{
+  display: block;
+  margin: 0 auto;
+  background-color: #fff;
+  width: 660px;
+  box-shadow:  0 0 2px #bbb;
+  padding: 5px 30px;
+  .video-result-container{
+    display: block;
+    margin: 10px 0 15px;
+    width:  100%;
+    .thumb{
+      float: left;
+      width: 200px;
+      height: 110px;
+      overflow: hidden;
+      margin-right: 10px;
+      img{
+        display: inline-block;
+        vertical-align: middle;
+        margin: auto;
+        width: 200px;
+      }
+    }
+    .link{
+      color: #827676;
+      font-size: 12px;
+      h3{
+        margin-bottom: 5px;
+        a{
+          color: #1686D0;
+          font-weight: 600;
+          font-size: 15px;
+        }
+        a:hover{
+          text-decoration: underline;
+        }
+      }
+      h5{
+        margin: 3px 0;
+      }
+    }
+    p{
+      color: #827676;
+    }
+  }
+  .video-result-container:last-child{
+    margin: 10px 0;
+  }
+}

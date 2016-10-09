@@ -1,3 +1,6 @@
+import React from 'react';
+import VideoItem from "../components/videos/video_item";
+
 export function shuffleArray(orgArray) {
   if(typeof orgArray === "undefined") { return undefined; }
 
@@ -9,6 +12,14 @@ export function shuffleArray(orgArray) {
       array[j] = temp;
   }
   return array;
+}
+
+export function getVideoItems(videos){
+  if(typeof videos === "undefined") { return(null); }
+  const vids = Array.from(videos);
+  return vids.map((vid, idx)=>{
+    return <VideoItem key={vid.id} video={vid}/>;
+  });
 }
 
 export function setDragAndDrop(id, callback){

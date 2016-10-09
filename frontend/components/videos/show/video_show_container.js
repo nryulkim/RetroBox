@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { oneVideo } from '../../actions/video_actions';
+import { oneVideo } from '../../../actions/video_actions';
 import VideoShow from './video_show';
 
 const mapStateToProps = ({ session, videos }, ownProps) => {

@@ -5,8 +5,8 @@ import { clearErrors } from '../actions/util_actions';
 import { oneVideo, allVideos } from '../actions/video_actions';
 import App from './app';
 import Session from './session/session_container.js';
-import VideoForm from './videos/video_form_container.js';
-import VideoShow from './videos/video_show_container.js';
+import VideoForm from './videos/form/video_form_container.js';
+import VideoShow from './videos/show/video_show_container.js';
 import Index from './index/index_container.js';
 import SearchPage from './videos/search/searchpage_container.js';
 

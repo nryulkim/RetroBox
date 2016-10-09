@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
-import { setDragAndDrop } from '../../util/util_functions';
+import { setDragAndDrop } from '../../../util/util_functions';
 
 class VideoForm extends React.Component {
   constructor(props){

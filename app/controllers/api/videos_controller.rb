@@ -16,7 +16,7 @@ class Api::VideosController < ApplicationController
   end
 
   def index
-    @videos = Video.where("title LIKE ?", params[:title]).includes(:user)
+    @videos = Video.where("UPPER(title) LIKE UPPER(?)", params[:title]).includes(:user)
     render :index
   end
 

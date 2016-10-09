@@ -30,7 +30,7 @@ export default (state = defaultState, action) => {
       return newState;
 
     case RECEIVE_VIDEOS:
-      newState = merge({}, newState, action.videos);
+      newState.list_videos = action.videos.list_videos;
       newState.forms = defaultForms;
       return newState;
 

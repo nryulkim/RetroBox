@@ -27,11 +27,14 @@
       box-shadow: 0 0 3px #aaa;
       width: 40px;
       height: 60px;
-      color: #000;
       background-color: #fff;
     }
     .slider-decorator-0 button:hover{
+      box-shadow: -1px 0 2px #aaa;
       transform: translate(-33px, -43px);
+    }
+    .slider-decorator-1 button:hover{
+      box-shadow: 1px 0 2px #aaa;
     }
   }
 }

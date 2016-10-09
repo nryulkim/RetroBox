@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import VideoItem from './video_item';
-import { shuffleArray } from '../../util/util_functions.js';
+import VideoItem from '../video_item';
+import { shuffleArray } from '../../../util/util_functions.js';
 
 class VideoShow extends React.Component{
   constructor(props){
@@ -18,9 +18,6 @@ class VideoShow extends React.Component{
       return(
         <div className="sampleVids group" key={vid.id}>
           <VideoItem video={vid}/>
-          <div>
-
-          </div>
         </div>
       );
     });

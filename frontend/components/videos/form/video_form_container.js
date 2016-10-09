@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { clearErrors } from '../../actions/util_actions';
-import { updateVideo, newVideo } from '../../actions/video_actions';
+import { clearErrors } from '../../../actions/util_actions';
+import { updateVideo, newVideo } from '../../../actions/video_actions';
 import VideoForm from './video_form';
 
 const mapStateToProps = ({ session, videos }, ownProps) => {
