@@ -50,11 +50,10 @@ class CommentForm extends React.Component{
     const clearInput = () => {
       form.hideButtons();
     };
-
     const comment = {
       body: this.state.body,
       user_id: this.props.currentUser.id,
-      video_id: this.props.video_id
+      video_id: this.props.videoId
     };
 
     this.props.process(comment, clearInput);

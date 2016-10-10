@@ -1,5 +1,5 @@
 import {
-  RECEIVE_VIDEOS, RECEIVE_VIDEO,  REMOVE_VIDEO
+  RECEIVE_VIDEOS, RECEIVE_VIDEO
 } from '../actions/video_actions';
 import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/util_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
@@ -45,14 +45,14 @@ const VideoReducer = (state = defaultState, action) => {
       newState.forms = defaultForms;
       return newState;
 
-    case REMOVE_VIDEO:
-      if(newState.currentVideo && newState.currentVideo.id === action.video.id){
-        newState.currentVideo = null;
-      }
-      if(newState[action.video.id]){
-        delete newState[action.video.id];
-      }
-      return newState;
+    // case REMOVE_VIDEO:
+    //   if(newState.currentVideo && newState.currentVideo.id === action.video.id){
+    //     newState.currentVideo = null;
+    //   }
+    //   if(newState[action.video.id]){
+    //     delete newState[action.video.id];
+    //   }
+    //   return newState;
 
     case RECEIVE_COMMENT:
       if(idx !== -1){

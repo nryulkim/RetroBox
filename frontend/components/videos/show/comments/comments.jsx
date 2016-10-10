@@ -27,7 +27,7 @@ class Comments extends React.Component{
   }
 
   render(){
-    const { comments, currentUser, newComment } = this.props;
+    const { comments, currentUser, newComment, videoId } = this.props;
     let numComments = "No comments";
     if(comments){
       numComments = comments.length.toLocaleString('en-US');
@@ -38,7 +38,7 @@ class Comments extends React.Component{
         <div className="comment-head-container group">
           <h3>Comments • {numComments}</h3>
         </div>
-        <CommentForm currentUser={currentUser} process={newComment}/>
+        <CommentForm currentUser={currentUser} process={newComment} videoId={videoId}/>
         <div className="all-comments">
           {this.getComments()}
         </div>

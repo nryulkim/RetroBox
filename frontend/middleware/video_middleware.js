@@ -1,7 +1,7 @@
 import * as VideoApi from '../util/video_api_util';
 import {
-  ONE_VIDEO, ALL_VIDEOS, SOME_VIDEOS, NEW_VIDEO, UPDATE_VIDEO, DELETE_VIDEO,
-  receiveVideos, receiveVideo, removeVideo
+  ONE_VIDEO, ALL_VIDEOS, SOME_VIDEOS, NEW_VIDEO,
+  receiveVideos, receiveVideo
 } from '../actions/video_actions';
 import { receiveErrors } from '../actions/util_actions.js';
 
@@ -40,19 +40,19 @@ export default ({ getState, dispatch }) => next => action => {
       VideoApi.newVideo(action.video, success, errors);
       return next(action);
 
-    case(UPDATE_VIDEO):
-      errors = xhr => {
-        dispatch(receiveErrors(xhr.responseJSON, "updateVideo"))
-      };
-      VideoApi.editVideo(action.video, success, errors);
-      return next(action);
-
-    case(DELETE_VIDEO):
-      success = (video) => {
-        dispatch(removeVideo(video))
-      }
-      VideoApi.destroyVideo(action.id, success, errors);
-      return next(action);
+    // case(UPDATE_VIDEO):
+    //   errors = xhr => {
+    //     dispatch(receiveErrors(xhr.responseJSON, "updateVideo"))
+    //   };
+    //   VideoApi.editVideo(action.video, success, errors);
+    //   return next(action);
+    //
+    // case(DELETE_VIDEO):
+    //   success = (video) => {
+    //     dispatch(removeVideo(video))
+    //   }
+    //   VideoApi.destroyVideo(action.id, success, errors);
+    //   return next(action);
 
     default:
       return next(action);

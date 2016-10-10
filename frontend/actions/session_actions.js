@@ -11,7 +11,6 @@ export function login(user, cb){
   });
 }
 
-
 export function logout(){
   return({
     type: LOGOUT

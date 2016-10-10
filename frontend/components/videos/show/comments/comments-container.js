@@ -4,7 +4,7 @@ import Comments from './comments';
 
 const mapStateToProps = ({ session, videos }, ownProps) => {
   return({
-    video_id: videos.currentVideo.id,
+    videoId: videos.currentVideo.id,
     currentUser: session.currentUser,
     comments: videos.currentVideo.comments
   });
