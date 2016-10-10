@@ -4,8 +4,23 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
-    resources :videos, only: [:create, :index, :show, :update, :destroy]
-    resources :comments, only: [:create, :index, :update, :destroy]
+    resources :videos, only: [:create, :index, :show, :update, :destroy] do
+      resources :likes, only: [] do
+        collection do
+          get 'count'
+          get 'total'
+        end
+      end
+    end
+    resources :comments, only: [:create, :index, :update, :destroy] do
+      resources :likes, only: [] do
+        collection do
+          get 'count'
+          get 'total'
+        end
+      end
+    end
+    resources :likes, only: [:create, :destroy]
   end
 
   root to: 'static_pages#root'

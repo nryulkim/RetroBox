@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   has_many :videos
   has_many :comments
-
+  
   before_validation :ensure_token
 
   def self.find_by_creds(email, password)
