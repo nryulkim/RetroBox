@@ -24,7 +24,6 @@ export default class App extends React.Component{
     const { children, location } = this.props;
     const { showSide } = this.state;
     const sidebar = showSide ? <BurgerDrop path={location.pathname}/> : null;
-
     return(
       <main>
         <header className="header">

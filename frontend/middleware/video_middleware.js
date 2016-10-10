@@ -11,7 +11,6 @@ export default ({ getState, dispatch }) => next => action => {
     dispatch(receiveVideo(video));
   };
   let errors = xhr => {
-    console.log(xhr.responseJSON);
   };
 
   switch(action.type) {

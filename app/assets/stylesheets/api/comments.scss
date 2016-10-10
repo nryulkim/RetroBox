@@ -68,9 +68,11 @@
         margin: 10px;
         width: 100%;
       }
+      .live{
+        cursor: auto;
+      }
       textarea:focus{
         outline: none;
-        cursor: auto;
         border: 1px solid #16C67A;
         + .comment-arrow{
           border-top: 1px solid #16C67A;

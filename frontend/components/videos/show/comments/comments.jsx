@@ -64,11 +64,13 @@ class Comments extends React.Component{
       $(".comment-form-submit-button").prop('disabled',false);
     }
     $(".button-container").show();
+    $(".comment-body-input").addClass('live');
   }
 
   hideButtons(e){
     this.setState({ body: "" });
     $(".button-container").hide();
+    $(".comment-body-input").removeClass('live');
   }
 
   getComments(){

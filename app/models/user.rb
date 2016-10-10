@@ -18,7 +18,8 @@ class User < ApplicationRecord
   validates :username, :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
-  has_attached_file :icon, default_url: "user_icons/default-icon.png"
+
+  has_attached_file :icon, default_url: "user_icons/default_icon.png"
   validates_attachment_content_type :icon, content_type: /\Aimage\/.*\z/
 
   has_many :videos
