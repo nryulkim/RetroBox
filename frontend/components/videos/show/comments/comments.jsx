@@ -74,14 +74,18 @@ class Comments extends React.Component{
   }
 
   getComments(){
-    const { comments } = this.props;
+    const { comments, currentUser, deleteComment } = this.props;
     comments.sort((a, b) => {
       if(a.updated_at > b.updated_at){ return -1; }
       else if(a.updated_at == b.updated_at){ return 0; }
       else { return 1; }
     });
     return comments.map((comment)=>{
-      return <CommentItem key={comment.id} comment={comment}/>;
+      return <CommentItem
+        key={comment.id}
+        comment={comment}
+        currentUser={currentUser}
+        deleteComment={deleteComment}/>;
     });
   }
 

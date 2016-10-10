@@ -20,13 +20,13 @@ class Api::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(id: params[:id])
+    @comment = Comment.find(params[:id])
     @comment.destroy
     render :destroy
   end
 
   def update
-    @comment = Comment.find(id: params[:id])
+    @comment = Comment.find(params[:id])
     if @comment
       if @comment.save
         render :update

@@ -2,7 +2,7 @@ import {
   RECEIVE_VIDEOS, RECEIVE_VIDEO,  REMOVE_VIDEO
 } from '../actions/video_actions';
 import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/util_actions';
-import { RECEIVE_COMMENT } from '../actions/comment_actions';
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import merge from "lodash/merge";
 
 
@@ -45,6 +45,14 @@ const VideoReducer = (state = defaultState, action) => {
 
     case RECEIVE_COMMENT:
       newState.currentVideo.comments.unshift(action.comment);
+      return newState;
+
+    case REMOVE_COMMENT:
+      const idx = newState.currentVideo.comments.findIndex((comment) => {
+        if(comment.id === action.comment.id){ return true; }
+        return false;
+      });
+      newState.currentVideo.comments.splice(idx, 1);
       return newState;
 
     case RECEIVE_ERRORS:

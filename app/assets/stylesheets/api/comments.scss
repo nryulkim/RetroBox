@@ -111,6 +111,19 @@
     border-top: 1px solid #D3D3D3;
     .comment-item{
       .comment-header{
+        .editor{
+          .fa-pencil{
+            float: right;
+            color: #16C67A;
+            margin: 0 5px;
+            cursor: pointer;
+          }
+          .fa-trash-o{
+            float: right;
+            cursor: pointer;
+            color: #d00;
+          }
+        }
         padding: 10px 0 5px 10px;
         h3{
           float: left;

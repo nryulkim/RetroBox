@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { newComment } from '../../../../actions/comment_actions';
+import { newComment, deleteComment } from '../../../../actions/comment_actions';
 import Comments from './comments';
 
 const mapStateToProps = ({ session, videos }, ownProps) => {
@@ -12,7 +12,8 @@ const mapStateToProps = ({ session, videos }, ownProps) => {
 
 function mapDispatchToProps(dispatch){
   return({
-    newComment: (comment, callback) => dispatch(newComment(comment, callback))
+    newComment: (comment, callback) => dispatch(newComment(comment, callback)),
+    deleteComment: (id) => dispatch(deleteComment(id))
   });
 }
 

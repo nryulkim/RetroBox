@@ -36,5 +36,8 @@
     .slider-decorator-1 button:hover{
       box-shadow: 1px 0 2px #aaa;
     }
+    button.disabled{
+      display: none;
+    }
   }
 }

@@ -6,6 +6,10 @@ class App extends React.Component{
     super(props);
   }
 
+  getButtonStyles(disabled){
+
+  }
+
   render() {
     const { videos, numToSlide } = this.props;
 
@@ -20,10 +24,14 @@ class App extends React.Component{
             render() {
               return (
                 <button
+                  className={this.getButtonStyles(this.props.currentSlide === 0)}
                   onClick={this.props.previousSlide}>
                   {"<"}
                 </button>
               );
+            },
+            getButtonStyles(disabled) {
+              return disabled ? "disabled" : "";
             }
           }),
           position: 'CenterLeft'
@@ -32,10 +40,14 @@ class App extends React.Component{
             render() {
               return (
                 <button
+                  className={this.getButtonStyles(this.props.currentSlide + this.props.slidesToScroll >= this.props.slideCount)}
                   onClick={this.props.nextSlide}>
                   {">"}
                 </button>
               );
+            },
+            getButtonStyles(disabled) {
+              return disabled ? "disabled" : "";
             }
           }),
           position: 'CenterRight'

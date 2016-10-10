@@ -24,6 +24,9 @@ export default ({ getState, dispatch }) => next => action => {
       return next(action);
 
     case(DELETE_COMMENT):
+      success = comment => {
+        dispatch(removeComment(comment))
+      }
       CommentApi.destroyComment(action.id, success, errors);
       return next(action);
 
