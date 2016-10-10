@@ -193,21 +193,29 @@ header{
           p{
             padding: 0 0 20px 0;
           }
-
           .big-user-circle{
             float: left;
-            background-color: #0288D1;
-            border-radius: 50%;
-            font-size: 24px;
-            padding: 5px 6px 2px;
-            border: 0;
             color: #fff;
             font-weight: lighter;
+            background-color: #0288D1;
+            padding: 6px;
+            border-radius: 50%;
+            font-size: 24px;
             margin: 2px;
             cursor: pointer;
-            img{
-              margin: 5px;
-              width: 60px;
+            width: 60px;
+            height: 60px;
+
+            overflow: hidden;
+            a{
+              position: relative;
+              top: 50%;
+              transform: translateY(-50%);
+              img{
+                display: inline-block;
+                vertical-align: middle;
+                width: 60px;
+              }
             }
           }
 

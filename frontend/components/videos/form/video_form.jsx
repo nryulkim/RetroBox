@@ -118,7 +118,7 @@ class VideoForm extends React.Component {
     if(errors.length > 0){
       text = errors.map((error, idx) => (<li key={idx}>{error}</li>));
       $(".loading-animation").hide();
-      $("#submit-button").prop("disabled",false).toggleClass("disabled");
+      $("#submit-button").prop("disabled", false).toggleClass("disabled");
     }
 
     return text;

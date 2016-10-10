@@ -10,7 +10,11 @@ export default function UserDrop({currentUser, logout}) {
       <p>{email}</p>
       <div className="group">
         <div className="big-user-circle">
-          <Link to="/user"><img src={icon_url}></img></Link>
+          <span className="centerer"></span>
+          <Link to="/user">
+            <span className="centerer"></span>
+            <img src={icon_url}></img>
+            </Link>
         </div>
         <ul className="user-info">
           <li>{username.charAt(0).toUpperCase() + username.slice(1)}</li>

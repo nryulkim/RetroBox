@@ -81,6 +81,9 @@
     button:hover{
       background-image: -webkit-linear-gradient(top, #4d90fe, #357ae8);
     }
+    button.disabled{
+      background-color: #ccc;
+    }
 
     form{
 

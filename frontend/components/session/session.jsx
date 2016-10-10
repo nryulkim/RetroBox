@@ -42,18 +42,27 @@ class SessionForm extends React.Component {
 
 
   handleSubmit(e){
-    if(e){e.preventDefault();}
-    const { process } = this.props;
+    if(e){ e.preventDefault(); }
+    const { formType, process } = this.props;
     const form = this;
     const router = this.props.router;
-
+    $("#submit").prop("disabled",true).toggleClass("disabled");
     const redirect = () => {
       router.push("/");
     };
 
-    process(this.state, redirect);
-  }
+    let output = this.state;
+    if(formType === "Sign Up"){
+      const { username, email, password, iconFile } = this.state;
+      output = new FormData();
+      output.append("user[username]", username);
+      output.append("user[email]", email);
+      output.append("user[password]", password);
+      output.append("user[icon]", iconFile);
+    }
 
+    process(output, redirect);
+  }
 
   update(input){
     return (e) => {
@@ -66,6 +75,7 @@ class SessionForm extends React.Component {
     let text = "";
     if(errors.length > 0){
       text = errors.map((error, idx) => (<li key={idx}>{error}</li>));
+      $("#submit").prop("disabled", false).toggleClass("disabled");
     }
 
     return text;
@@ -200,7 +210,7 @@ class SessionForm extends React.Component {
               onChange={this.update('password')}
               placeholder="Password"/>
 
-            <button type="submit">{formType}</button>
+            <button id="#submit" type="submit">{formType}</button>
           </form>
         </div>
       </div>
