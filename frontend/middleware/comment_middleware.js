@@ -1,6 +1,6 @@
 import * as CommentApi from '../util/comment_api_util';
 import {
-  GET_COMMENTS, NEW_COMMENT, UPDATE_COMMENT, DELETE_COMMENT,
+  GET_COMMENTS, NEW_COMMENT, EDIT_COMMENT, DELETE_COMMENT,
   receiveComments, receiveComment, updateComment, removeComment
 } from '../actions/comment_actions';
 import { receiveErrors } from '../actions/util_actions.js';
@@ -19,7 +19,7 @@ export default ({ getState, dispatch }) => next => action => {
       CommentApi.newComment(action.comment, success, errors);
       return next(action);
 
-    case(UPDATE_COMMENT):
+    case(EDIT_COMMENT):
       CommentApi.editComment(action.comment, success, errors);
       return next(action);
 

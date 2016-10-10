@@ -6,10 +6,6 @@ class App extends React.Component{
     super(props);
   }
 
-  getButtonStyles(disabled){
-
-  }
-
   render() {
     const { videos, numToSlide } = this.props;
 

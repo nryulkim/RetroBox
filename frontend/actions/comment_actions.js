@@ -35,10 +35,11 @@ export function receiveComment(comment){
   });
 }
 
-export function editComment(comment){
+export function editComment(comment, callback){
   return({
     type: EDIT_COMMENT,
-    comment
+    comment,
+    callback
   });
 }
 

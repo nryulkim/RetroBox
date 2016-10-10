@@ -16,8 +16,19 @@ const defaultState = {
   forms: defaultForms
 };
 
+function getIndex(comments, comment){
+  return comments.findIndex((cmt) => {
+    if(cmt.id === comment.id){ return true; }
+    return false;
+  });
+}
+
 const VideoReducer = (state = defaultState, action) => {
   let newState = merge({}, state);
+  let idx = null;
+  if(action.comment){
+    idx = getIndex(newState.currentVideo.comments, action.comment);
+  }
 
   switch(action.type){
     case CLEAR_ERRORS:
@@ -44,14 +55,14 @@ const VideoReducer = (state = defaultState, action) => {
       return newState;
 
     case RECEIVE_COMMENT:
-      newState.currentVideo.comments.unshift(action.comment);
+      if(idx !== -1){
+        newState.currentVideo.comments[idx] = action.comment;
+      }else{
+        newState.currentVideo.comments.unshift(action.comment);
+      }
       return newState;
 
     case REMOVE_COMMENT:
-      const idx = newState.currentVideo.comments.findIndex((comment) => {
-        if(comment.id === action.comment.id){ return true; }
-        return false;
-      });
       newState.currentVideo.comments.splice(idx, 1);
       return newState;
 

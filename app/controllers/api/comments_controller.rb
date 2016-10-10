@@ -1,6 +1,6 @@
 class Api::CommentsController < ApplicationController
   def index
-    @comments = Comment.where(video_id: params[:video_id]).includes(:user)
+    @comments = Comment.includes(:user).find_by(video_id: params[:video_id])
     if(@comments)
       render :index
     else
@@ -28,7 +28,7 @@ class Api::CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment
-      if @comment.save
+      if @comment.update(comment_params)
         render :update
       else
         @errors = @comment.errors.full_messages
