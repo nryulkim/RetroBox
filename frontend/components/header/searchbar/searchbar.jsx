@@ -43,17 +43,11 @@ class SearchBar extends React.Component {
   }
 
   handleSubmit(e){
+    e.preventDefault();
     let { value } = this.state;
     value = encodeURI(value);
+    this.setState({value: ""});
     this.props.router.push(`/search?title=${value}`);
-    // const searchBar = this;
-    // const filter = {title: "%"+value+"%"};
-    // const router = this.props.router;
-    // const redirect = () => {
-    //   this.setState({value: ""});
-    //   router.push("/search");
-    // };
-    // this.props.someVideos(filter, redirect);
   }
 
   getSuggestionValue(suggestion){
