@@ -63,6 +63,8 @@ class LikeBar extends React.Component{
         });
       }else{
         this.setState({
+          initialStatus: 0,
+          currentUserLike: 0,
           likes: likes,
           dislikes: dislikes
         });
