@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :comments, only: [:create, :index, :update, :destroy] do
+    resources :comments, only: [:create, :update, :destroy] do
       resources :likes, only: [] do
         collection do
           get 'count'

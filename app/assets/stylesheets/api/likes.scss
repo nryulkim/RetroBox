@@ -1,3 +1,40 @@
 // Place all the styles related to the api/likes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.video-like-bar{
+  float: right;
+}
+
+.comment-like-bar{
+  float: left;
+  p{
+    color: #16C67A;
+    float: left;
+    margin: 8px 5px;
+    font-size: 12px;
+  }
+}
+.like-bar{
+  div{
+    float: left;
+    .fa{
+      cursor: pointer;
+      float: left;
+      font-size: 16px;
+      margin: 5px;
+      color: #aaa;
+    }
+    p{
+      display: inline;
+      line-height: 20px;
+    }
+  }
+  div:hover{
+    .up{
+      color: #16C67A;
+    }
+    .down{
+      color: #d00;
+    }
+  }
+}

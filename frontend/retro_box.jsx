@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store.js';
 import Root from './components/root.jsx';
-import * as LikeApi from './util/like_api_util';
+import * as LikeActions from './actions/like_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
     let initialState = {};
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       initialState = {session:{currentUser: window.currentUser}};
     }
     const store = configureStore(initialState);
-    window.LikeApi = LikeApi;
+    window.LikeActions = LikeActions;
     window.store = store;
 
     const root = document.getElementById('root');

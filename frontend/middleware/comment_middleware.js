@@ -11,7 +11,7 @@ export default ({ getState, dispatch }) => next => action => {
     dispatch(receiveComment(comment));
   };
   let errors = xhr => {
-    console.log(xhr.responseJSON);
+    dispatch(receiveErrors(xhr.responseJSON, "newComment"))
   };
 
   switch(action.type){
@@ -20,6 +20,9 @@ export default ({ getState, dispatch }) => next => action => {
       return next(action);
 
     case(EDIT_COMMENT):
+      errors = xhr => {
+        dispatch(receiveErrors(xhr.responseJSON, "editComment"))
+      };
       CommentApi.editComment(action.comment, success, errors);
       return next(action);
 

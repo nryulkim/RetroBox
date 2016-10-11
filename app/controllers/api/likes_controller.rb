@@ -2,7 +2,7 @@ class Api::LikesController < ApplicationController
   def create
     @like = Like.find_like(like_params[:user_id], like_params[:likeable_id], like_params[:likeable_type])
     if @like
-      @like.like_type = params[:like_type];
+      @like.like_type = like_params[:like_type];
       @like.save
       render :create
     else
@@ -11,16 +11,16 @@ class Api::LikesController < ApplicationController
       render :create
     end
   end
-
-  def count
-    @count = Like.getCounts(like_params[:likeable_id], like_params[:likeable_type])
-    render :count
-  end
-
-  def total
-    @total = Like.getTotal(like_params[:likeable_id], like_params[:likeable_type])
-    render :total
-  end
+  
+  # def count
+  #   @count = Like.getCounts(like_params[:likeable_id], like_params[:likeable_type])
+  #   render :count
+  # end
+  #
+  # def total
+  #   @total = Like.getTotal(like_params[:likeable_id], like_params[:likeable_type])
+  #   render :total
+  # end
 
   def destroy
     @like = Like.find(params[:id])

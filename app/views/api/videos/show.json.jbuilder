@@ -9,5 +9,16 @@ json.set! :comments do
     json.set! :author do
       json.partial! './api/users/user', user: comment.user
     end
+    json.set! :likes do
+      json.array! comment.likes.each do |like|
+        json.partial! './api/likes/like', like: like
+      end
+    end
+  end
+end
+
+json.set! :likes do
+  json.array! @video.likes.each do |like|
+    json.partial! './api/likes/like', like: like
   end
 end

@@ -9,7 +9,6 @@ const _default = {
     forms: {
       signUp: {errors: []},
       logIn: {errors: []},
-      addComment: {errors: []}
     }
   },
   videos:{

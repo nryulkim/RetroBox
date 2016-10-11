@@ -8,13 +8,16 @@
     forms: {
       signUp: {errors: []},
       logIn: {errors: []},
-      addComment: {errors: []}
     }
   }
   videos: {
     forms:{
       uploadVideo: {errors: []},
       updateVideo: {errors: []},
+      newComment: {errors: []},
+      updateComment: {
+        1: {errors: []}
+      }
     }
     currentVideo: {
       title: "Sample Video",
@@ -28,6 +31,9 @@
         dislikes: count
       }
       comments: {
+        forms: {
+          newComment: { errors: [] }
+        }
         1: {
           username: "test2",
           body: "something something something",
@@ -35,6 +41,7 @@
             likes: count,
             dislikes: count
           }
+          errors: []
         }
       }
     }

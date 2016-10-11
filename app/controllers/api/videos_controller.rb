@@ -21,7 +21,7 @@ class Api::VideosController < ApplicationController
   end
 
   def show
-    @video = Video.includes(:comments).find(params[:id])
+    @video = Video.includes(comments: [:user, likes: [:user]], likes: [:user]).find(params[:id])
     if @video
       @video.views = @video.views + 1;
       @video.save

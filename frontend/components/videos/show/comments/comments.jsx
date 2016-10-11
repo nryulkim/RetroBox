@@ -10,7 +10,15 @@ class Comments extends React.Component{
 
 
   getComments(){
-    const { comments, currentUser, deleteComment, editComment } = this.props;
+    const {
+      comments,
+      currentUser,
+      deleteComment,
+      editComment,
+      newLike,
+      destroyLike
+    } = this.props;
+
     comments.sort((a, b) => {
       if(a.updated_at > b.updated_at){ return -1; }
       else if(a.updated_at == b.updated_at){ return 0; }
@@ -22,7 +30,9 @@ class Comments extends React.Component{
         comment={comment}
         currentUser={currentUser}
         deleteComment={deleteComment}
-        editComment={editComment}/>;
+        editComment={editComment}
+        newLike={newLike}
+        destroyLike={destroyLike}/>;
     });
   }
 

@@ -1,13 +1,4 @@
 class Api::CommentsController < ApplicationController
-  def index
-    @comments = Comment.includes(:user).find_by(video_id: params[:video_id])
-    if(@comments)
-      render :index
-    else
-      @errors = ["Comments could not be found for this video"]
-      render json: @errors, status: 422
-    end
-  end
 
   def create
     @comment = Comment.new(comment_params)

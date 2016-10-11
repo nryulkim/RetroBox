@@ -1,6 +1,7 @@
 import React from 'react';
 import EditCommentForm from './comment_edit_form';
 import { timeSince } from '../../../../util/util_functions';
+import LikeBar from '../likes/like';
 
 export default class CommentItem extends React.Component{
   constructor(props) {
@@ -44,7 +45,7 @@ export default class CommentItem extends React.Component{
 
 
   render(){
-    const { comment, currentUser, editComment } = this.props;
+    const { comment, currentUser, editComment, newLike, destroyLike } = this.props;
     const { editor } = this.state;
     const { author, body, updated_at } = comment;
     if(editor){
@@ -67,6 +68,15 @@ export default class CommentItem extends React.Component{
           </div>
           <div className="comment-body">
             <p>{body}</p>
+          </div>
+          <div className="comment-like-bar">
+            <LikeBar
+              likeableType="Comment"
+              likeableId={comment.id}
+              likes={comment.likes}
+              currentUserId={currentUser.id}
+              newLike={newLike}
+              destroyLike={destroyLike}/>
           </div>
         </div>
       );

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import VideoItem from '../video_item';
+import LikeBar from './likes/like';
 import Comments from './comments/comments-container';
 import { shuffleArray } from '../../../util/util_functions.js';
 
@@ -25,7 +26,7 @@ class VideoShow extends React.Component{
   }
 
   render(){
-    const { video, currentUser } = this.props;
+    const { video, currentUser, newLike, destroyLike } = this.props;
     if(!video){ return null; }
     let date = new Date(video.created_date);
     return(
@@ -44,6 +45,15 @@ class VideoShow extends React.Component{
               <div className="view-counter">
                 <h2>{video.views.toLocaleString('en-US')} views</h2>
               </div>
+            </div>
+            <div className="video-like-bar">
+              <LikeBar
+                likeableType="Video"
+                likeableId={video.id}
+                likes={video.likes}
+                currentUserId={currentUser.id}
+                newLike={newLike}
+                destroyLike={destroyLike}/>
             </div>
           </div>
           <div className="video-description text-container container">

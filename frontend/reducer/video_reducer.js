@@ -1,8 +1,11 @@
-import {
-  RECEIVE_VIDEOS, RECEIVE_VIDEO
-} from '../actions/video_actions';
+import { RECEIVE_VIDEOS, RECEIVE_VIDEO } from '../actions/video_actions';
 import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/util_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
+import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
+
+import LikeReducer from './like_reducer';
+
+
 import merge from "lodash/merge";
 
 
@@ -45,6 +48,15 @@ const VideoReducer = (state = defaultState, action) => {
       newState.forms = defaultForms;
       return newState;
 
+    case RECEIVE_LIKE:
+      newState = LikeReducer(state, action);
+      return newState;
+
+    case REMOVE_LIKE:
+      newState = LikeReducer(state, action);
+      return newState;
+
+
     // case REMOVE_VIDEO:
     //   if(newState.currentVideo && newState.currentVideo.id === action.video.id){
     //     newState.currentVideo = null;
@@ -67,10 +79,11 @@ const VideoReducer = (state = defaultState, action) => {
       return newState;
 
     case RECEIVE_ERRORS:
-      newState.currentUser = null;
-      newState.forms = merge({}, defaultForms, {
-        [action.formType]: { errors: action.errors }
-      });
+      if(["uploadVideo", "updateVideo"].includes(action.formType)){
+        newState.forms = merge({}, defaultForms, {
+          [action.formType]: { errors: action.errors }
+        });
+      }
       return newState;
 
     default:

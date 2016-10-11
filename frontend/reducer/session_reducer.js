@@ -6,7 +6,6 @@ import merge from "lodash/merge";
 const defaultForms = {
   signUp: {errors: []},
   logIn: {errors: []},
-  addComment: {errors: []}
 };
 
 const defaultState = {
@@ -28,9 +27,11 @@ export default (state = defaultState, action) => {
       return newState;
 
     case RECEIVE_ERRORS:
-      newState.forms = merge({}, defaultForms, {
-        [action.formType]: { errors: action.errors }
-      });
+      if(["signUp", "logIn"].includes(action.formType)){
+        newState.forms = merge({}, defaultForms, {
+          [action.formType]: { errors: action.errors }
+        });
+      }
       return newState;
 
     case LOGOUT:

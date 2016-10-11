@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import { oneVideo } from '../../../actions/video_actions';
+import { newLike, destroyLike } from '../../../actions/like_actions';
+
 import VideoShow from './video_show';
 
 const mapStateToProps = ({ session, videos }, ownProps) => {
@@ -10,6 +11,14 @@ const mapStateToProps = ({ session, videos }, ownProps) => {
   });
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return({
+    newLike: (like) => dispatch(newLike(like)),
+    destroyLike: (id) => dispatch(destroyLike(id))
+  });
+};
+
+
 export default connect(
-  mapStateToProps, null
+  mapStateToProps, mapDispatchToProps
 )(VideoShow);
