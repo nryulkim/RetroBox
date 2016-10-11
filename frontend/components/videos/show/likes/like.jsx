@@ -74,6 +74,10 @@ class LikeBar extends React.Component{
   }
 
   componentWillUnmount(){
+
+  }
+
+  componentWillReceiveProps(nextProps){
     const { currentUserLike, initialStatus, idx } = this.state;
     const {
       likeableType,
@@ -96,9 +100,7 @@ class LikeBar extends React.Component{
         });
       }
     }
-  }
 
-  componentWillReceiveProps(nextProps){
     this.setInitialState(nextProps);
   }
 
