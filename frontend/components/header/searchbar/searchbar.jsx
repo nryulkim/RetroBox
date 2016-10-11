@@ -8,17 +8,7 @@ class SearchBar extends React.Component {
 
     this.state = {
       value: '',
-      suggestions: [],
-      titles: [
-        "Kellogg's Sugar Frosted Flakes Cereal",
-        "Weight Loss Commercial from the olden days",
-        "Classic Aunt Jemima Commercial (1967)",
-        "1960 Commercial for ''Off'' insect repellent",
-        "Classic commercial for Wheaties",
-        "Fifties Advertising: UNIVAC Computer Commercial (5 February 1956)",
-        "Super old Crest Commercial!!",
-        "Kennedy 1960's Campaign Commercial",
-      ]
+      suggestions: []
     };
 
     this.getSuggestions = this.getSuggestions.bind(this);
@@ -34,7 +24,7 @@ class SearchBar extends React.Component {
   }
 
   getSuggestions(value) {
-    const { titles } = this.state;
+    const { titles } = this.props;
 
     const escapedValue = this.escapeRegexCharacters(value.trim());
     const regex = new RegExp(escapedValue, 'i');
