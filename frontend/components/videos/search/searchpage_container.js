@@ -3,7 +3,7 @@ import SearchPage from './searchpage';
 
 function mapStateToProps(state){
   return({
-    videos: state.videos.list_videos
+    videos: state.videos.searched_videos
   });
 }
 

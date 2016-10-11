@@ -53,6 +53,14 @@
         username: "test2"
       }
     }
+    searched_videos{
+      1: {
+        title: "Sample Video1",
+        description: "something something2"
+        thumbnail: "pic_url",
+        username: "test2"
+      }
+    }
   }
 
 }

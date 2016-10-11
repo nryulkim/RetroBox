@@ -1,4 +1,4 @@
-import { RECEIVE_VIDEOS, RECEIVE_VIDEO } from '../actions/video_actions';
+import { RECEIVE_VIDEOS, RECEIVE_SOME_VIDEOS, RECEIVE_VIDEO } from '../actions/video_actions';
 import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/util_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
@@ -45,6 +45,11 @@ const VideoReducer = (state = defaultState, action) => {
 
     case RECEIVE_VIDEOS:
       newState.list_videos = action.videos.list_videos;
+      newState.forms = defaultForms;
+      return newState;
+
+    case RECEIVE_SOME_VIDEOS:
+      newState.searched_videos = action.videos.list_videos;
       newState.forms = defaultForms;
       return newState;
 

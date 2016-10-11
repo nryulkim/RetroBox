@@ -1,7 +1,7 @@
 import * as VideoApi from '../util/video_api_util';
 import {
   ONE_VIDEO, ALL_VIDEOS, SOME_VIDEOS, NEW_VIDEO,
-  receiveVideos, receiveVideo
+  receiveVideos, receiveVideo, receiveSomeVideos
 } from '../actions/video_actions';
 import { receiveErrors } from '../actions/util_actions.js';
 
@@ -27,8 +27,7 @@ export default ({ getState, dispatch }) => next => action => {
 
     case(SOME_VIDEOS):
       success = videos => {
-        dispatch(receiveVideos(videos));
-        action.redirect();
+        dispatch(receiveSomeVideos(videos));
       }
       VideoApi.fetchSomeVideos(action.filter, success, errors);
       return next(action);
