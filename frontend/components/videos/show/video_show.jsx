@@ -51,7 +51,7 @@ class VideoShow extends React.Component{
                 likeableType="Video"
                 likeableId={video.id}
                 likes={video.likes}
-                currentUserId={currentUser.id}
+                currentUserId={currentUser ? currentUser.id : null}
                 newLike={newLike}
                 destroyLike={destroyLike}/>
             </div>

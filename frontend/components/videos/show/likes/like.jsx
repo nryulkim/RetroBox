@@ -1,6 +1,7 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
-export default class LikeBar extends React.Component{
+class LikeBar extends React.Component{
   constructor(props){
     super(props);
     this.state ={
@@ -49,16 +50,21 @@ export default class LikeBar extends React.Component{
   }
 
   handleClick(likeType, buttonType, className){
-    const { likeableType, likeableId, likes, currentUserId } = this.props;
-    let idx = this.findLike(this.props, likeType);
-
-    if(idx !== -1){
-      return this.handleDestroy(likes[idx].id, buttonType, className);
+    const { likeableType, likeableId, likes, currentUserId, router } = this.props;
+    if(currentUserId === null){
+      return () => { router.push('/login'); };
     }else{
-      return (e) => {
-        this.handleLike(likeableType, likeableId, likeType, currentUserId);
-      };
+      let idx = this.findLike(this.props, likeType);
+
+      if(idx !== -1){
+        return this.handleDestroy(likes[idx].id, buttonType, className);
+      }else{
+        return (e) => {
+          this.handleLike(likeableType, likeableId, likeType, currentUserId);
+        };
+      }
     }
+
   }
 
   handleDestroy(id, buttonType, className){
@@ -139,7 +145,7 @@ export default class LikeBar extends React.Component{
         </div>
       );
     }
-
-
   }
 }
+
+export default withRouter(LikeBar);

@@ -74,7 +74,7 @@ export default class CommentItem extends React.Component{
               likeableType="Comment"
               likeableId={comment.id}
               likes={comment.likes}
-              currentUserId={currentUser.id}
+              currentUserId={currentUser ? currentUser.id : null}
               newLike={newLike}
               destroyLike={destroyLike}/>
           </div>
