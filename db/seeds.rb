@@ -1,5 +1,4 @@
 iconPath = "#{Rails.root}/app/assets/images/user_icons/";
-vidPath = "#{Rails.root}/app/assets/seed/videos/";
 all_icons = Dir.entries(iconPath).select{|file| file[/.*\.png/]}
 
 User.destroy_all
@@ -86,8 +85,8 @@ all_videos.push(Video.create!({
   views: rand(100000)
 }))
 
-all_videos.push(Video.create!({``
-   title: "Kennedy 1960's Campaign Commercial",
+all_videos.push(Video.create!({
+  title: "Kennedy 1960's Campaign Commercial",
   description: "This is an old commercial for Kenney's campaign from the 60's.",
   video: URI.parse("https://www.dropbox.com/s/cduuj5z7cr8c26l/v8.mp4?raw=1"),
   thumbnail:  URI.parse("https://www.dropbox.com/s/npz2esu6xw7jvc6/tb8.png?raw=1"),
