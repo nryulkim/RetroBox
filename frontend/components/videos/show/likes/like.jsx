@@ -14,6 +14,7 @@ class LikeBar extends React.Component{
     this.handleClick = this.handleClick.bind(this);
     this.setInitialState = this.setInitialState.bind(this);
     this.adjustLikeBar = this.adjustLikeBar.bind(this);
+    this.handleAjax = this.handleAjax.bind(this);
   }
 
 
@@ -74,10 +75,10 @@ class LikeBar extends React.Component{
   }
 
   componentWillUnmount(){
-
+    this.handleAjax();
   }
 
-  componentWillReceiveProps(nextProps){
+  handleAjax(){
     const { currentUserLike, initialStatus, idx } = this.state;
     const {
       likeableType,
@@ -87,7 +88,6 @@ class LikeBar extends React.Component{
       destroyLike,
       newLike
     } = this.props;
-
     if(currentUserLike !== initialStatus){
       if(currentUserLike === 0){
         destroyLike(likes[idx].id);
@@ -100,7 +100,10 @@ class LikeBar extends React.Component{
         });
       }
     }
+  }
 
+  componentWillReceiveProps(nextProps){
+    this.handleAjax();
     this.setInitialState(nextProps);
   }
 
