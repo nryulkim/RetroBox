@@ -11,34 +11,6 @@ class VideoShow extends React.Component{
     this.getVideos = this.getVideos.bind(this);
   }
 
-  componentWillUpdate(nextProps){
-    if(nextProps.video){
-      this.adjustLikeBar(nextProps);
-    }
-  }
-
-  adjustLikeBar({ video }){
-    const { likes } = video;
-
-    const posLikes = this.getLikes(likes, 1);
-    const negLikes = this.getLikes(likes, -1);
-    const posWidth = 200 * (posLikes / (posLikes + negLikes));
-    const negWidth = 200 * (negLikes / (posLikes + negLikes));
-    $(".view-counter-like-bar").width(posWidth);
-    $(".view-counter-dislike-bar").width(negWidth);
-
-  }
-
-  getLikes(likes, type){
-    let numLikes = 0;
-    for (let i = 0; i < likes.length; i++) {
-      if(likes[i].like_type == type){
-        numLikes += 1;
-      }
-    }
-    return numLikes;
-  }
-
   getVideos(){
     const { videos } = this.props;
     if(typeof videos === "undefined"){return null;}

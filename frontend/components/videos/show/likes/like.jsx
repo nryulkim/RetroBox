@@ -12,8 +12,17 @@ class LikeBar extends React.Component{
       idx: -1
     };
     this.handleClick = this.handleClick.bind(this);
-    this.getLikes = this.getLikes.bind(this);
     this.setInitialState = this.setInitialState.bind(this);
+    this.adjustLikeBar = this.adjustLikeBar.bind(this);
+  }
+
+
+  adjustLikeBar(props){
+    const { likes, dislikes } = this.state;
+    const posWidth = 200 * (likes / (likes + dislikes));
+    const negWidth = 200 * (dislikes / (likes + dislikes));
+    $(".view-counter-like-bar").width(posWidth);
+    $(".view-counter-dislike-bar").width(negWidth);
   }
 
   findLike(props, likeType){
@@ -142,7 +151,7 @@ class LikeBar extends React.Component{
       }
     }
 
-    return numLikes.toLocaleString('en-US');
+    return numLikes;
   }
 
   render(){
@@ -158,24 +167,25 @@ class LikeBar extends React.Component{
 
 
     if(this.props.likeableType === "Video"){
+      this.adjustLikeBar();
       return(
         <div className="like-bar group">
           <div className="like group"
             onClick={this.handleClick(1)}>
             <i className={"fa up " + upStyle} aria-hidden="true" />
-            <p>{likes}</p>
+            <p>{likes.toLocaleString('en-US')}</p>
           </div>
           <div className="dislike group"
             onClick={this.handleClick(-1)}>
             <i className={"fa down " + downStyle} aria-hidden="true"/>
-            <p>{dislikes}</p>
+            <p>{dislikes.toLocaleString('en-US')}</p>
           </div>
         </div>
       );
     }else{
       return(
         <div className="like-bar group">
-          <p>{likes - dislikes}</p>
+          <p>{(likes - dislikes).toLocaleString('en-US')}</p>
           <div className="like group"
             onClick={this.handleClick(1)}>
             <i className={"fa up " + upStyle} aria-hidden="true" />
