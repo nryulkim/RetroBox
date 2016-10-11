@@ -40,6 +40,10 @@ class Index extends React.Component{
     window.removeEventListener('resize', this.handleResize);
   }
 
+  randomVideos(videos){
+    if(typeof videos === "undefined"){ return undefined; }
+    return shuffleArray(videos).slice(0, 8);
+  }
 
   render(){
     const { videos } = this.props;
@@ -47,11 +51,11 @@ class Index extends React.Component{
 
     return(
       <div className="index-container group">
-        <ViewBar videos={shuffleArray(videos)} count={count} title="Watch These Videos"/>
-        <ViewBar videos={shuffleArray(videos)} count={count} title="Even More Videos"/>
-        <ViewBar videos={shuffleArray(videos)} count={count} title="Old Commercials and more..."/>
-        <ViewBar videos={shuffleArray(videos)} count={count} title="You may like these videos"/>
-        <ViewBar videos={shuffleArray(videos)} count={count} title="Awesome videos from the old days."/>
+        <ViewBar videos={this.randomVideos(videos)} count={count} title="Watch These Videos"/>
+        <ViewBar videos={this.randomVideos(videos)} count={count} title="Even More Videos"/>
+        <ViewBar videos={this.randomVideos(videos)} count={count} title="Old Commercials and more..."/>
+        <ViewBar videos={this.randomVideos(videos)} count={count} title="You may like these videos"/>
+        <ViewBar videos={this.randomVideos(videos)} count={count} title="Awesome videos from the old days."/>
       </div>
     );
   }
