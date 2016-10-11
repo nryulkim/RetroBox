@@ -11,6 +11,34 @@ class VideoShow extends React.Component{
     this.getVideos = this.getVideos.bind(this);
   }
 
+  componentWillUpdate(nextProps){
+    if(nextProps.video){
+      this.adjustLikeBar(nextProps);
+    }
+  }
+
+  adjustLikeBar({ video }){
+    const { likes } = video;
+
+    const posLikes = this.getLikes(likes, 1);
+    const negLikes = this.getLikes(likes, -1);
+    const posWidth = 200 * (posLikes / (posLikes + negLikes));
+    const negWidth = 200 * (negLikes / (posLikes + negLikes));
+    $(".view-counter-like-bar").width(posWidth);
+    $(".view-counter-dislike-bar").width(negWidth);
+
+  }
+
+  getLikes(likes, type){
+    let numLikes = 0;
+    for (let i = 0; i < likes.length; i++) {
+      if(likes[i].like_type == type){
+        numLikes += 1;
+      }
+    }
+    return numLikes;
+  }
+
   getVideos(){
     const { videos } = this.props;
     if(typeof videos === "undefined"){return null;}
@@ -37,14 +65,18 @@ class VideoShow extends React.Component{
           </div>
           <div className="video-title text-container container">
             <h1>{video.title}</h1>
-            <div className="title-middle group">
-              <div className="user-icon">
+            <div className="title-middle-container group">
+              <div className="title-middle group">
+                <div className="user-icon">
                   <img src={video.user.icon_url}></img>
+                </div>
+                <h3>{video.user.username}</h3>
+                <div className="view-counter group">
+                  <h2>{video.views.toLocaleString('en-US')} views</h2>
+                </div>
               </div>
-              <h3>{video.user.username}</h3>
-              <div className="view-counter">
-                <h2>{video.views.toLocaleString('en-US')} views</h2>
-              </div>
+              <div className="view-counter-dislike-bar"/>
+              <div className="view-counter-like-bar"/>
             </div>
             <div className="video-like-bar">
               <LikeBar

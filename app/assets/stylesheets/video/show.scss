@@ -33,38 +33,51 @@
         font-weight: 500;
         word-wrap: break-word;
       }
-      .title-middle{
-        padding: 5px;
-        padding-bottom: 0;
+      .title-middle-container{
         border-bottom: 1px solid #ddd;
+        .title-middle{
+          padding: 5px;
+          padding-bottom: 0;
 
-        .user-icon {
-          width: 50px;
-          height: 50px;
-          background-color: #eee;
-          float: left;
-          margin-right: 5px;
-          img{
-            width: 100%;
-            height: 100%;
+          .user-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #eee;
+            float: left;
+            margin-right: 5px;
+            img{
+              width: 100%;
+              height: 100%;
+            }
+          }
+          h3{
+            text-transform: capitalize;
+            font-weight: 600;
+          }
+
+          .view-counter{
+            float: right;
+            width: 200px;
+            font-size: 24px;
+            color: #666666;
+            font-weight: 500;
+            padding-bottom: 16px;
+            h2{
+              float: right;
+            }
           }
         }
-        h3{
-          text-transform: capitalize;
-          font-weight: 600;
-        }
-
-        .view-counter{
+        .view-counter-like-bar{
           float: right;
           width: 200px;
-          font-size: 24px;
-          color: #666666;
-          font-weight: 500;
-          padding-bottom: 16px;
-          border-bottom: 2px solid #167AC6;
-          h2{
-            float: right;
-          }
+          height: 2px;
+          background-color: #167AC6;
+        }
+        .view-counter-dislike-bar{
+          float: right;
+          width: 0;
+          height: 2px;
+          background-color: #d00;
         }
       }
     }
@@ -114,7 +127,7 @@
           }
         }
       }
-      
+
     }
   }
 }
