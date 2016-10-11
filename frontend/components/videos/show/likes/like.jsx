@@ -5,19 +5,21 @@ class LikeBar extends React.Component{
   constructor(props){
     super(props);
     this.state ={
-      like: "fa-thumbs-o-up",
-      dislike: "fa-thumbs-o-down"
+      currentUserLike: 0,
+      initialStatus: 0,
+      likes: 0,
+      dislikes: 0,
+      idx: -1
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handleDestroy = this.handleDestroy.bind(this);
-    this.handleLike = this.handleLike.bind(this);
     this.getLikes = this.getLikes.bind(this);
-    this.getTotal = this.getTotal.bind(this);
-    this.handleChanginImage = this.handleChangingImage.bind(this);
+    this.setInitialState = this.setInitialState.bind(this);
   }
 
   findLike(props, likeType){
     const { likes, currentUserId } = props;
+    if(typeof currentUserId === null) { return -1; }
+
     let idx = likes.findIndex((like) => {
       if(like.user_id === currentUserId && like.like_type === likeType){
          return true;
@@ -27,69 +29,111 @@ class LikeBar extends React.Component{
     return idx;
   }
 
+  setInitialState(props){
+    let idx = this.findLike(props, 1);
+    let likes = this.getLikes(props, 1);
+    let dislikes = this.getLikes(props, -1);
+    if(idx !== -1){
+      this.setState({
+        initialStatus: 1,
+        currentUserLike: 1,
+        likes: likes,
+        dislikes: dislikes,
+        idx: idx
+      });
+    }else {
+      idx = this.findLike(props, -1);
+      if(idx !== -1){
+        this.setState({
+          initialStatus: -1,
+          currentUserLike: -1,
+          likes: likes,
+          dislikes: dislikes,
+          idx: idx
+        });
+      }else{
+        this.setState({
+          likes: likes,
+          dislikes: dislikes
+        });
+      }
+    }
+  }
+
   componentDidMount(){
-    this.handleChangingImage(this.props);
+    this.setInitialState(this.props);
+  }
+
+  componentWillUnmount(){
+    const { currentUserLike, initialStatus, idx } = this.state;
+    const {
+      likeableType,
+      likeableId,
+      likes,
+      currentUserId,
+      destroyLike,
+      newLike
+    } = this.props;
+
+    if(currentUserLike !== initialStatus){
+      if(currentUserLike === 0){
+        destroyLike(likes[idx].id);
+      }else{
+        newLike({
+          like_type: currentUserLike,
+          likeable_id: likeableId,
+          likeable_type: likeableType,
+          user_id: currentUserId
+        });
+      }
+    }
   }
 
   componentWillReceiveProps(nextProps){
-    this.handleChangingImage(nextProps);
+    this.setInitialState(nextProps);
   }
 
-  handleChangingImage(props){
-    let idx = this.findLike(props, 1);
-    if(idx !== -1){
-      this.state.dislike = "fa-thumbs-o-down";
-      this.setState({like: "fa-thumbs-up"});
-    }else{
-      this.state.like = "fa-thumbs-o-up";
-      idx = this.findLike(props, -1);
-      if(idx !== -1){
-        this.setState({dislike: "fa-thumbs-down"});
-      }
-    }
-  }
+  handleClick(likeType){
+    const { currentUserLike } = this.state;
+    const { currentUserId, router } = this.props;
+    const likeBar = this;
 
-  handleClick(likeType, buttonType, className){
-    const { likeableType, likeableId, likes, currentUserId, router } = this.props;
     if(currentUserId === null){
-      return () => { router.push('/login'); };
-    }else{
-      let idx = this.findLike(this.props, likeType);
-
-      if(idx !== -1){
-        return this.handleDestroy(likes[idx].id, buttonType, className);
-      }else{
-        return (e) => {
-          this.handleLike(likeableType, likeableId, likeType, currentUserId);
-        };
-      }
+      return (e) => {
+        router.push("/login");
+      };
     }
 
+    let inc = 1;
+    let otherInc = -1;
+    let type = likeType;
+    if(currentUserLike === 0){
+      otherInc = 0;
+    }else if(likeType === currentUserLike){
+      inc = -1;
+      otherInc = 0;
+      type = 0;
+    }
+
+    let change = "dislikes";
+    let other = "likes";
+    if(likeType === 1){
+      change = "likes";
+      other = "dislikes";
+    }
+
+
+    return (e) => {
+      likeBar.setState({
+        currentUserLike: type,
+        [change]: parseInt(this.state[change]) + inc,
+        [other]: parseInt(this.state[other]) + otherInc
+      });
+    };
   }
 
-  handleDestroy(id, buttonType, className){
-    const { destroyLike } = this.props;
-    const likes = this;
-
-    return((e)=>{
-      e.preventDefault();
-      likes.setState({[buttonType]: className});
-      destroyLike(id);
-    });
-  }
-
-  handleLike(likeableType, likeableId, likeType, userId){
-    const { newLike } = this.props;
-    newLike({
-      likeable_type: likeableType,
-      likeable_id: likeableId,
-      like_type: likeType,
-      user_id: userId
-    });
-  }
-
-  getLikes(type){
-    const { likes } = this.props;
+  getLikes(props, type){
+    const { likes } = props;
 
     let numLikes = 0;
     for (let i = 0; i < likes.length; i++) {
@@ -101,46 +145,44 @@ class LikeBar extends React.Component{
     return numLikes.toLocaleString('en-US');
   }
 
-  getTotal(){
-    const { likes } = this.props;
+  render(){
+    const { currentUserLike, likes, dislikes } = this.state;
 
-    let total = 0;
-    for (let i = 0; i < likes.length; i++) {
-      total += parseInt(likes[i].like_type);
+    let upStyle = "fa-thumbs-o-up";
+    let downStyle = "fa-thumbs-o-down";
+    if(currentUserLike === 1){
+      upStyle = "fa-thumbs-up";
+    }else if(currentUserLike === -1){
+      downStyle = "fa-thumbs-down";
     }
 
-    return total.toLocaleString('en-US');
-  }
-
-  render(){
-    const { like, dislike } = this.state;
 
     if(this.props.likeableType === "Video"){
       return(
         <div className="like-bar group">
           <div className="like group"
-            onClick={this.handleClick(1, "like", "fa-thumbs-o-up")}>
-            <i className={"fa up " + like} aria-hidden="true" />
-            <p>{this.getLikes(1)}</p>
+            onClick={this.handleClick(1)}>
+            <i className={"fa up " + upStyle} aria-hidden="true" />
+            <p>{likes}</p>
           </div>
           <div className="dislike group"
-            onClick={this.handleClick(-1, "dislike", "fa-thumbs-o-down")}>
-            <i className={"fa down " + dislike} aria-hidden="true"/>
-            <p>{this.getLikes(-1)}</p>
+            onClick={this.handleClick(-1)}>
+            <i className={"fa down " + downStyle} aria-hidden="true"/>
+            <p>{dislikes}</p>
           </div>
         </div>
       );
     }else{
       return(
         <div className="like-bar group">
-          <p>{this.getTotal()}</p>
+          <p>{likes - dislikes}</p>
           <div className="like group"
-            onClick={this.handleClick(1, "like", "fa-thumbs-o-up")}>
-            <i className={"fa up " + like} aria-hidden="true" />
+            onClick={this.handleClick(1)}>
+            <i className={"fa up " + upStyle} aria-hidden="true" />
           </div>
           <div className="dislike group"
-            onClick={this.handleClick(-1, "dislike", "fa-thumbs-o-down")}>
-            <i className={"fa down " + dislike} aria-hidden="true"/>
+            onClick={this.handleClick(-1)}>
+            <i className={"fa down " + downStyle} aria-hidden="true"/>
           </div>
         </div>
       );
