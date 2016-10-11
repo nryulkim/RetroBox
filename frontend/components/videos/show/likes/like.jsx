@@ -77,7 +77,6 @@ class LikeBar extends React.Component{
   }
 
   componentWillUnmount(){
-    console.log("Unmounted");
     this.handleAjax();
   }
 
