@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import Autosuggest from 'react-autosuggest';
+import { uniqArray } from '../../../util/util_functions';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class SearchBar extends React.Component {
 
     this.state = {
       value: '',
+      all_words: [],
       suggestions: []
     };
 
@@ -17,19 +19,59 @@ class SearchBar extends React.Component {
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.shouldRenderSuggestions = this.shouldRenderSuggestions.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getAllWords = this.getAllWords.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.videos !== null){
+      this.getAllWords(nextProps);
+    }
   }
 
   escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
+  getAllWords(props){
+    const { videos } = props;
+    let all_words = videos.map((video) => {
+      return (video.title + " " + video.description).split(" ");
+    });
+    all_words = [].concat.apply([], all_words);
+    all_words = uniqArray(all_words.map((word) => {
+      return word.replace(/[.,\/#!$%\^&\*;:{}=_`~()]/g,"");
+    }));
+
+    this.setState({ all_words });
+  }
+
+
   getSuggestions(value) {
-    const { titles } = this.props;
+    const { all_words } = this.state;
+    let suggestions = [""];
+    const searchTerms = value.trim().split(" ");
+    const testFunc = (regex) => {
+      return (word) => regex.test(word);
+    };
 
-    const escapedValue = this.escapeRegexCharacters(value.trim());
-    const regex = new RegExp(escapedValue, 'i');
 
-    return titles.filter(title => regex.test(title));
+    while(searchTerms.length > 0){
+      const term = searchTerms.shift();
+      const escapedValue = this.escapeRegexCharacters(term);
+      const regex = new RegExp(escapedValue, "i");
+      let suggestedWords = all_words.filter(testFunc(regex));
+      let newSuggestions = [];
+      for (let i = 0; i < suggestions.length; i++) {
+        for (let j = 0; j < suggestedWords.length; j++) {
+          let string = (`${suggestions[i]} ${suggestedWords[j]}`).trim();
+          newSuggestions.push(string);
+        }
+      }
+
+      suggestions = newSuggestions;
+    }
+
+    return suggestions;
   }
 
   shouldRenderSuggestions() {
@@ -47,7 +89,7 @@ class SearchBar extends React.Component {
     let { value } = this.state;
     value = encodeURI(value);
     this.setState({value: ""});
-    this.props.router.push(`/search?title=${value}`);
+    this.props.router.push(`/search?query=${value}`);
   }
 
   getSuggestionValue(suggestion){

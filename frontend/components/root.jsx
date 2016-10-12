@@ -36,10 +36,13 @@ const _getVideos = () => {
   store.dispatch(allVideos());
 };
 
-const _getSearchedVideos = (nextState) => {
-  let { title } = nextState.location.query;
-  title = decodeURI(title);
-  store.dispatch(someVideos({ title: "%"+title+"%" }));
+const _getSearchedVideos = (prevState, nextState) => {
+  let state = nextState;
+  if(typeof state === "function"){ state = prevState; }
+
+  let { query } = state.location.query;
+  query = decodeURI(query);
+  store.dispatch(someVideos({ query: query }));
 };
 
 const Root = ({store}) => (
@@ -51,7 +54,7 @@ const Root = ({store}) => (
         <Router path="login" component={Session} onLeave={_clearErrors} onEnter={_redirectIfLoggedIn}/>
         <Router path="upload" component={VideoForm} onEnter={_redirectIfNotLoggedIn}/>
         <Router path="video/:id" component={VideoShow} onEnter={_setCurrentVideo}/>
-        <Router path="search" component={SearchPage} onEnter={_getSearchedVideos}/>
+        <Router path="search" component={SearchPage} onEnter={_getSearchedVideos} onChange={_getSearchedVideos}/>
       </Route>
     </Router>
   </Provider>

@@ -14,6 +14,20 @@ export function shuffleArray(orgArray) {
   return array;
 }
 
+export function uniqArray(array){
+  const seen = {};
+  const result = [];
+  for (let i = 0; i < array.length; i++) {
+    const word = array[i].toLowerCase();
+
+    if(!seen.hasOwnProperty(word)){
+      seen[word] = 1;
+      result.push(array[i]);
+    }
+  }
+  return result;
+}
+
 export function getVideoItems(videos){
   if(typeof videos === "undefined") { return(null); }
   const vids = Array.from(videos);

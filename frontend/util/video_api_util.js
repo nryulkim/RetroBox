@@ -2,7 +2,7 @@ export const fetchAllVideos = (success, error) => {
   $.ajax({
     method: "GET",
     url: "/api/videos",
-    data: {title: "%"},
+    data: {query: "%"},
     success,
     error
   });

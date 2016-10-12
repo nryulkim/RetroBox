@@ -16,7 +16,20 @@ class Api::VideosController < ApplicationController
   end
 
   def index
-    @videos = Video.where("UPPER(title) LIKE UPPER(?)", params[:title]).includes(:user)
+    search_strings = params[:query].split(" ").map { |string| "%#{string}%" }
+    where_string = ""
+    search_string_array = []
+
+    while search_strings.length > 0
+      where_string = where_string + " OR " if where_string.length > 0
+      string = search_strings.pop
+      where_string = where_string + "UPPER(title) LIKE UPPER(?) OR UPPER(description) LIKE UPPER(?)"
+      search_string_array << string
+      search_string_array << string
+    end
+
+    @videos = Video.where(where_string, *search_string_array).includes(:user)
+
     render :index
   end
 

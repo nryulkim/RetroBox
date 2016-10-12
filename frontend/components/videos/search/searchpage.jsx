@@ -39,8 +39,10 @@ export default class SearchPage extends React.Component{
       const count = videos.length;
       if(count > 1){
         resultCount = <h4>About {count} results.</h4>;
-      }else{
+      }else if (count === 1){
         resultCount = <h4>There is one result.</h4>;
+      }else{
+        resultCount = <h4>No results found.</h4>;
       }
     }
 

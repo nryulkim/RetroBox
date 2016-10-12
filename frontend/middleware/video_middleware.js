@@ -15,7 +15,7 @@ export default ({ getState, dispatch }) => next => action => {
 
   switch(action.type) {
     case(ONE_VIDEO):
-      VideoApi.fetchVideo(action.id, success, errors)
+      VideoApi.fetchVideo(action.id, success, errors);
       return next(action);
 
     case(ALL_VIDEOS):
@@ -34,7 +34,7 @@ export default ({ getState, dispatch }) => next => action => {
 
     case(NEW_VIDEO):
       errors = xhr => {
-        dispatch(receiveErrors(xhr.responseJSON, "uploadVideo"))
+        dispatch(receiveErrors(xhr.responseJSON, "uploadVideo"));
       };
       VideoApi.newVideo(action.video, success, errors);
       return next(action);

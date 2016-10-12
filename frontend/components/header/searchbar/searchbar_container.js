@@ -4,13 +4,11 @@ import { someVideos } from '../../../actions/video_actions';
 
 function mapStateToProps(state){
   if(typeof state.videos.list_videos === "undefined") {
-    return ({ titles: null });
+    return ({ videos: null });
   }
 
-  const titles = state.videos.list_videos.map(vid => vid.title);
-
   return({
-    titles: titles
+    videos: state.videos.list_videos
   });
 }
 

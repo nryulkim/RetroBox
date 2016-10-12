@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :videos, only: [:create, :index, :show, :update, :destroy] do
+      collection do
+        get 'suggestions'
+      end
       resources :likes, only: [] do
         collection do
           get 'count'
