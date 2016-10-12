@@ -39,10 +39,11 @@ const _getVideos = () => {
 const _getSearchedVideos = (prevState, nextState) => {
   let state = nextState;
   if(typeof state === "function"){ state = prevState; }
-
-  let { query } = state.location.query;
-  query = decodeURI(query);
-  store.dispatch(someVideos({ query: query }));
+  let filters = state.location.query;
+  if(filters.query){
+    filters.query = decodeURI(filters.query);
+  }
+  store.dispatch(someVideos(filters));
 };
 
 const Root = ({store}) => (

@@ -16,21 +16,19 @@ class Api::VideosController < ApplicationController
   end
 
   def index
-    search_strings = params[:query].split(" ").map { |string| "%#{string}%" }
-    where_string = ""
-    search_string_array = []
-
-    while search_strings.length > 0
-      where_string = where_string + " OR " if where_string.length > 0
-      string = search_strings.pop
-      where_string = where_string + "UPPER(title) LIKE UPPER(?) OR UPPER(description) LIKE UPPER(?)"
-      search_string_array << string
-      search_string_array << string
+    if params[:liked] || params[:liked]
+      @like_type = params[:liked].to_i
+      @user = params[:user]
+      if @user
+        @videos = Video.includes(:user, :likes).where("likes.like_type" => @like_type).where("likes.user_id" => @user)
+      else
+        @videos = Video.select("videos.*, SUM(likes.like_type) AS like_sum").joins(:likes).group("videos.id").includes(:user)
+      end
+      render :liked_videos
+    else
+      @videos = Video.getFilteredVideos(params)
+      render :index
     end
-
-    @videos = Video.where(where_string, *search_string_array).includes(:user)
-
-    render :index
   end
 
   def show

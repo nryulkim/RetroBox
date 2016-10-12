@@ -31,6 +31,36 @@ class Video < ApplicationRecord
   has_many :comments
   has_many :likes, as: :likeable
 
+  def self.getFilteredVideos(filter)
+    sort_dir = filter[:dir] ? filter[:dir] : "asc"
+    if filter[:query]
+      search_strings = filter[:query].split(" ").map { |string| "%#{string}%" }
+      where_string = ""
+      search_string_array = []
+
+      while search_strings.length > 0
+        where_string = where_string + " OR " if where_string.length > 0
+        string = search_strings.pop
+        where_string = where_string + "UPPER(title) LIKE UPPER(?) OR UPPER(description) LIKE UPPER(?)"
+        search_string_array << string
+        search_string_array << string
+      end
+
+      query = Video.where(where_string, *search_string_array).includes(:user)
+
+    elsif filter[:sort]
+      query = Video.all.includes(:user).order(filter[:sort] => sort_dir)
+    else
+      query = Video.all
+    end
+
+    if(filter[:limit])
+      query = query.limit(filter[:limit].to_i)
+    end
+
+    query
+  end
+
 
   private
 

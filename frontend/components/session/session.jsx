@@ -48,6 +48,7 @@ class SessionForm extends React.Component {
     const router = this.props.router;
     $("#submit").prop("disabled",true).toggleClass("disabled");
     const redirect = () => {
+      $("#burger-sidebar-container").hide();
       router.push("/");
     };
 

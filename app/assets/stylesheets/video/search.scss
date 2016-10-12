@@ -1,14 +1,14 @@
 .search-container{
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   background-color: #fff;
   width: 640px;
   box-shadow:  0 0 2px #bbb;
   padding: 10px 30px;
   .search-header{
     display: flex;
-    justify-content: space-between;
     vertical-align: middle;
+    justify-content: space-between;
     margin: 15px 0 0 0;
     .search-filter{
       display: flex;
@@ -26,7 +26,7 @@
         select{
           background: transparent;
           padding: 3px;
-          padding-right: 10px;
+          padding-right: 15px;
           font-size: 10px;
           border: 1px solid #aaa;
           border-radius: 3px;
@@ -35,12 +35,14 @@
         }
       }
     }
-
-    h4{
-      text-align: right;
-      color: #555;
-      font-size: 12px;
-      line-height: 20px;
+    .item-container{
+      flex-grow: 1;
+      h4{
+        text-align: right;
+        color: #555;
+        font-size: 12px;
+        line-height: 20px;
+      }
     }
   }
   hr{

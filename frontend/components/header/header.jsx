@@ -19,6 +19,7 @@ class Header extends React.Component{
   signout(){
     this.props.logout();
     this.toggleDrop();
+    $("#burger-sidebar-container").hide();
     this.props.router.replace("#");
   }
 
