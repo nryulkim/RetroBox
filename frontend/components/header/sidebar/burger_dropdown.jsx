@@ -44,6 +44,7 @@ class BurgerDrop extends React.Component{
           </li>
         );
       }
+      links.push(<div className="divider" key="divider"/>);
       return links;
     }else{
       return null;

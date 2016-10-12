@@ -82,76 +82,38 @@ class SessionForm extends React.Component {
     return text;
   }
 
+
   logDemo(e){
     e.preventDefault();
     const sess = this;
-    const time = 100;
-    setTimeout(()=>{
-      sess.setState({email: "t"});
-      setTimeout(()=>{
-        sess.setState({email: "te"});
-        setTimeout(()=>{
-          sess.setState({email: "tes"});
+    const time = 70;
+    const info = { "email": "test@test.com", "password": "password" };
+
+    let func = () => { this.handleSubmit(); };
+
+    const types = ["password", "email"];
+    for (let i = 0; i < types.length; i++) {
+      let inputType = types[i];
+      let input = Array.from(info[inputType]);
+      let sess2 = sess;
+
+      while(input.length > 0){
+        let inputType2 = inputType.slice(0);
+        let input2 = input.slice(0);
+        let func2 = func;
+        let sess3 = sess2;
+        func = () => {
           setTimeout(()=>{
-            sess.setState({email: "test"});
-            setTimeout(()=>{
-              sess.setState({email: "test@"});
-              setTimeout(()=>{
-                sess.setState({email: "test@t"});
-                setTimeout(()=>{
-                  sess.setState({email: "test@te"});
-                  setTimeout(()=>{
-                    sess.setState({email: "test@tes"});
-                    setTimeout(()=>{
-                      sess.setState({email: "test@test"});
-                      setTimeout(()=>{
-                        sess.setState({email: "test@test."});
-                        setTimeout(()=>{
-                          sess.setState({email: "test@test.c"});
-                          setTimeout(()=>{
-                            sess.setState({email: "test@test.co"});
-                            setTimeout(()=>{
-                              sess.setState({email: "test@test.com"});
-                              setTimeout(()=>{
-                                sess.setState({password: "p"});
-                                setTimeout(()=>{
-                                  sess.setState({password: "pa"});
-                                  setTimeout(()=>{
-                                    sess.setState({password: "pas"});
-                                    setTimeout(()=>{
-                                      sess.setState({password: "pass"});
-                                      setTimeout(()=>{
-                                        sess.setState({password: "passw"});
-                                        setTimeout(()=>{
-                                          sess.setState({password: "passwo"});
-                                          setTimeout(()=>{
-                                            sess.setState({password: "passwor"});
-                                            setTimeout(()=>{
-                                              sess.setState({password: "password"});
-                                              setTimeout(()=>{
-                                                sess.handleSubmit();
-                                              },time);
-                                            },time);
-                                          },time);
-                                        },time);
-                                      },time);
-                                    },time);
-                                  },time);
-                                },time);
-                              },time);
-                            },time);
-                          },time);
-                        },time);
-                      },time);
-                    },time);
-                  },time);
-                },time);
-              },time);
-            },time);
+            sess3.setState({[inputType2]: input2.join("")});
+            func2();
           },time);
-        },time);
-      },time);
-    },time);
+        };
+
+        input.pop();
+      }
+    }
+
+    func();
   }
 
   render(){

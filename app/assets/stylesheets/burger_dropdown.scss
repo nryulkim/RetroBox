@@ -37,6 +37,9 @@ sidebar{
         margin: 7px auto;
         width: 100%;
       }
+      .divider:last-child{
+        display: none;
+      }
       h1{
         color: #124507;
         margin-left: 10px;
