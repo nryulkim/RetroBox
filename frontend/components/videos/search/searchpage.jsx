@@ -6,12 +6,47 @@ import { timeSince } from '../../../util/util_functions';
 export default class SearchPage extends React.Component{
   constructor(props){
     super(props);
+    this.state = {
+      orderBy: "title",
+      orderDir: "ASC"
+    };
     this.getVideos = this.getVideos.bind(this);
+    this.handleOrderBy = this.handleOrderBy.bind(this);
+    this.handleOrderDir = this.handleOrderDir.bind(this);
+  }
+
+  handleOrderBy(e){
+    this.setState({orderBy: e.currentTarget.value});
+  }
+
+  handleOrderDir(e){
+    this.setState({orderDir: e.currentTarget.value});
   }
 
   getVideos(){
-    const { videos } = this.props;
+    let { videos } = this.props;
+    const { orderBy, orderDir } = this.state;
     if(typeof videos === "undefined"){return null;}
+
+    let sortFunc = (a, b) => {
+      if(a[orderBy] > b[orderBy]){
+        return 1;
+      }else{
+        return -1;
+      }
+    };
+    if(orderDir === "DESC"){
+      sortFunc = (a, b) => {
+        if(a[orderBy] > b[orderBy]){
+          return -1;
+        }else{
+          return 1;
+        }
+      };
+    }
+
+    videos = videos.sort(sortFunc);
+
     return videos.map((video, idx) => {
       let path = `/video/${video.id}`;
       return(
@@ -49,6 +84,22 @@ export default class SearchPage extends React.Component{
     return(
       <div className="search-container group">
         <div className="search-header">
+          <div className="search-filter">
+            <label htmlFor="filter-selector">Filter By:</label>
+            <div className="styled-select">
+              <select id="filter-selector" onChange={this.handleOrderBy}>
+                <option value="title">Title</option>
+                <option value="views">Views</option>
+                <option value="username">Username</option>
+              </select>
+            </div>
+            <div className="styled-select">
+              <select onChange={this.handleOrderDir}>
+                <option value="ASC">Ascending</option>
+                <option value="DESC">Descending</option>
+              </select>
+            </div>
+          </div>
           {resultCount}
         </div>
         <hr/>
