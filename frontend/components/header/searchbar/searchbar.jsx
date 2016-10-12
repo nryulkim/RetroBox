@@ -39,7 +39,7 @@ class SearchBar extends React.Component {
     });
     all_words = [].concat.apply([], all_words);
     all_words = uniqArray(all_words.map((word) => {
-      return word.replace(/[.,\/#!$%\^&\*;:{}=_`~()]/g,"");
+      return word.replace(/^'|'$|[".,\/#!$%\^&\*;:{}=_`~()]/g,"");
     }));
 
     this.setState({ all_words });
@@ -70,7 +70,6 @@ class SearchBar extends React.Component {
 
       suggestions = newSuggestions;
     }
-
     return suggestions;
   }
 
