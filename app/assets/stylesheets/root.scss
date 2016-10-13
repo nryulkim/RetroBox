@@ -15,10 +15,32 @@
 #root{
   main{
     .content{
-
       .main-content{
         margin-top: 55px;
       }
     }
+  }
+}
+
+footer{
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  font-size: 10px;
+  padding: 7px 40px;
+  img{
+    width: 100px;
+    height: 20px;
+  }
+  #github{
+    font-size: 10px;
+    padding: 5px;
+    height: 10px;
+  }
+  h2{
+    line-height: 23px;
+    transform: translateX(-20px);
   }
 }
