@@ -42,6 +42,8 @@ class SubButton extends React.Component{
     const { currentUser, getSubscriptions } = this.props;
     if(!currentUser.subscriptions){
       getSubscriptions(currentUser.id);
+    }else{
+      this.setInitialState(this.props);
     }
   }
 
