@@ -12,6 +12,10 @@ class VideoShow extends React.Component{
     this.getVideos = this.getVideos.bind(this);
   }
 
+  componentWillUnmount(){
+    this.props.receiveVideo(null);
+  }
+
   getVideos(){
     const { videos } = this.props;
     if(typeof videos === "undefined"){return null;}
@@ -30,6 +34,8 @@ class VideoShow extends React.Component{
     const { video, currentUser, newLike, destroyLike } = this.props;
     if(!video){ return null; }
     let date = new Date(video.created_date);
+    let subButton = null;
+    if(currentUser) { subButton = <SubButton channel={video.user}/>; }
     return(
       <div className="video-show-container group">
         <main>
@@ -47,7 +53,7 @@ class VideoShow extends React.Component{
                 <div className="view-counter group">
                   <h2>{video.views.toLocaleString('en-US')} views</h2>
                 </div>
-                <SubButton channel={video.user}/>
+                {subButton}
               </div>
               <div className="view-counter-dislike-bar"/>
               <div className="view-counter-like-bar"/>
