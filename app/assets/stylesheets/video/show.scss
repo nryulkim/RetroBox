@@ -66,6 +66,26 @@
               float: right;
             }
           }
+          button{
+            width: 85px;
+            margin-top: 10px;
+            box-shadow: 1px 1px 2px #aaa;
+            border: 0;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-size: 8px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+          }
+          .subscribe{
+            background-color: #16C67A;
+            letter-spacing: 2px;
+          }
+          .unsubscribe{
+            letter-spacing: 1.2px;
+            background-color: #d00;
+          }
         }
         .view-counter-like-bar{
           float: right;

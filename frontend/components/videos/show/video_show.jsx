@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player';
 import VideoItem from '../video_item';
 import LikeBar from './likes/like';
 import Comments from './comments/comments-container';
+import SubButton from './sub_button/sub_button_container';
 import { shuffleArray } from '../../../util/util_functions.js';
 
 class VideoShow extends React.Component{
@@ -46,6 +47,7 @@ class VideoShow extends React.Component{
                 <div className="view-counter group">
                   <h2>{video.views.toLocaleString('en-US')} views</h2>
                 </div>
+                <SubButton channel={video.user}/>
               </div>
               <div className="view-counter-dislike-bar"/>
               <div className="view-counter-like-bar"/>

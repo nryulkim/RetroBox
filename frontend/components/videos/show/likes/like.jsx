@@ -76,6 +76,11 @@ class LikeBar extends React.Component{
     this.setInitialState(this.props);
   }
 
+  componentWillReceiveProps(nextProps){
+    this.handleAjax();
+    this.setInitialState(nextProps);
+  }
+
   componentWillUnmount(){
     this.handleAjax();
   }
@@ -102,11 +107,6 @@ class LikeBar extends React.Component{
         });
       }
     }
-  }
-
-  componentWillReceiveProps(nextProps){
-    this.handleAjax();
-    this.setInitialState(nextProps);
   }
 
   handleClick(likeType){

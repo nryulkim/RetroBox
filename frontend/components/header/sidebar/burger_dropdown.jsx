@@ -59,7 +59,7 @@ class BurgerDrop extends React.Component{
 
   getSubs(){
     const { currentUser } = this.props;
-    if(currentUser.subscriptions){
+    if(currentUser.subscriptions && currentUser.subscriptions.length > 0){
       let returnArr = [<h1 key="subs">Subscriptions</h1>];
       return returnArr.concat(currentUser.subscriptions.map((channel) => {
         let path = `/search?subs=1&sub_id=${channel.channel_id}`;
