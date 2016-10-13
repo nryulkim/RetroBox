@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       end
     end
     resources :likes, only: [:create, :destroy]
-    resources :subscriptions, only: [:index]
+    resources :subscriptions, only: [:index, :create, :destroy]
   end
 
   root to: 'static_pages#root'

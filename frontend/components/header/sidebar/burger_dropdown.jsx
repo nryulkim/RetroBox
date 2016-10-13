@@ -62,7 +62,7 @@ class BurgerDrop extends React.Component{
     if(currentUser.subscriptions){
       let returnArr = [<h1 key="subs">Subscriptions</h1>];
       return returnArr.concat(currentUser.subscriptions.map((channel) => {
-        let path = `/search?subs=1&sub_id=${channel.id}`;
+        let path = `/search?subs=1&sub_id=${channel.channel_id}`;
         return (
           <li key={path}>
             <Link to={path}>
@@ -73,7 +73,7 @@ class BurgerDrop extends React.Component{
         );
       }));
     }else{
-      return [<img src={window.retroBoxAssets.loader} key="loader"/>];
+      return null;
     }
   }
 

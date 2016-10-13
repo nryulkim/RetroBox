@@ -11,16 +11,6 @@ class Api::LikesController < ApplicationController
       render :create
     end
   end
-  
-  # def count
-  #   @count = Like.getCounts(like_params[:likeable_id], like_params[:likeable_type])
-  #   render :count
-  # end
-  #
-  # def total
-  #   @total = Like.getTotal(like_params[:likeable_id], like_params[:likeable_type])
-  #   render :total
-  # end
 
   def destroy
     @like = Like.find(params[:id])

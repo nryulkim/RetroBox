@@ -1,6 +1,8 @@
 import { RECEIVE_CURRENT_USER,  LOGOUT } from '../actions/session_actions';
-import { RECEIVE_SUBSCRIPTIONS } from '../actions/subscription_actions';
 import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/util_actions';
+import {
+  RECEIVE_SUBSCRIPTIONS, RECEIVE_SUBSCRIPTION, REMOVE_SUBSCRIPTION
+} from '../actions/subscription_actions';
 import SubscriptionReducer from './subscription_reducer';
 import merge from "lodash/merge";
 
@@ -39,8 +41,10 @@ export default (state = defaultState, action) => {
     case LOGOUT:
       return defaultState;
 
+    case REMOVE_SUBSCRIPTION:
+    case RECEIVE_SUBSCRIPTION:
     case RECEIVE_SUBSCRIPTIONS:
-      newState = SubscriptionReducer(state, action);
+      newState.currentUser = SubscriptionReducer(state.currentUser, action);
       return newState;
 
     default:

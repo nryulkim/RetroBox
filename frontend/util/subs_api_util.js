@@ -6,3 +6,20 @@ export function getSubscriptions(id, success){
     success
   });
 }
+
+export function newSubscription(subscription, success){
+  $.ajax({
+    method: "POST",
+    url: "/api/subscriptions",
+    data: { subscription },
+    success
+  });
+}
+
+export function destroySubscription(id, success){
+  $.ajax({
+    method: "DELETE",
+    url: `/api/subscriptions/${id}`,
+    success
+  });
+}
