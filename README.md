@@ -9,20 +9,20 @@ Heroku Link: [RetroBox]
 RetroBox is a web application inspired by Youtube built using Ruby on Rails and React/Redux. By the end of Week 9, this app will, at the minimum, satisfy the following criteria.
 
 ### Major Features
-- [ ] Hosting on Heroku
-- [ ] New account creation, login, and guest/demo login
-- [ ] Videos
+- [X] Hosting on Heroku
+- [X] New account creation, login, and guest/demo login
+- [X] Videos
   * Users should also have the ability to upload videos
-- [ ] Comments
+- [X] Comments
   * Users should have the ability to comment on videos
-- [ ] Likes
+- [X] Likes
   * Users should be able to Like a Video/Comment
-- [ ] Video Searching
+- [X] Video Searching
   * Users should be able to look up videos via the title
 - [ ] Production README
-- [ ] Adequate styling
+- [X] Adequate styling
 - [ ] Smooth, bug-free navigation
-- [ ] Adequate and appropriate seeds to demonstrate features
+- [X] Adequate and appropriate seeds to demonstrate features
 
 
 ### Bonus Features

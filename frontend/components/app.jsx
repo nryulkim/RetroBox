@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './header/header-container';
-import BurgerDrop from './header/sidebar/burger_dropdown';
+import BurgerDrop from './header/sidebar/burger-dropdown-container';
 export default class App extends React.Component{
   constructor(props){
     super(props);
@@ -25,7 +25,7 @@ export default class App extends React.Component{
     const { showSide } = this.state;
     const currentUser = store.getState().session.currentUser;
     const sidebar =
-      showSide ? <BurgerDrop path={location.pathname + location.search} currentUser={currentUser}/> : null;
+      showSide ? <BurgerDrop path={location.pathname + location.search}/> : null;
     return(
       <main>
         <header className="header">

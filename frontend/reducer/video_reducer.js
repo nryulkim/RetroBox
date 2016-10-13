@@ -4,8 +4,6 @@ import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
 
 import LikeReducer from './like_reducer';
-
-
 import merge from "lodash/merge";
 
 

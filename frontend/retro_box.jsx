@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store.js';
 import Root from './components/root.jsx';
-import * as LikeActions from './actions/like_actions';
+import * as SubActions from './actions/subscription_actions';
+import * as SubAPI from './util/subs_api_util.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     let initialState = {};
@@ -10,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
       initialState = {session:{currentUser: window.currentUser}};
     }
     const store = configureStore(initialState);
-    window.LikeActions = LikeActions;
+    window.SubActions = SubActions;
+    window.SubAPI = SubAPI;
     window.store = store;
 
     const root = document.getElementById('root');

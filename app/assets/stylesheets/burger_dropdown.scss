@@ -21,13 +21,21 @@ sidebar{
       display: flex;
       flex-direction: column;
       li{
+        height: 30px;
+        display: flex;
+        vertical-align: middle;
         a{
           padding: 6px;
-          display: block;
+          display: flex;
           text-align: left;
+          align-items: center;
           margin-left: 14px;
           i{
             margin-right: 10px;
+            img{
+              width: 18px;
+              height: 18px;
+            }
           }
         }
       }
@@ -42,7 +50,7 @@ sidebar{
       }
       h1{
         color: #124507;
-        margin-left: 10px;
+        margin: 0 10px 3px 0;
         text-transform: uppercase;
         font-size: 12px;
       }

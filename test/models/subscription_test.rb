@@ -1,19 +1,17 @@
 # == Schema Information
 #
-# Table name: likes
+# Table name: subscriptions
 #
 #  id            :integer          not null, primary key
-#  user_id       :integer          not null
-#  likeable_id   :integer          not null
-#  likeable_type :string           not null
+#  subscriber_id :integer          not null
+#  subscribee_id :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  like_type     :integer          not null
 #
 
 require 'test_helper'
 
-class LikeTest < ActiveSupport::TestCase
+class SubscriptionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

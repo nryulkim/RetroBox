@@ -25,6 +25,9 @@ class Api::VideosController < ApplicationController
         @videos = Video.select("videos.*, SUM(likes.like_type) AS like_sum").joins(:likes).group("videos.id").includes(:user)
       end
       render :liked_videos
+    elsif params[:subs] == "1" && params[:sub_id]
+      @videos = Video.includes(:user).where(user_id: params[:sub_id])
+      render :index
     else
       @videos = Video.getFilteredVideos(params)
       render :index

@@ -2,13 +2,17 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  username        :string           not null
-#  email           :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                :integer          not null, primary key
+#  username          :string           not null
+#  email             :string           not null
+#  password_digest   :string           not null
+#  session_token     :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  icon_file_name    :string
+#  icon_content_type :string
+#  icon_file_size    :integer
+#  icon_updated_at   :datetime
 #
 
 require 'bcrypt'
@@ -24,7 +28,24 @@ class User < ApplicationRecord
 
   has_many :videos
   has_many :comments
-  
+
+  has_many :my_subscriptions,
+    class_name: "Subscription",
+    foreign_key: :subscriber_id
+
+  has_many :others_subscriptions,
+    class_name: "Subscription",
+    foreign_key: :subscribee_id
+
+  has_many :channels,
+    through: :my_subscriptions,
+    source: :channel
+
+  has_many :subscribers,
+    through: :others_subscriptions,
+    source: :subscriber
+
+
   before_validation :ensure_token
 
   def self.find_by_creds(email, password)

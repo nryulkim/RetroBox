@@ -6,7 +6,6 @@ import { timeSince } from '../../../util/util_functions';
 class SearchPage extends React.Component{
   constructor(props){
     super(props);
-
     let queryObj = this.props.location.query;
 
     this.state = {

@@ -7,10 +7,15 @@ class BurgerDrop extends React.Component{
     super(props);
     this.getLinks = this.getLinks.bind(this);
     this.highlightSelected = this.highlightSelected.bind(this);
+    this.getSubs = this.getSubs.bind(this);
   }
 
   componentDidMount(){
+    const { currentUser, getSubscriptions } = this.props;
     this.highlightSelected();
+    if(currentUser && !currentUser.subscriptions){
+      getSubscriptions(currentUser.id);
+    }
   }
 
   componentDidUpdate(){
@@ -33,7 +38,7 @@ class BurgerDrop extends React.Component{
         "Liked Videos": [`/search?liked=1&user=${this.props.currentUser.id}`, "fa-thumbs-up"],
         "Disliked Videos": [`/search?liked=-1&user=${this.props.currentUser.id}`, "fa-thumbs-down"]
       };
-      const links = [<h1 key="title">Library</h1>];
+      let links = [<h1 key="library">Library</h1>];
       for (let i = 0; i < Object.keys(paths).length; i++) {
         const name = Object.keys(paths)[i];
         const path = paths[name][0];
@@ -45,9 +50,30 @@ class BurgerDrop extends React.Component{
         );
       }
       links.push(<div className="divider" key="divider"/>);
+      links = links.concat(this.getSubs());
       return links;
     }else{
       return null;
+    }
+  }
+
+  getSubs(){
+    const { currentUser } = this.props;
+    if(currentUser.subscriptions){
+      let returnArr = [<h1 key="subs">Subscriptions</h1>];
+      return returnArr.concat(currentUser.subscriptions.map((channel) => {
+        let path = `/search?subs=1&sub_id=${channel.id}`;
+        return (
+          <li key={path}>
+            <Link to={path}>
+              <i><img src={channel.icon_url}/></i>
+              {channel.username}
+            </Link>
+          </li>
+        );
+      }));
+    }else{
+      return [<img src={window.retroBoxAssets.loader} key="loader"/>];
     }
   }
 
