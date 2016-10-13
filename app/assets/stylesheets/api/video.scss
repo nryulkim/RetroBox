@@ -30,11 +30,24 @@
   }
 }
 .giveMeEllipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  position: relative;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  line-height: 1;        /* fallback */
-  max-height: 2;       /* fallback */
+  white-space: normal;
+  line-height: 1.3em;
+  max-height: 2.6em;
 }
+
+// .giveMeEllipsis {
+//   text-overflow: ellipsis;
+//   height: 10px;
+//   line-height: 1.2em;
+//   max-height: 2.4em;
+//   text-align: left;
+//   margin-right: -1em;
+//   padding-right: 1em;
+// }
