@@ -13,17 +13,19 @@ export function getSubscriptions(id){
   });
 }
 
-export function newSubscription(subscription){
+export function newSubscription(subscription, isAsync){
   return({
     type: NEW_SUBSCRIPTION,
-    subscription
+    subscription,
+    isAsync
   });
 }
 
-export function deleteSubscription(id){
+export function deleteSubscription(id, isAsync){
   return({
     type: DELETE_SUBSCRIPTION,
-    id
+    id,
+    isAsync
   });
 }
 

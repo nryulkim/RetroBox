@@ -3,10 +3,11 @@ export const DESTROY_LIKE = "DESTROY_LIKE";
 export const RECEIVE_LIKE = "RECEIVE_LIKE";
 export const REMOVE_LIKE = "REMOVE_LIKE";
 
-export function newLike(like) {
+export function newLike(like, isAsync) {
   return({
     type: NEW_LIKE,
-    like
+    like,
+    isAsync
   });
 }
 
@@ -17,10 +18,11 @@ export function receiveLike(like) {
   });
 }
 
-export function destroyLike(id){
+export function destroyLike(id, isAsync){
   return({
     type: DESTROY_LIKE,
-    id
+    id,
+    isAsync
   });
 }
 
@@ -30,17 +32,3 @@ export function removeLike(like){
     like
   });
 }
-//
-// export function getCount(){
-//   return({
-//     type: GET_COUNT,
-//     likeable
-//   });
-// }
-//
-// export function getTotal(){
-//   return({
-//     type: GET_TOTAL,
-//     likeable
-//   });
-// }

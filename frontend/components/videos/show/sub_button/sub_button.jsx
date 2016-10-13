@@ -6,6 +6,7 @@ class SubButton extends React.Component{
     this.state ={
       initialStatus: "subscribe",
       currentStatus: "subscribe",
+      subs: [],
       sub: null
     };
     this.handleSub = this.handleSub.bind(this);
@@ -14,7 +15,8 @@ class SubButton extends React.Component{
   }
 
   setInitialState(props){
-    let sub = props.currentUser.subscriptions.find((sub) => {
+    const subs = props.currentUser.subscriptions;
+    const sub = props.currentUser.subscriptions.find((sub) => {
       return sub.channel_id === props.channel.id;
     });
 
@@ -22,12 +24,14 @@ class SubButton extends React.Component{
       this.setState({
         initialStatus: "unsubscribe",
         currentStatus: "unsubscribe",
+        subs,
         sub
       });
     }else{
       this.setState({
         initialStatus: "subscribe",
         currentStatus: "subscribe",
+        subs,
         sub: null
       });
     }
@@ -38,22 +42,33 @@ class SubButton extends React.Component{
     const { currentUser, getSubscriptions } = this.props;
     if(!currentUser.subscriptions){
       getSubscriptions(currentUser.id);
+    }
+  }
+
+  componentDidUpdate(){
+    const { initialStatus, currentStatus } = this.state;
+    if(initialStatus !== currentStatus){
+      window.onbeforeunload.subscriptionAJAX = this.handleAjax;
     }else{
-      this.setInitialState(this.props);
+      window.onbeforeunload.subscriptionAJAX = false;
     }
   }
 
   componentWillReceiveProps(nextProps){
-    this.handleAjax();
-    this.setInitialState(nextProps);
+    if(nextProps.channel !== this.props.channel || this.props.currentUser.subscriptions === undefined){
+      this.handleAjax(true);
+      this.setInitialState(nextProps);
+      window.onbeforeunload.subscriptionAJAX = false;
+    }
   }
 
   componentWillUnmount(){
-    this.handleAjax();
+    this.handleAjax(true);
+    window.onbeforeunload.subscriptionAJAX = false;
   }
 
-  handleAjax(){
-    const { currentStatus, initialStatus, subId } = this.state;
+  handleAjax(isAsync){
+    const { currentStatus, initialStatus, sub } = this.state;
     const {
       channel,
       currentUser,
@@ -62,12 +77,12 @@ class SubButton extends React.Component{
     } = this.props;
     if( currentStatus !== initialStatus ){
       if(initialStatus === "unsubscribe"){
-        deleteSubscription(sub.id);
+        deleteSubscription(sub.id, isAsync);
       }else{
         newSubscription({
           subscribee_id: channel.id,
-          subscriber_id: currentUser.id
-        });
+          subscriber_id: currentUser.id,
+        }, isAsync);
       }
     }
   }
@@ -92,9 +107,9 @@ class SubButton extends React.Component{
     }else{
       this.setState({ currentStatus: "subscribe" });
       if(sub){
-        removeSubscription(sub.id);
+        removeSubscription(sub);
       }else{
-        removeSubscription(-1);
+        removeSubscription({ id: -1 });
       }
     }
   }

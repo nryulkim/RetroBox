@@ -77,15 +77,15 @@ class LikeBar extends React.Component{
   }
 
   componentWillReceiveProps(nextProps){
-    this.handleAjax();
+    this.handleAjax(true);
     this.setInitialState(nextProps);
   }
 
   componentWillUnmount(){
-    this.handleAjax();
+    this.handleAjax(true);
   }
 
-  handleAjax(){
+  handleAjax(isAsync){
     const { currentUserLike, initialStatus, idx } = this.state;
     const {
       likeableType,
@@ -97,14 +97,14 @@ class LikeBar extends React.Component{
     } = this.props;
     if(currentUserLike !== initialStatus){
       if(currentUserLike === 0){
-        destroyLike(likes[idx].id);
+        destroyLike(likes[idx].id, isAsync);
       }else{
         newLike({
           like_type: currentUserLike,
           likeable_id: likeableId,
           likeable_type: likeableType,
-          user_id: currentUserId
-        });
+          user_id: currentUserId,
+        }, isAsync);
       }
     }
   }

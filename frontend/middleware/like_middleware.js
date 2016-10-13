@@ -12,14 +12,14 @@ export default ({ getState, dispatch }) => next => action => {
       success = (like) => {
         dispatch(receiveLike(like));
       }
-      LikeApi.newLike(action.like, success, errors);
+      LikeApi.newLike(action.like, success, errors, action.isAsync);
       return next(action);
 
     case(DESTROY_LIKE):
       success = (like) => {
         dispatch(removeLike(like))
       }
-      LikeApi.destroyLike(action.id, success, errors);
+      LikeApi.destroyLike(action.id, success, errors, action.isAsync);
       return next(action);
 
     default:

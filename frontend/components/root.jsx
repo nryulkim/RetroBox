@@ -30,6 +30,14 @@ const _setCurrentVideo = (nextState) => {
   if(typeof store.getState().videos.list_videos === "undefined"){
     _getVideos();
   }
+
+  function handleOnWindowUnload(){
+    if(handleOnWindowUnload.subscriptionAJAX){
+      handleOnWindowUnload.subscriptionAJAX(false);
+    }
+  }
+
+  window.onbeforeunload = handleOnWindowUnload;
 };
 
 const _getVideos = () => {

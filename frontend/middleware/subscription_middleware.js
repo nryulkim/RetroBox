@@ -19,8 +19,7 @@ export default ({ getState, dispatch }) => next => action => {
       success = (subscription) => {
         dispatch(receiveSubscription(subscription));
       };
-
-      SubscriptionAPI.newSubscription(action.subscription, success);
+      SubscriptionAPI.newSubscription(action.subscription, success, action.isAsync);
       return next(action);
 
     case REMOVE_SUBSCRIPTION:
@@ -38,10 +37,10 @@ export default ({ getState, dispatch }) => next => action => {
 
     case DELETE_SUBSCRIPTION:
       success = (id) => {
-        dispatch(removeSubscription(id));
+        dispatch(removeSubscription(id, action.isAsync));
       };
 
-      SubscriptionAPI.destroySubscription(action.id, success);
+      SubscriptionAPI.destroySubscription(action.id, success, action.isAsync);
       return next(action);
 
     default:

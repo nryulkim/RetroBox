@@ -5,20 +5,28 @@ import merge from "lodash/merge";
 
 export default (state, action) => {
   let newState = merge({}, state);
+  let idx;
   switch(action.type){
     case RECEIVE_SUBSCRIPTIONS:
       newState.subscriptions = action.subscriptions;
       return newState;
 
     case RECEIVE_SUBSCRIPTION:
-      newState.subscriptions.push(action.subscription);
+      idx = newState.subscriptions.findIndex((sub) => {
+        return sub.channel_id === action.subscription.channel_id;
+      });
+      if(idx === -1){
+        newState.subscriptions.push(action.subscription);
+      }
       return newState;
 
     case REMOVE_SUBSCRIPTION:
-      const idx = newState.subscriptions.findIndex((subscription) => {
+      idx = newState.subscriptions.findIndex((subscription) => {
         return subscription.id === action.id;
       });
-      newState.subscriptions.splice(idx, 1);
+      if(idx !== -1){
+        newState.subscriptions.splice(idx, 1);
+      }
 
       return newState;
 

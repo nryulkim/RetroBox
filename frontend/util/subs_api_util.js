@@ -7,19 +7,21 @@ export function getSubscriptions(id, success){
   });
 }
 
-export function newSubscription(subscription, success){
+export function newSubscription(subscription, success, isAsync){
   $.ajax({
     method: "POST",
     url: "/api/subscriptions",
     data: { subscription },
-    success
+    success,
+    async: isAsync
   });
 }
 
-export function destroySubscription(id, success){
+export function destroySubscription(id, success, isAsync){
   $.ajax({
     method: "DELETE",
     url: `/api/subscriptions/${id}`,
-    success
+    success,
+    async: isAsync
   });
 }
