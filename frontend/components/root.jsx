@@ -35,7 +35,14 @@ const _setCurrentVideo = (nextState) => {
     if(handleOnWindowUnload.subscriptionAJAX){
       handleOnWindowUnload.subscriptionAJAX(false);
     }
+    const keys = Object.keys(handleOnWindowUnload.likeAJAX);
+    if(keys){
+      for (let i = 0; i < keys.length; i++) {
+        handleOnWindowUnload.likeAJAX[keys[i]](false);
+      }
+    }
   }
+  handleOnWindowUnload.likeAJAX = {};
 
   window.onbeforeunload = handleOnWindowUnload;
 };

@@ -76,13 +76,32 @@ class LikeBar extends React.Component{
     this.setInitialState(this.props);
   }
 
+  componentDidUpdate(){
+    const { currentUserLike, initialStatus } = this.state;
+    const { likeableId, likeableType } = this.props;
+    if(initialStatus !== currentUserLike){
+      window.onbeforeunload.likeAJAX[likeableType + likeableId] = this.handleAjax;
+    }else{
+      delete window.onbeforeunload.likeAJAX[likeableType + likeableId];
+    }
+  }
+
   componentWillReceiveProps(nextProps){
-    this.handleAjax(true);
-    this.setInitialState(nextProps);
+    const { currentUserLike, initialStatus } = this.state;
+    const { likeableId, likeableType } = this.props;
+
+    if(nextProps.likeableId !== likeableId || nextProps.likeableType !== likeableType){
+      this.handleAjax(true);
+      this.setInitialState(nextProps);
+      delete window.onbeforeunload.likeAJAX[likeableType + likeableId];
+    }
   }
 
   componentWillUnmount(){
+    const { likeableId, likeableType } = this.props;
+    
     this.handleAjax(true);
+    delete window.onbeforeunload.likeAJAX[likeableType + likeableId];
   }
 
   handleAjax(isAsync){
