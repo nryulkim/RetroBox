@@ -10,8 +10,6 @@
   margin: 15px;
 }
 
-
-
 #root{
   main{
     .content{
@@ -23,6 +21,11 @@
 }
 
 footer{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
   display: flex;
   justify-content: space-between;
   vertical-align: middle;
