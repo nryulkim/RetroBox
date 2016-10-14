@@ -40,6 +40,15 @@ class SessionForm extends React.Component {
     setDragAndDrop("#dropIcon", this.getIcon);
   }
 
+  componentWillReceiveProps(){
+    this.setState({
+      username: "",
+      email: "",
+      password: "",
+      iconFile: null,
+      iconUrl: window.retroBoxAssets.defaultIcon
+    });
+  }
 
   handleSubmit(e){
     if(e){ e.preventDefault(); }
