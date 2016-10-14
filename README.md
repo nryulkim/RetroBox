@@ -15,8 +15,7 @@ RetroBox is a full-stack web application using Ruby on Rails as its backend, Pos
 
   Allowing for all the likes statuses to change when the user moves to a completely new webpage was particularly tricky. `window.onbeforeunload` had to not only send the AJAX for one particular likeable's likes, but also every altered likes on the page and the subscription status. This was done by giving the `window.onbeforeunload` function properties that refer to other functions and calling those properties inside the function if they do exist. As there is an undetermined number of likes on the page, this was set as an object of functions with their property name being a combination of the `likeable_type` and `likeable_id`.
 
-  ![alt tag](https://raw.githubusercontent.com/nryulkim/RetroBox/master/app/images/readme/gif/video_likes_demo.gif)
-
+  [[https://github.com/nryulkim/RetroBox/blob/master/app/images/readme/gif/video_likes_demo.gif|alt=likes_demo]]
 
 ### Subscriptions
   Users are able to subscribe to other users through the video show page. When the user subscribes to another user, they get a link on their burger drop down menu with a link to all of that particular user's videos. Subscriptions are stored in the PostgreSQL database with the `id`, `subscriber_id`, and `subscribee_id`.
@@ -25,7 +24,9 @@ RetroBox is a full-stack web application using Ruby on Rails as its backend, Pos
 
   Sending an AJAX request when the window is unloaded was especially tricky. The overall store state is edited when the user clicks the subscribe button. This allows the burger dropdown to rerender with the change in the user's subscriptions. However, this also makes the subscribe button receive new props and rerender. The subscribe button had to retain its state when the user clicks the subscribe button but reset its state when the video changes and when the current user first receives the subscriptions from the database. Finally, the AJAX request had to be synchronous only when the window is unloaded so that the AJAX actually fires correctly on Chrome browsers.
 
-  ![alt tag](https://raw.githubusercontent.com/nryulkim/RetroBox/master/app/images/readme/gif/subscribe_demo_gif.gif)
+  [subgif]
+
+  ![subgif](./app/images/readme/gif/subscribe_demo_gif.gif)
 
 
 ### User Accounts
