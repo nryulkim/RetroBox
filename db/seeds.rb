@@ -87,7 +87,7 @@ all_videos.push(Video.create!({
 
 all_videos.push(Video.create!({
   title: "Kennedy 1960's Campaign Commercial",
-  description: "This is an old commercial for Kenney's campaign from the 60's.",
+  description: "This is an old commercial for Kennedy's campaign from the 60's.",
   video: URI.parse("https://www.dropbox.com/s/cduuj5z7cr8c26l/v8.mp4?raw=1"),
   thumbnail:  URI.parse("https://www.dropbox.com/s/npz2esu6xw7jvc6/tb8.png?raw=1"),
   user_id: all_users.sample.id,

@@ -29,14 +29,15 @@ class LikeBar extends React.Component{
   findLike(props, likeType){
     const { likes, currentUserId } = props;
     if(typeof currentUserId === null) { return -1; }
-
-    let idx = likes.findIndex((like) => {
-      if(like.user_id === currentUserId && like.like_type === likeType){
-         return true;
-       }
-      return false;
-    });
-    return idx;
+    if(likes){
+      let idx = likes.findIndex((like) => {
+        if(like.user_id === currentUserId && like.like_type === likeType){
+          return true;
+        }
+        return false;
+      });
+      return idx;
+    }
   }
 
   setInitialState(props){
@@ -99,7 +100,7 @@ class LikeBar extends React.Component{
 
   componentWillUnmount(){
     const { likeableId, likeableType } = this.props;
-    
+
     this.handleAjax(true);
     delete window.onbeforeunload.likeAJAX[likeableType + likeableId];
   }
@@ -169,15 +170,16 @@ class LikeBar extends React.Component{
 
   getLikes(props, type){
     const { likes } = props;
-
-    let numLikes = 0;
-    for (let i = 0; i < likes.length; i++) {
-      if(likes[i].like_type == type){
-        numLikes += 1;
+    if(likes){
+      let numLikes = 0;
+      for (let i = 0; i < likes.length; i++) {
+        if(likes[i].like_type == type){
+          numLikes += 1;
+        }
       }
-    }
 
-    return numLikes;
+      return numLikes;
+    }
   }
 
   render(){
