@@ -11,14 +11,15 @@ class Comments extends React.Component{
 
   getComments(){
     const {
-      comments,
       currentUser,
       deleteComment,
       editComment,
       newLike,
       destroyLike
     } = this.props;
+    let { comments } = this.props;
 
+    if(!comments) { comments = []; }
     comments.sort((a, b) => {
       if(a.updated_at > b.updated_at){ return -1; }
       else if(a.updated_at == b.updated_at){ return 0; }
