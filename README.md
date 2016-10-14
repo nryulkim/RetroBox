@@ -50,8 +50,8 @@ RetroBox is a full-stack web application using Ruby on Rails as its backend, Pos
 
   Once there are videos on the search page, the videos can be sorted depending on their title, username, or view count. This can be organized in either ascending or descending order. This was done by altering the state of the video show page component and sorting the videos accordingly.
 
-  <p align="center"><img src="./app/assets/images/readme/gif/video_search_demo.gif" width="300px"></img></p>
-  
+  <p align="center"><img src="./app/assets/images/readme/gif/video_search_demo.gif"></img></p>
+
 ### Adding Comments
   Users are also able to add comments to any video. Each comment is stored in a table containing their `id`, `body`, `video_id` and `user_id`. After submitting a comment to a video, users are able to either delete or edit their own comments. They will not be able to delete or edit comments that they do not own.
 
