@@ -16,24 +16,26 @@ class SubButton extends React.Component{
 
   setInitialState(props){
     const subs = props.currentUser.subscriptions;
-    const sub = props.currentUser.subscriptions.find((sub) => {
-      return sub.channel_id === props.channel.id;
-    });
+    if(subs){
+      const sub = subs.find((sub) => {
+        return sub.channel_id === props.channel.id;
+      });
 
-    if(sub){
-      this.setState({
-        initialStatus: "unsubscribe",
-        currentStatus: "unsubscribe",
-        subs,
-        sub
-      });
-    }else{
-      this.setState({
-        initialStatus: "subscribe",
-        currentStatus: "subscribe",
-        subs,
-        sub: null
-      });
+      if(sub){
+        this.setState({
+          initialStatus: "unsubscribe",
+          currentStatus: "unsubscribe",
+          subs,
+          sub
+        });
+      }else{
+        this.setState({
+          initialStatus: "subscribe",
+          currentStatus: "subscribe",
+          subs,
+          sub: null
+        });
+      }
     }
   }
 

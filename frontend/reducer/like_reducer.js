@@ -8,25 +8,32 @@ const LikeReducer = (state = defaultState, action) => {
     let comment = newState.currentVideo.comments.find((comment) => {
       return comment.id === action.like.likeable_id;
     });
-    likes = comment.likes;
+    if(comment){
+      likes = comment.likes;
+    }
   }
-  const idx = likes.findIndex((like) => {
-    if(like.id === action.like.id) { return true; }
-    return false;
-  });
+  let idx;
+  if(likes){
+    idx = likes.findIndex((like) => {
+      if(like.id === action.like.id) { return true; }
+      return false;
+    });
+  }else{
+    idx = -2;
+  }
 
   switch(action.type){
     case RECEIVE_LIKE:
-      if(idx !== -1){
-        likes[idx] = action.like;
-      }else{
+      if(idx === -1){
         likes.push(action.like);
+      }else if(idx >= 0){
+        likes[idx] = action.like;
       }
 
       return newState;
 
     case REMOVE_LIKE:
-      if(idx !== -1){
+      if(idx >= 0){
         likes.splice(idx, 1);
       }
 

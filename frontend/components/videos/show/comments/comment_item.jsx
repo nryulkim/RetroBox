@@ -48,38 +48,49 @@ export default class CommentItem extends React.Component{
     const { comment, currentUser, editComment, newLike, destroyLike } = this.props;
     const { editor } = this.state;
     const { author, body, updated_at } = comment;
-    if(editor){
-      return(
-        <EditCommentForm
-        currentUser={currentUser}
-        comment={comment}
-        process={editComment}
-        handleCancel={this.hideEditForm}/>
-      );
-    }else{
-      return(
-        <div className="comment-item group">
-          <div className="user-icon"><img src={author.icon_url}/></div>
 
-          <div className="comment-header">
-            {this.getEditorIcons(author, currentUser)}
-            <h3>{author.username}</h3>
-            <h4>{timeSince(updated_at)} ago</h4>
-          </div>
-          <div className="comment-body">
-            <p>{body}</p>
-          </div>
-          <div className="comment-like-bar">
-            <LikeBar
-              likeableType="Comment"
-              likeableId={comment.id}
-              likes={comment.likes}
-              currentUserId={currentUser ? currentUser.id : null}
-              newLike={newLike}
-              destroyLike={destroyLike}/>
-          </div>
+    let content = (
+      <div className="comment-content">
+        <div className="user-icon"><img src={author.icon_url}/></div>
+
+        <div className="comment-header">
+          {this.getEditorIcons(author, currentUser)}
+          <h3>{author.username}</h3>
+          <h4>{timeSince(updated_at)} ago</h4>
         </div>
+        <div className="comment-body">
+          <p>{body}</p>
+        </div>
+      </div>
+    );
+
+    let displayBar = { display: "block" };
+
+    if(editor){
+      content = (
+        <EditCommentForm
+          currentUser={currentUser}
+          comment={comment}
+          process={editComment}
+          handleCancel={this.hideEditForm}/>
       );
+
+      displayBar = { display: "none" };
     }
+
+    return(
+      <div className="comment-item group">
+        {content}
+        <div className="comment-like-bar" style={displayBar}>
+          <LikeBar
+            likeableType="Comment"
+            likeableId={comment.id}
+            likes={comment.likes}
+            currentUserId={currentUser ? currentUser.id : null}
+            newLike={newLike}
+            destroyLike={destroyLike}/>
+        </div>
+      </div>
+    );
   }
 }

@@ -202,12 +202,11 @@ header{
             border-radius: 50%;
             font-size: 24px;
             margin: 2px;
-            cursor: pointer;
             width: 60px;
             height: 60px;
 
             overflow: hidden;
-            a{
+            div{
               position: relative;
               top: 50%;
               transform: translateY(-50%);
