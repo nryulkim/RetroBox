@@ -44,32 +44,41 @@ class LikeBar extends React.Component{
     let idx = this.findLike(props, 1);
     let likes = this.getLikes(props, 1);
     let dislikes = this.getLikes(props, -1);
-    if(idx !== -1){
-      this.setState({
-        initialStatus: 1,
-        currentUserLike: 1,
-        likes: likes,
-        dislikes: dislikes,
-        idx: idx
-      });
-    }else {
-      idx = this.findLike(props, -1);
+    if(typeof idx !== "undefined"){
       if(idx !== -1){
         this.setState({
-          initialStatus: -1,
-          currentUserLike: -1,
+          initialStatus: 1,
+          currentUserLike: 1,
           likes: likes,
           dislikes: dislikes,
           idx: idx
         });
-      }else{
-        this.setState({
-          initialStatus: 0,
-          currentUserLike: 0,
-          likes: likes,
-          dislikes: dislikes
-        });
+      }else {
+        idx = this.findLike(props, -1);
+        if(idx !== -1 ){
+          this.setState({
+            initialStatus: -1,
+            currentUserLike: -1,
+            likes: likes,
+            dislikes: dislikes,
+            idx: idx
+          });
+        }else {
+          this.setState({
+            initialStatus: 0,
+            currentUserLike: 0,
+            likes: likes,
+            dislikes: dislikes
+          });
+        }
       }
+    }else{
+      this.setState({
+        initialStatus: 0,
+        currentUserLike: 0,
+        likes: 0,
+        dislikes: 0
+      });
     }
   }
 
