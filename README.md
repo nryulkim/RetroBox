@@ -15,7 +15,7 @@ RetroBox is a full-stack web application using Ruby on Rails as its backend, Pos
 
   Allowing for all the likes statuses to change when the user moves to a completely new webpage was particularly tricky. `window.onbeforeunload` had to not only send the AJAX for one particular likeable's likes, but also every altered likes on the page and the subscription status. This was done by giving the `window.onbeforeunload` function properties that refer to other functions and calling those properties inside the function if they do exist. As there is an undetermined number of likes on the page, this was set as an object of functions with their property name being a combination of the `likeable_type` and `likeable_id`.
 
-  <p align="center"><img src="./app/assets/images/readme/gif/video_likes_demo.gif"></img></p>
+  <p align="center"><img src="./app/assets/images/readme/gif/video_likes_demo.gif" width="300px"></img></p>
 
 
 ### Subscriptions
@@ -25,13 +25,13 @@ RetroBox is a full-stack web application using Ruby on Rails as its backend, Pos
 
   Sending an AJAX request when the window is unloaded was especially tricky. The overall store state is edited when the user clicks the subscribe button. This allows the burger dropdown to rerender with the change in the user's subscriptions. However, this also makes the subscribe button receive new props and rerender. The subscribe button had to retain its state when the user clicks the subscribe button but reset its state when the video changes and when the current user first receives the subscriptions from the database. Finally, the AJAX request had to be synchronous only when the window is unloaded so that the AJAX actually fires correctly on Chrome browsers.
 
-  <p align="center"><img src="./app/assets/images/readme/gif/subscribe_demo_gif.gif"></img></p>
+  <p align="center"><img src="./app/assets/images/readme/gif/subscribe_demo_gif.gif" width="300px"></img></p>
 
 
 ### User Accounts
   Users are able to create their own accounts and upload an icon image that will represent them. If they choose not to do so, they will be using a default icon. A demo account is provided to allow people to test the website without having to make a fresh account. The login animation for the demo account was done using a combination of a higher order function and closures. Upon login the current user is held by the store until the session is destroyed. Users are stored in the database in one table containing their `id`, `username`, `email`, `password_digest`, `icon`, and `session_token`. The `icon` image is stored on AWS with paperclip if a custom image is used. If not, the default image is utilized from the asset pipeline.
 
-  <p align="center"><img src="./app/assets/images/readme/gif/user_signup_demo_gif.gif"></img></p>
+  <p align="center"><img src="./app/assets/images/readme/gif/user_signup_demo_gif.gif" width="300px"></img></p>
 
 ### Videos
   Users are also able to upload videos to the site. A reference to the video is stored in one table in our PostgreSQL database. Each video is stored with the following information: `id`, `title`, `description`, `video`, `thumbnail`, `views`, and `user_id`. The `video` and `thumbnail` are setup with the paperclip gem and the actual video and image are stored on AWS.
@@ -50,6 +50,8 @@ RetroBox is a full-stack web application using Ruby on Rails as its backend, Pos
 
   Once there are videos on the search page, the videos can be sorted depending on their title, username, or view count. This can be organized in either ascending or descending order. This was done by altering the state of the video show page component and sorting the videos accordingly.
 
+  <p align="center"><img src="./app/assets/images/readme/gif/video_search_demo.gif" width="300px"></img></p>
+  
 ### Adding Comments
   Users are also able to add comments to any video. Each comment is stored in a table containing their `id`, `body`, `video_id` and `user_id`. After submitting a comment to a video, users are able to either delete or edit their own comments. They will not be able to delete or edit comments that they do not own.
 
