@@ -27,7 +27,7 @@ export default class App extends React.Component{
     const sidebar =
       showSide ? <BurgerDrop path={location.pathname + location.search}/> : null;
     return(
-      <main>
+      <main className="group">
         <header className="header">
           <Header toggleBurger={this.toggleBurger}/>
         </header>
@@ -35,7 +35,7 @@ export default class App extends React.Component{
           <sidebar id="burger-sidebar-container">
             {sidebar}
           </sidebar>
-          <div className="main-content">
+          <div className="main-content group">
             {children}
           </div>
         </div>

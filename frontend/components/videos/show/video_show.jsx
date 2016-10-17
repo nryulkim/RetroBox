@@ -9,6 +9,9 @@ import { shuffleArray } from '../../../util/util_functions.js';
 class VideoShow extends React.Component{
   constructor(props){
     super(props);
+    this.state = {
+      videos: []
+    };
     this.getVideos = this.getVideos.bind(this);
   }
 
@@ -16,8 +19,14 @@ class VideoShow extends React.Component{
     this.props.receiveVideo(null);
   }
 
-  getVideos(){
-    const { videos } = this.props;
+  componentWillReceiveProps(nextProps){
+    const { videos } = this.state;
+    if(videos.length === 0 && nextProps.videos){
+      this.setState({ videos: this.getVideos(nextProps.videos) });
+    }
+  }
+
+  getVideos(videos){
     if(typeof videos === "undefined"){return null;}
     const randVids = shuffleArray(videos).slice(0, 6);
 
@@ -80,7 +89,7 @@ class VideoShow extends React.Component{
 
         <div className="video-side-bar container">
           <h4>Suggested Videos</h4>
-          {this.getVideos()}
+          {this.state.videos}
         </div>
       </div>
     );

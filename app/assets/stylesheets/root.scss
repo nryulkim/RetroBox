@@ -10,6 +10,10 @@
   margin: 15px;
 }
 
+body{
+  height: 90%;
+}
+
 #root{
   main{
     .content{
@@ -21,10 +25,6 @@
 }
 
 footer{
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
   text-align: center;
   display: flex;
   justify-content: space-between;
