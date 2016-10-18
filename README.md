@@ -75,10 +75,10 @@ RetroBox is a full-stack web application using Ruby on Rails as its backend, Pos
   I would like to have the video thumbnail to be generated automatically from the video that is uploaded to the website. This can be done using the FFMPEG buildpack that is currently being used to process the videos for paperclip.
 
 ### Nested Comments
-  Currently, users can only comment on videos. I would like to change comments to be polymorphic and have videdos or other comments to be commentable.
+  Currently, users can only comment on videos. I would like to change comments to be polymorphic and have videos or other comments to be commentable.
 
 ### History
   I would like to keep track of what videos the user has watched so that they can have a `Watch Again` list.
 
 ### Video Tags
-  I would like to have Users be able to add tags to their own videos. This way other users can search using tags and these tags can be utilzed in the suggestion engine.
+  I would like to have Users be able to add tags to their own videos. This way other users can search using tags and these tags can be utilize in the suggestion engine.
