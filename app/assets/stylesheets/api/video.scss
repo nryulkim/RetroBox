@@ -13,12 +13,12 @@
   h3{
     width: 200px;
     color: #1682D0;
-    a:hover{
-      text-decoration: underline;
-    }
   }
-  h4{
-    margin: 4px 0 2px;
+  a:hover{
+    text-decoration: underline;
+  }
+  h4 a{
+    line-height: 19px;
     color: #7E7676;
     font-size: 12px;
     font-weight: lighter;

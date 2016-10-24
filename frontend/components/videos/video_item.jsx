@@ -15,7 +15,9 @@ class VideoItem extends React.Component{
         <Link to={path}><img src={video.thumbnail_url}/></Link>
         <div className="link">
           <h3 className="giveMeEllipsis"><Link to={path}>{video.title}</Link></h3>
-          <h4>{video.username}</h4>
+          <h4 className="userLink">
+            <Link to={`/search?subs=1&sub_id=${video.user.id}`}>{video.user.username}</Link>
+          </h4>
           <h5>{video.views.toLocaleString('en-US')} Views · {timeSince(video.created_at)} ago</h5>
         </div>
       </div>
