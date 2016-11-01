@@ -15,6 +15,7 @@ export default ({ getState, dispatch }) => next => action => {
     case(ONE_VIDEO):
       const video = videoCache.get(action.id);
       if(video){
+        videoCache.add(video);
         dispatch(receiveVideo(video));
         break;
       }else{
