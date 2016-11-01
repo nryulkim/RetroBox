@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './header/header-container';
-import BurgerDrop from './header/sidebar/burger-dropdown-container';
+import Header from './header/header_container';
+import BurgerDrop from './header/sidebar/burger_dropdown_container';
 export default class App extends React.Component{
   constructor(props){
     super(props);

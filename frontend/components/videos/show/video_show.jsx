@@ -2,7 +2,7 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import VideoItem from '../video_item';
 import LikeBar from './likes/like';
-import Comments from './comments/comments-container';
+import Comments from './comments/comments_container';
 import SubButton from './sub_button/sub_button_container';
 import { shuffleArray } from '../../../util/util_functions.js';
 
