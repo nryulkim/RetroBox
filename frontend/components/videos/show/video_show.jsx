@@ -19,6 +19,14 @@ class VideoShow extends React.Component{
     this.props.receiveVideo(null);
   }
 
+  componentDidMount(){
+    const { videos } = this.state;
+    const allVideos = this.props.videos;
+    if(videos.length === 0 && allVideos && allVideos.length > 0){
+      this.setState({ videos: this.getVideos(allVideos) });
+    }
+  }
+
   componentWillReceiveProps(nextProps){
     const { videos } = this.state;
     if(videos.length === 0 && nextProps.videos){
