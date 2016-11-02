@@ -8,17 +8,18 @@ class Node{
 
 class LinkedList{
   constructor(){
-    this.head = new Node(null);
-    this.tail = new Node(null);
-    this.head.tail = this.tail;
-    this.tail.head = this.head;
+    this.front = new Node(null);
+    this.end = new Node(null);
+
+    this.front.tail = this.end;
+    this.end.head = this.front;
     this.count = 0;
   }
 
   shift(){
-    const node = this.tail.head;
-    this.tail.head = node.head;
-    node.head.tail = this.tail;
+    const node = this.end.head;
+    this.end.head = node.head;
+    node.head.tail = this.end;
     this.count -= 1;
     return node;
   }
@@ -31,14 +32,15 @@ class LinkedList{
     if(node.head !== null){
       node.head.tail = node.tail;
     }
-    
+
     if(node.tail !== null){
       node.tail.head = node.head;
     }
 
-    node.head = this.head;
-    node.tail = this.head.tail;
-    this.head.tail = node;
+    node.head = this.front;
+    node.tail = this.front.tail;
+    this.front.tail.head = node;
+    this.front.tail = node;
   }
 }
 
