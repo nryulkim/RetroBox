@@ -7,6 +7,7 @@ import VideoShow from './video_show';
 const mapStateToProps = ({ session, videos }, ownProps) => {
   return({
     video: videos.currentVideo,
+    id: ownProps.params.id,
     currentUser: session.currentUser,
     videos: videos.list_videos
   });
