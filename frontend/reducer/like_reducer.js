@@ -1,9 +1,13 @@
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
 import merge from 'lodash/merge';
 
-const LikeReducer = (state = defaultState, action) => {
+const LikeReducer = (state, action) => {
   let newState = merge({}, state);
-  let likes = newState.currentVideo.likes;
+  let likes = [];
+
+  if(newState.currentVideo.likes){
+    likes = newState.currentVideo.likes;
+  }
   if(action.like.likeable_type === "Comment"){
     let comment = newState.currentVideo.comments.find((comment) => {
       return comment.id === action.like.likeable_id;

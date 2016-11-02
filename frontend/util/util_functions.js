@@ -14,6 +14,13 @@ export function shuffleArray(orgArray) {
   return array;
 }
 
+export function getLikeIndex(likes, id){
+  return likes.findIndex((like) => {
+    if(like.id === id) { return true; }
+    return false;
+  });
+}
+
 export function getIndex(comments, comment){
   return comments.findIndex((cmt) => {
     if(cmt.id === comment.id){ return true; }

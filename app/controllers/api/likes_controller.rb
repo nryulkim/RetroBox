@@ -2,7 +2,7 @@ class Api::LikesController < ApplicationController
   def create
     @like = Like.find_like(like_params[:user_id], like_params[:likeable_id], like_params[:likeable_type])
     if @like
-      @like.like_type = like_params[:like_type];
+      @like.like_type = like_params[:like_type]
       @like.save
       render :create
     else

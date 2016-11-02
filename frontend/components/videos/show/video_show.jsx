@@ -10,13 +10,10 @@ class VideoShow extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      videos: []
+      videos: [],
+      newVideo: false
     };
     this.getVideos = this.getVideos.bind(this);
-  }
-
-  componentWillUnmount(){
-    this.props.receiveVideo(null);
   }
 
   componentDidMount(){
@@ -25,6 +22,7 @@ class VideoShow extends React.Component{
     if(videos.length === 0 && allVideos && allVideos.length > 0){
       this.setState({ videos: this.getVideos(allVideos) });
     }
+    this.setState({ newVideo: true });
   }
 
   componentWillReceiveProps(nextProps){
@@ -32,6 +30,7 @@ class VideoShow extends React.Component{
     if(videos.length === 0 && nextProps.videos){
       this.setState({ videos: this.getVideos(nextProps.videos) });
     }
+    this.setState({ newVideo: true });
   }
 
   getVideos(videos){
@@ -48,59 +47,63 @@ class VideoShow extends React.Component{
   }
 
   render(){
-    const { video, currentUser, newLike, destroyLike } = this.props;
-    if(!video){ return null; }
-    let date = new Date(video.created_date);
-    let subButton = null;
-    if(currentUser) { subButton = <SubButton channel={video.user}/>; }
-    return(
-      <div className="video-show-container group">
-        <main>
-          <div className="video-player">
-            <ReactPlayer url={video.video_url} controls={true} width={640} height={360} playing/>
-          </div>
-          <div className="video-title text-container container">
-            <h1>{video.title}</h1>
-            <div className="title-middle-container group">
-              <div className="title-middle group">
-                <div className="user-icon">
-                  <img src={video.user.icon_url}></img>
+    if(this.state.newVideo){
+      const { video, currentUser, newLike, destroyLike } = this.props;
+      if(!video){ return null; }
+      let date = new Date(video.created_date);
+      let subButton = null;
+      if(currentUser) { subButton = <SubButton channel={video.user}/>; }
+      return(
+        <div className="video-show-container group">
+          <main>
+            <div className="video-player">
+              <ReactPlayer url={video.video_url} controls={true} width={640} height={360} playing/>
+            </div>
+            <div className="video-title text-container container">
+              <h1>{video.title}</h1>
+              <div className="title-middle-container group">
+                <div className="title-middle group">
+                  <div className="user-icon">
+                    <img src={video.user.icon_url}></img>
+                  </div>
+                  <h3>{video.user.username}</h3>
+                  <div className="view-counter group">
+                    <h2>{video.views.toLocaleString('en-US')} views</h2>
+                  </div>
+                  {subButton}
                 </div>
-                <h3>{video.user.username}</h3>
-                <div className="view-counter group">
-                  <h2>{video.views.toLocaleString('en-US')} views</h2>
-                </div>
-                {subButton}
+                <div className="view-counter-dislike-bar"/>
+                <div className="view-counter-like-bar"/>
               </div>
-              <div className="view-counter-dislike-bar"/>
-              <div className="view-counter-like-bar"/>
+              <div className="video-like-bar">
+                <LikeBar
+                  likeableType="Video"
+                  likeableId={video.id}
+                  likes={video.likes}
+                  currentUserId={currentUser ? currentUser.id : null}
+                  newLike={newLike}
+                  destroyLike={destroyLike}/>
+              </div>
             </div>
-            <div className="video-like-bar">
-              <LikeBar
-                likeableType="Video"
-                likeableId={video.id}
-                likes={video.likes}
-                currentUserId={currentUser ? currentUser.id : null}
-                newLike={newLike}
-                destroyLike={destroyLike}/>
+            <div className="video-description text-container container">
+              <h4>Published on {date.toDateString().slice(4)}</h4>
+              <p>{video.description}</p>
             </div>
-          </div>
-          <div className="video-description text-container container">
-            <h4>Published on {date.toDateString().slice(4)}</h4>
-            <p>{video.description}</p>
-          </div>
-          <div className="video-comments text-container container">
-            <Comments/>
-          </div>
-        </main>
+            <div className="video-comments text-container container">
+              <Comments/>
+            </div>
+          </main>
 
 
-        <div className="video-side-bar container">
-          <h4>Suggested Videos</h4>
-          {this.state.videos}
+          <div className="video-side-bar container">
+            <h4>Suggested Videos</h4>
+            {this.state.videos}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }else{
+      return (null);
+    }
   }
 }
 

@@ -53,16 +53,6 @@ const VideoReducer = (state = defaultState, action) => {
       newState = LikeReducer(state, action);
       return newState;
 
-
-    // case REMOVE_VIDEO:
-    //   if(newState.currentVideo && newState.currentVideo.id === action.video.id){
-    //     newState.currentVideo = null;
-    //   }
-    //   if(newState[action.video.id]){
-    //     delete newState[action.video.id];
-    //   }
-    //   return newState;
-
     case RECEIVE_COMMENT:
       if(idx !== -1){
         newState.currentVideo.comments[idx] = action.comment;
