@@ -27,7 +27,8 @@ class VideoShow extends React.Component{
 
   componentWillReceiveProps(nextProps){
     const { videos } = this.state;
-    if(videos.length === 0 && nextProps.videos){
+    if((videos.length === 0 && nextProps.videos) ||
+        this.props.video && this.props.video.id !== nextProps.video.id){
       this.setState({ videos: this.getVideos(nextProps.videos) });
     }
     this.setState({ newVideo: true });
