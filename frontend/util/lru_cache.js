@@ -24,9 +24,14 @@ class LinkedList{
   }
 
   push(node){
+    if(node.head === null && node.tail === null){
+      this.count += 1;
+    }
+
     if(node.head !== null){
       node.head.tail = node.tail;
     }
+    
     if(node.tail !== null){
       node.tail.head = node.head;
     }
@@ -34,7 +39,6 @@ class LinkedList{
     node.head = this.head;
     node.tail = this.head.tail;
     this.head.tail = node;
-    this.count += 1;
   }
 }
 
@@ -60,7 +64,7 @@ export default class LRUCache{
 
   get(id){
     if(this.video_ids[id]){
-      return this.video_ids[id].val;
+      return this.video_ids[id];
     }
     return null;
   }

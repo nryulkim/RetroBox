@@ -14,6 +14,13 @@ export function shuffleArray(orgArray) {
   return array;
 }
 
+export function getIndex(comments, comment){
+  return comments.findIndex((cmt) => {
+    if(cmt.id === comment.id){ return true; }
+    return false;
+  });
+}
+
 export function uniqArray(array){
   const seen = {};
   const result = [];

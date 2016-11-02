@@ -3,6 +3,7 @@ import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/util_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
 
+import { getIndex } from '../util/util_functions';
 import LikeReducer from './like_reducer';
 import merge from "lodash/merge";
 
@@ -16,13 +17,6 @@ const defaultState = {
   currentVideo: null,
   forms: defaultForms
 };
-
-function getIndex(comments, comment){
-  return comments.findIndex((cmt) => {
-    if(cmt.id === comment.id){ return true; }
-    return false;
-  });
-}
 
 const VideoReducer = (state = defaultState, action) => {
   let newState = merge({}, state);
