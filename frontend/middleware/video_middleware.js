@@ -1,7 +1,7 @@
 import * as VideoApi from '../util/video_api_util';
 import {
   ALL_VIDEOS, SOME_VIDEOS, NEW_VIDEO,
-  receiveVideos, receiveSomeVideos
+  receiveVideos, receiveVideo, receiveSomeVideos
 } from '../actions/video_actions';
 import { receiveErrors } from '../actions/util_actions.js';
 
