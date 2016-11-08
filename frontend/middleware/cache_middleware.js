@@ -78,7 +78,6 @@ export default ({ getState, dispatch }) => next => action => {
 
     case(REMOVE_COMMENT):
       node = videoCache.get(action.comment.video_id);
-      debugger
       if(node){
         idx = getIndex(node.val.comments, action.comment)
         node.val.comments.splice(idx, 1);

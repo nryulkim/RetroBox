@@ -23,7 +23,7 @@ export default class App extends React.Component{
   render(){
     const { children, location } = this.props;
     const { showSide } = this.state;
-    const currentUser = store.getState().session.currentUser;
+    const currentUser = this.props.currentUser;
     const sidebar =
       showSide ? <BurgerDrop path={location.pathname + location.search}/> : null;
     return(

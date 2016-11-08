@@ -11,10 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
       initialState = {session:{currentUser: window.currentUser}};
     }
     const store = configureStore(initialState);
-    window.SubActions = SubActions;
-    window.SubAPI = SubAPI;
-    window.store = store;
-
     const root = document.getElementById('root');
     ReactDOM.render(<Root store={store}/>, root);
 });
